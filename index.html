@@ -14,14 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #FF6700; /* Vibrant Orange */
-            --secondary-color: #FFA500;
-            --gradient-start: #1C160E;
-            --gradient-mid1: #2A211D;
-            --gradient-mid2: #38302B;
-            --gradient-end: #1C160E;
-            --overlay-color1: rgba(255, 103, 0, 0.05); /* Orange overlay */
-            --overlay-color2: rgba(255, 165, 0, 0.03); /* Lighter Orange overlay */
+            --primary-color: #00FFFF; /* Vibrant Cyan */
+            --secondary-color: #2c3e50;
+            --gradient-start: #0c0c1e;
+            --gradient-mid1: #1a1a2e;
+            --gradient-mid2: #25283d;
+            --gradient-end: #0c0c1e;
+            --overlay-color1: rgba(0, 255, 255, 0.05); /* Cyan overlay */
+            --overlay-color2: rgba(255, 105, 180, 0.03); /* Pink overlay */
             --text-color: #e0e0e0;
             --heading-color: #ffffff;
             --card-background: rgba(255, 255, 255, 0.08); 
@@ -61,7 +61,7 @@
         }
         .text-primary {
             color: var(--primary-color) !important;
-            background: linear-gradient(90deg, #FF6700, #FFC107);
+            background: linear-gradient(90deg, #00FFFF, #8A2BE2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -73,9 +73,9 @@
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: var(--secondary-color);
+            background-color: #4ac7e2;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 103, 0, 0.4);
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
         }
         .btn-outline-light {
             border: 1px solid rgba(255, 255, 255, 0.5);
@@ -128,6 +128,10 @@
         }
         .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
             width: 100%;
+        }
+        /* FIX: Bootstrap Toggle Icon Color */
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
         .introduction-section {
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid1));
@@ -218,12 +222,16 @@
         .delay-3 { animation-delay: 0.9s; }
         .delay-4 { animation-delay: 1.2s; }
         
-        .scroll-container {
+        /* FIX: Align 'Scroll to explore' properly on mobile */
+        .scroll-wrapper {
             position: absolute;
             bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .scroll-container {
+            display: inline-flex;
             flex-direction: column;
             align-items: center;
             gap: 5px;
@@ -532,9 +540,9 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .btn-send:hover {
-            background-color: var(--secondary-color);
+            background-color: #4ac7e2;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 103, 0, 0.4);
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
         }
         .footer {
             padding: 30px 0;
@@ -613,7 +621,7 @@
 <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand animate__animated animate__fadeInLeft" href="#introduction">Kumara N</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -632,13 +640,11 @@
 <section id="introduction" class="introduction-section">
     <div class="introduction-content">
         <div class="text-content">
-            <p class="role animate-up delay-1">Aspiring Data Scientist</p>
+            <p class="role animate-up delay-1">Aspiring Data Scientist & Developer</p>
             <h1 class="animate-up delay-2">Hi, I'm <br><span class="text-primary">Kumara N</span></h1>
             <p class="animate-up delay-3"> 
-                Aspiring Data Scientist with a passion for uncovering insights from data.
-                Skilled in Python, Machine Learning, and Data Analysis.
-                Eager to apply analytical skills to solve real-world problems.
-                Quick learner, adaptable, and driven to grow in the field of Data Science.            </p>
+                A passionate and motivated data science enthusiast, I specialize in leveraging data to solve complex problems. My expertise lies in Python, machine learning, and data analysis. I'm a quick learner and eager to contribute to innovative projects.
+            </p>
             <div class="buttons animate-up delay-4">
                 <a href="#projects-showcase" class="btn btn-lg btn-primary">View My Work <i class="fas fa-arrow-right ms-2"></i></a>
                 <a href="Kumara_Resume.pdf" class="btn btn-lg btn-outline-light" download>Download CV <i class="fas fa-download ms-2"></i></a>
@@ -647,10 +653,12 @@
         <div class="profile-image animate-up delay-3">
             <img src="profile_img.jpeg" alt="Kumara N's profile photo, a professional headshot.">
         </div>
-        <a href="#about-me" class="scroll-container animate-up delay-4">
-            <span class="scroll-text">Scroll to explore</span>
-            <i class="fas fa-chevron-down scroll-icon"></i>
-        </a>
+        <div class="scroll-wrapper">
+            <a href="#about-me" class="scroll-container animate-up delay-4">
+                <span class="scroll-text">Scroll to explore</span>
+                <i class="fas fa-chevron-down scroll-icon"></i>
+            </a>
+        </div>
     </div>
 </section>
 
@@ -760,6 +768,7 @@
                     <span class="skill-tag">GitHub</span>
                     <span class="skill-tag">VS Code</span>
                     <span class="skill-tag">Google Colab</span>
+                    <span class="skill-tag">Microsoft Azure</span>
                 </div>
             </div>
         </div>
@@ -777,8 +786,8 @@
                     <img src="./static/projects_IMG/movie_recommendation.png" class="img-fluid" alt="Screenshot of the Movie Recommendation System live application.">
                     <p class="text-start mt-3">A content-based movie recommendation system built with Python, Pandas, and Scikit-learn. It recommends movies based on user-selected preferences, using a cosine similarity algorithm.</p>
                     <div class="d-flex justify-content-center flex-wrap mt-3">
-                         <a href="https://cineverserecommender.streamlit.app/" class="btn btn-primary mt-2 mx-1" target="_blank">View Live App <i class="fas fa-external-link-alt"></i></a>
-                         <a href="https://github.com/Kumara5KN/CineVerseRecommender" class="btn btn-outline-light mt-2 mx-1" target="_blank">View on GitHub <i class="fab fa-github"></i></a>
+                         <a href="https://cineverserecommender.streamlit.app/" class="btn btn-primary mt-2 mx-1" target="_blank" rel="noopener noreferrer">View Live App <i class="fas fa-external-link-alt"></i></a>
+                         <a href="https://github.com/Kumara5KN/CineVerseRecommender" class="btn btn-outline-light mt-2 mx-1" target="_blank" rel="noopener noreferrer">View on GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
@@ -788,7 +797,7 @@
                     <img src="./static/projects_IMG/Interface1.png" class="img-fluid" alt="User interface of the Emotion Detection System, showing text input and emotion output.">
                     <p class="text-start mt-3">An application that detects human emotions from text using Natural Language Processing (NLP) techniques. It analyzes input text to classify emotions like joy, sadness, anger, etc., providing insightful analytics.</p>
                     <div class="d-flex justify-content-center flex-wrap mt-3">
-                         <a href="https://github.com/Kumara5KN/python-project" class="btn btn-outline-light mt-2 mx-1" target="_blank">View on GitHub <i class="fab fa-github"></i></a>
+                         <a href="https://github.com/Kumara5KN/python-project" class="btn btn-outline-light mt-2 mx-1" target="_blank" rel="noopener noreferrer">View on GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
@@ -835,9 +844,9 @@
                         </div>
                     </div>
                     <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank"><i class="fab fa-linkedin"></i><span class="visually-hidden">LinkedIn profile</span></a>
-                        <a href="https://github.com/Kumara5KN" target="_blank"><i class="fab fa-github"></i><span class="visually-hidden">GitHub profile</span></a>
-                        <a href="https://twitter.com/your_twitter_handle" target="_blank"><i class="fab fa-twitter"></i><span class="visually-hidden">Twitter profile</span></a>
+                        <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i><span class="visually-hidden">LinkedIn profile</span></a>
+                        <a href="https://github.com/Kumara5KN" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span class="visually-hidden">GitHub profile</span></a>
+                        <a href="https://twitter.com/your_twitter_handle" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i><span class="visually-hidden">Twitter profile</span></a>
                     </div>
                 </div>
             </div>
@@ -867,7 +876,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p>&copy; 2024 Kumara N. All Rights Reserved.</p>
+        <p>&copy; 2024 Kumara N. All Rights Reserved. | Designed with ❤️</p>
     </div>
 </footer>
 
@@ -916,7 +925,7 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             
-            responseMessage.innerHTML = "<span style='color: #FF6700;'>Sending...</span>";
+            responseMessage.innerHTML = "<span style='color: #00FFFF;'>Sending...</span>";
 
             const serviceID = 'service_bzrdewt';
             const templateID = 'template_vxjrj34';
