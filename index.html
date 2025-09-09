@@ -3,42 +3,39 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumara N - Portfolio</title>
+    <meta name="description" content="Kumara N's professional portfolio showcasing expertise in Data Science, Machine Learning, and Python. Explore my projects, skills, and contact information.">
+    <title>Kumara N - Data Scientist & Developer</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #FFC107;
-            --secondary-color: #FFA000;
-            --gradient-start: #002147;
-            --gradient-mid1: #003366;
-            --gradient-mid2: #004D6D;
-            --gradient-end: #1A202C;
-            --overlay-color1: rgba(0, 50, 50, 0.1);
-            --overlay-color2: rgba(0, 50, 50, 0.05);
+            --primary-color: #FF6700; /* Vibrant Orange */
+            --secondary-color: #FFA500;
+            --gradient-start: #1C160E;
+            --gradient-mid1: #2A211D;
+            --gradient-mid2: #38302B;
+            --gradient-end: #1C160E;
+            --overlay-color1: rgba(255, 103, 0, 0.05); /* Orange overlay */
+            --overlay-color2: rgba(255, 165, 0, 0.03); /* Lighter Orange overlay */
             --text-color: #e0e0e0;
             --heading-color: #ffffff;
             --card-background: rgba(255, 255, 255, 0.08); 
-            --navbar-background-scrolled: rgba(0, 0, 0, 0.75);
+            --navbar-background-scrolled: rgba(0, 0, 0, 0.85);
             --border-color: rgba(255, 255, 255, 0.15); 
             --input-background: rgba(255, 255, 255, 0.05);
             --input-placeholder-color: #bdbdbd;
             --shadow-color: rgba(0, 0, 0, 0.5);
             --skill-card-hover: rgba(255, 255, 255, 0.15);
-            --skill-section-bg: #101239; 
-            --dark-card-bg: #1e1e4a; 
-            --dark-card-border: rgba(255, 255, 255, 0.1); 
-            --tag-bg-color: #3b3b64;
-            --tag-text-color: #f0f0f0;
-            --icon-web: #5282F4;
-            --icon-mern: #61DAFB;
-            --icon-data: #42b72a;
-            --icon-soft: #ff6f61;
+            --tag-bg-color: rgba(255, 255, 255, 0.1);
+            --tag-text-color: var(--primary-color);
         }
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(160deg, var(--gradient-start), var(--gradient-mid1), var(--gradient-mid2), var(--gradient-end));
             background-attachment: fixed;
             color: var(--text-color);
@@ -64,7 +61,7 @@
         }
         .text-primary {
             color: var(--primary-color) !important;
-            background: linear-gradient(90deg, #7452F4, #5282F4);
+            background: linear-gradient(90deg, #FF6700, #FFC107);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -73,20 +70,25 @@
             border: none;
             color: black;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
         .btn-primary:hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 103, 0, 0.4);
         }
         .btn-outline-light {
-            border: 1px solid white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
             color: white;
-            font-weight: bold;
+            font-weight: 500;
             background-color: transparent;
+            transition: all 0.3s ease;
         }
         .btn-outline-light:hover {
             background-color: white;
-            color: black;
+            color: var(--gradient-start);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
         }
         .navbar {
             background-color: transparent;
@@ -99,19 +101,33 @@
         .navbar.scrolled-navbar {
             background-color: var(--navbar-background-scrolled);
             box-shadow: 0 2px 10px var(--shadow-color);
+            backdrop-filter: blur(10px);
         }
         .navbar-brand {
             color: var(--heading-color);
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-weight: 700;
+            font-size: 1.6rem;
         }
         .navbar-nav .nav-link {
             color: var(--heading-color);
-            margin: 0 10px;
+            margin: 0 15px;
             font-weight: 500;
+            position: relative;
         }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-            color: var(--primary-color);
+        .navbar-nav .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+            width: 100%;
         }
         .introduction-section {
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid1));
@@ -139,18 +155,18 @@
             text-align: left;
         }
         .text-content h1 {
-            font-size: 4rem;
-            font-weight: bold;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
             line-height: 1.2;
             color: white;
         }
         .text-content .role {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: normal;
             margin-top: 0;
             margin-bottom: 1rem;
-            color: #bdbdbd;
+            color: var(--primary-color);
         }
         .text-content p {
             font-size: 1.1rem;
@@ -162,13 +178,20 @@
             height: 300px;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
             margin-left: 50px;
+            animation: fadeIn 2s ease-in-out;
         }
         .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+        .profile-image img:hover {
+            filter: grayscale(0%);
         }
         .buttons {
             display: flex;
@@ -176,7 +199,7 @@
             margin-top: 25px;
         }
         .animate-up {
-            animation: moveUp 2s ease-out forwards;
+            animation: moveUp 1.5s ease-out forwards;
             transform: translateY(50px);
             opacity: 0;
         }
@@ -190,20 +213,14 @@
                 opacity: 1;
             }
         }
-        .delay-1 {
-            animation-delay: 0.5s;
-        }
-        .delay-2 {
-            animation-delay: 1s;
-        }
-        .delay-3 {
-            animation-delay: 1.5s;
-        }
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+        .delay-4 { animation-delay: 1.2s; }
         
-        /* Scroll Down Symbol and Text */
         .scroll-container {
             position: absolute;
-            bottom: -50px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -212,70 +229,64 @@
             gap: 5px;
             color: #fff;
             text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .scroll-container:hover {
+            opacity: 1;
         }
         .scroll-text {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
+            letter-spacing: 1px;
         }
         .scroll-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        /* General Section Styling */
         .content-section {
-            padding: 80px 0; /* Increased padding */
+            padding: 100px 0;
             text-align: center;
-        }
-        #about-me.colored,
-        #education.colored,
-        #skills {
-            background-color: transparent;
         }
         .content-section h2 {
             font-size: 3rem;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            color: white;
-            background: none;
-            -webkit-background-clip: unset;
-            -webkit-text-fill-color: unset;
+            color: var(--heading-color);
             position: relative;
-            padding-bottom: 10px;
         }
         .content-section h2::after {
-            content: none;
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
         }
         .content-section p.sub-heading {
             font-size: 1.2rem;
             color: #bdbdbd;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         .content-section .section-text {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 2rem auto;
             color: #ffffff;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1rem;
         }
         
-        /* About Me Section */
-        #about-me .section-text {}
-        
-        /* Education Section */
-        #education .container {
-            padding-top: 0;
+        #about-me .section-text {
+            font-weight: 300;
         }
+        
         .education-container {
             max-width: 1000px;
             margin: auto;
@@ -283,14 +294,14 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
         }
         .education-card {
             background-color: rgba(26, 32, 44, 0.4); 
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 30px;
             text-align: left;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             display: flex;
@@ -299,33 +310,28 @@
             flex-basis: 48%;
             max-width: 48%;
             margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .education-card.mca {
-            background: rgba(42, 42, 74, 0.4);
-            border-color: rgba(116, 82, 244, 0.4);
-        }
-        .education-card.bca {
-            background: rgba(74, 42, 74, 0.4);
-            border-color: rgba(231, 76, 60, 0.4);
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
         }
         .education-card .icon-container {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary-color);
         }
-        .education-card.bca .icon-container {
-            color: #e74c3c;
-        }
         .education-card h3 {
-            font-size: 1.3rem; 
+            font-size: 1.4rem; 
             color: white;
             margin-bottom: 5px;
+            font-weight: 600;
         }
         .education-card .details p {
             font-size: 1rem;
@@ -341,26 +347,23 @@
         }
         .details-flex .status-tag {
             display: inline-block;
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
+            background-color: var(--primary-color);
+            color: #1a1a2e;
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.85rem;
-        }
-        .education-card.bca .details-flex .status-tag {
-            background-color: #e74c3c;
+            font-weight: bold;
         }
         .details-flex .cgpa {
             font-size: 1.1rem;
             font-weight: bold;
-            color: white;
+            color: #ffffff;
         }
         
-        /* New Section: My Skills (Tech Stack) */
         .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             max-width: 1000px;
             margin: auto;
         }
@@ -368,14 +371,15 @@
             background: var(--card-background); 
             border: 1px solid var(--border-color); 
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             text-align: left;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         .skill-card-header {
             display: flex;
@@ -383,11 +387,16 @@
             margin-bottom: 15px;
         }
         .skill-card-header .icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-right: 15px;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        .skill-card:hover .icon {
+            transform: scale(1.1);
         }
         .skill-card-header h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
             margin: 0;
             color: white;
@@ -395,7 +404,7 @@
         .skill-tag-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
         .skill-tag {
             background-color: var(--tag-bg-color);
@@ -404,19 +413,7 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
-        }
-        .icon.web { color: var(--icon-web); }
-        .icon.mern { color: var(--icon-mern); }
-        .icon.data { color: var(--icon-data); }
-        .icon.soft { color: var(--icon-soft); }
-
-        /* Projects Section */
-        .portfolio-showcase-section {
-            padding: 80px 20px; /* Increased padding */
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
+            white-space: nowrap;
         }
         .project-card {
             background: var(--card-background);
@@ -429,14 +426,8 @@
             color: var(--text-color);
         }
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-        .project-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            font-size: 1.5rem;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
         }
         .project-card img {
             max-width: 100%;
@@ -444,14 +435,23 @@
             border-radius: 8px;
             margin-bottom: 15px;
             border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.02);
+        }
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        .project-card .btn {
+            margin: 5px;
         }
 
-        /* Contact Section */
-        #contact-me {
-            background-color: transparent;
-        }
         #contact-me .container {
-            max-width: 800px;
+            max-width: 900px;
         }
         .contact-content {
             display: flex;
@@ -480,6 +480,10 @@
             color: var(--primary-color);
             width: 30px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .contact-content:hover .contact-info-item .icon {
+            transform: scale(1.1);
         }
         .contact-info-item h4 {
             font-size: 1.2rem;
@@ -530,16 +534,25 @@
         .btn-send:hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 103, 0, 0.4);
         }
         .footer {
-            padding: 20px 0;
+            padding: 30px 0;
             text-align: center;
             background-color: var(--navbar-background-scrolled);
             color: #ccc;
             margin-top: 50px;
         }
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #fff;
+        }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .introduction-content {
                 flex-direction: column-reverse;
                 text-align: center;
@@ -547,26 +560,30 @@
             .text-content {
                 max-width: 100%;
                 text-align: center;
-                margin-top: 30px;
+                margin-top: 40px;
             }
             .profile-image {
                 margin: 0;
+                width: 250px;
+                height: 250px;
             }
             .text-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             .text-content .role {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
             .buttons {
                 justify-content: center;
             }
             .education-card {
+                flex-basis: 100%;
+                max-width: 100%;
                 flex-direction: column;
                 text-align: center;
+            }
+            .education-card .details {
                 width: 100%;
-                flex-basis: auto;
-                max-width: none;
             }
             .education-card .icon-container {
                 margin-bottom: 15px;
@@ -582,29 +599,30 @@
             .contact-info {
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
-                margin-bottom: 20px;
-                padding-bottom: 20px;
+                margin-bottom: 30px;
+                padding-bottom: 30px;
             }
             .contact-form-column {
-                padding-top: 20px;
+                padding-top: 0;
             }
         }
     </style>
 </head>
 <body>
+
 <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#home">Kumara N</a>
+        <a class="navbar-brand animate__animated animate__fadeInLeft" href="#introduction">Kumara N</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto animate__animated animate__fadeInRight">
                 <li class="nav-item"><a class="nav-link" href="#introduction">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about-me">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">My Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects-showcase">My Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects-showcase">Projects</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact-me">Contact</a></li>
             </ul>
         </div>
@@ -614,20 +632,20 @@
 <section id="introduction" class="introduction-section">
     <div class="introduction-content">
         <div class="text-content">
-            <h1 class="animate-up delay-1">Hello, I'm <br><span class="text-primary">Kumara N</span></h1>
+            <p class="role animate-up delay-1">Aspiring Data Scientist</p>
+            <h1 class="animate-up delay-2">Hi, I'm <br><span class="text-primary">Kumara N</span></h1>
             <p class="animate-up delay-3"> 
                 Aspiring Data Scientist with a passion for uncovering insights from data.
                 Skilled in Python, Machine Learning, and Data Analysis.
                 Eager to apply analytical skills to solve real-world problems.
-                Quick learner, adaptable, and driven to grow in the field of Data Science.
-            </p>
-            <div class="buttons animate-up delay-3">
-                <a href="#projects-showcase" class="btn btn-lg btn-primary">View My Work</a>
-                <a href="#contact-me" class="btn btn-lg btn-outline-light">Get In Touch</a>
+                Quick learner, adaptable, and driven to grow in the field of Data Science.            </p>
+            <div class="buttons animate-up delay-4">
+                <a href="#projects-showcase" class="btn btn-lg btn-primary">View My Work <i class="fas fa-arrow-right ms-2"></i></a>
+                <a href="Kumara_Resume.pdf" class="btn btn-lg btn-outline-light" download>Download CV <i class="fas fa-download ms-2"></i></a>
             </div>
         </div>
-        <div class="profile-image animate-up delay-2">
-            <img src="profile_img.jpeg" alt="Kumara N">
+        <div class="profile-image animate-up delay-3">
+            <img src="profile_img.jpeg" alt="Kumara N's profile photo, a professional headshot.">
         </div>
         <a href="#about-me" class="scroll-container animate-up delay-4">
             <span class="scroll-text">Scroll to explore</span>
@@ -636,35 +654,36 @@
     </div>
 </section>
 
-<section id="about-me" class="content-section colored">
+<section id="about-me" class="content-section">
     <div class="container">
         <h2>About Me</h2>
         <p class="sub-heading">Get to know me</p>
         <p class="section-text">
-            I'm a passionate and motivated data science enthusiast currently advancing my skills through my Master of Computer Applications program. My journey into data science is driven by a curiosity to uncover insights from complex datasets and a desire to build intelligent systems that solve real-world challenges. I'm actively seeking opportunities to apply my knowledge in a professional environment and contribute to innovative projects in the field.
+            My journey into data science is driven by a profound curiosity to uncover insights from complex datasets and a desire to build intelligent systems that solve real-world challenges. With a strong academic background in computer applications, I am well-versed in statistical analysis, machine learning algorithms, and data visualization. I am actively seeking opportunities to apply my skills in a professional environment and contribute to innovative projects in the field.
         </p>
     </div>
 </section>
 
-<section id="education" class="content-section colored">
+<section id="education" class="content-section">
     <div class="container">
         <h2>Education</h2>
         <p class="sub-heading">My academic journey</p>
         <div class="education-container">
-            <div class="education-card mca">
+            <div class="education-card animate__animated animate__fadeInLeft animate__delay-1s">
                 <div class="icon-container">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div class="details">
                     <h3>Master of Computer Applications</h3>
                     <p>Presidency University, Bengaluru</p>
+                    <p class="text-muted">Specialization: Data Science</p>
                     <div class="details-flex">
-                        <span class="status-tag">Currently Pursuing - 2024-2026</span>
+                        <span class="status-tag">Currently Pursuing (2024 - 2026)</span>
                         <p class="cgpa">CGPA: 9.12</p>
                     </div>
                 </div>
             </div>
-            <div class="education-card bca">
+            <div class="education-card animate__animated animate__fadeInRight animate__delay-1s">
                 <div class="icon-container">
                     <i class="fas fa-user-graduate"></i>
                 </div>
@@ -672,7 +691,7 @@
                     <h3>Bachelor of Computer Applications</h3>
                     <p>Kuvempu University</p>
                     <div class="details-flex">
-                        <span class="status-tag">Completed - 2023</span>
+                        <span class="status-tag">Completed (2023)</span>
                         <p class="cgpa">CGPA: 8.99</p>
                     </div>
                 </div>
@@ -688,60 +707,99 @@
         <div class="skills-container">
             <div class="skill-card">
                 <div class="skill-card-header">
-                    <i class="fas fa-code icon web"></i>
+                    <i class="fas fa-brain icon"></i>
+                    <h3>Data Science & ML</h3>
+                </div>
+                <div class="skill-tag-container">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">Jupyter</span>
+                    <span class="skill-tag">Natural Language Processing (NLP)</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fas fa-database icon"></i>
+                    <h3>Data & Databases</h3>
+                </div>
+                <div class="skill-tag-container">
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Data Cleaning</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Tableau</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-card-header">
+                    <i class="fas fa-code icon"></i>
                     <h3>Web Development</h3>
                 </div>
                 <div class="skill-tag-container">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript (ES6+)</span>
                     <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Streamlit</span>
                 </div>
             </div>
-            
             <div class="skill-card">
                 <div class="skill-card-header">
-                    <i class="fas fa-chart-line icon data"></i>
-                    <h3>Data Analytics</h3>
+                    <i class="fas fa-tools icon"></i>
+                    <h3>Tools & Platforms</h3>
                 </div>
                 <div class="skill-tag-container">
-                    <span class="skill-tag">Excel</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Google Colab</span>
                 </div>
             </div>
-            
         </div>
     </div>
 </section>
 
-<section id="projects-showcase" class="portfolio-showcase-section">
-    <div class="container section-title">
-        <h2 style="color: white; -webkit-text-fill-color: white;">My Projects</h2>
-    </div>
+<section id="projects-showcase" class="content-section">
     <div class="container">
+        <h2>My Projects</h2>
+        <p class="sub-heading">A selection of my recent work</p>
         <div class="row g-4">
-            <div class="col-md-4">
-                <div class="project-card">
-                    <div class="project-title">Emotion Detection System</div>
-                    <img src="./static/projects_IMG/Interface1.png" alt="Emotion Detection">
-                    <a href="https://github.com/Kumara5KN/python-project" class="btn btn-outline-primary mt-3">View on GitHub</a>
-                </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
                 <div class="project-card">
                     <div class="project-title">Movie Recommendation Engine</div>
-                    <img src="./static/projects_IMG/movie_recommendation.png" alt="Movie Recommendation">
-                    <a href="https://cineverserecommender.streamlit.app/" class="btn btn-primary mt-3">View Live App</a>
-                    <a href="https://github.com/Kumara5KN/CineVerseRecommender" class="btn btn-outline-primary mt-3">View on GitHub</a>
+                    <img src="./static/projects_IMG/movie_recommendation.png" class="img-fluid" alt="Screenshot of the Movie Recommendation System live application.">
+                    <p class="text-start mt-3">A content-based movie recommendation system built with Python, Pandas, and Scikit-learn. It recommends movies based on user-selected preferences, using a cosine similarity algorithm.</p>
+                    <div class="d-flex justify-content-center flex-wrap mt-3">
+                         <a href="https://cineverserecommender.streamlit.app/" class="btn btn-primary mt-2 mx-1" target="_blank">View Live App <i class="fas fa-external-link-alt"></i></a>
+                         <a href="https://github.com/Kumara5KN/CineVerseRecommender" class="btn btn-outline-light mt-2 mx-1" target="_blank">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp animate__delay-1s">
                 <div class="project-card">
-                    <div class="project-title">Project 3</div>
-                    <img src="https://via.placeholder.com/400x300/1A202C/FFC107?text=Your+Project+3" alt="Project 3">
-                    <a href="#" class="btn btn-outline-primary mt-3">View Details</a>
+                    <div class="project-title">Emotion Detection System</div>
+                    <img src="./static/projects_IMG/Interface1.png" class="img-fluid" alt="User interface of the Emotion Detection System, showing text input and emotion output.">
+                    <p class="text-start mt-3">An application that detects human emotions from text using Natural Language Processing (NLP) techniques. It analyzes input text to classify emotions like joy, sadness, anger, etc., providing insightful analytics.</p>
+                    <div class="d-flex justify-content-center flex-wrap mt-3">
+                         <a href="https://github.com/Kumara5KN/python-project" class="btn btn-outline-light mt-2 mx-1" target="_blank">View on GitHub <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="project-card">
+                    <div class="project-title">Project Title Placeholder</div>
+                    <img src="https://via.placeholder.com/400x300/1C160E/FF6700?text=Coming+Soon" class="img-fluid" alt="Placeholder image for a future project.">
+                    <p class="text-start mt-3">This space is reserved for a future project. It will showcase my skills in [Your Technology] and demonstrate my ability to [Your Skill].</p>
+                    <div class="d-flex justify-content-center flex-wrap mt-3">
+                         <a href="#" class="btn btn-outline-light mt-2 mx-1 disabled">Project In Progress</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -777,31 +835,31 @@
                         </div>
                     </div>
                     <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Kumara5KN" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank"><i class="fab fa-linkedin"></i><span class="visually-hidden">LinkedIn profile</span></a>
+                        <a href="https://github.com/Kumara5KN" target="_blank"><i class="fab fa-github"></i><span class="visually-hidden">GitHub profile</span></a>
+                        <a href="https://twitter.com/your_twitter_handle" target="_blank"><i class="fab fa-twitter"></i><span class="visually-hidden">Twitter profile</span></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 contact-form-column">
                 <form id="contact-form">
-    <div class="mb-3">
-        <label for="name" class="form-label visually-hidden">Your Name</label>
-        <input type="text" class="form-control" id="name" name="from_name" placeholder="Your Name" required>
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label visually-hidden">Your Email</label>
-        <input type="email" class="form-control" id="email" name="reply_to" placeholder="Your Email" required>
-    </div>
-    <div class="mb-3">
-        <label for="message" class="form-label visually-hidden">Your Message</label>
-        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required></textarea>
-    </div>
-    <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-send">Send Message</button>
-    </div>
-    <div id="response-message" style="margin-top: 15px; text-align: center; font-weight: bold;"></div>
-
-</form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label visually-hidden">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="from_name" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label visually-hidden">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="reply_to" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label visually-hidden">Your Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-send">Send Message</button>
+                    </div>
+                    <div id="response-message" class="text-center mt-3 fw-bold"></div>
+                </form>
             </div>
         </div>
     </div>
@@ -814,7 +872,9 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+    // Navbar scroll effect
     document.addEventListener('DOMContentLoaded', () => {
         const navbar = document.getElementById('mainNavbar');
         const introductionSection = document.getElementById('introduction');
@@ -830,13 +890,19 @@
         
         window.addEventListener('scroll', checkScroll);
         checkScroll();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     });
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script type="text/javascript">
+    // EmailJS for contact form
     (function() {
         emailjs.init({
             publicKey: "0rjOnY4sV-Cy61yhS",
@@ -849,19 +915,19 @@
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            responseMessage.innerHTML = "<span style='color: #FF6700;'>Sending...</span>";
 
             const serviceID = 'service_bzrdewt';
             const templateID = 'template_vxjrj34';
 
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
-                    // Success message below the button
-                    responseMessage.innerHTML = "<span style='color: green;'>✅ Message sent successfully!</span>";
-                    form.reset(); // Reset the form after successful submission
+                    responseMessage.innerHTML = "<span style='color: #4CAF50;'>✅ Message sent successfully!</span>";
+                    form.reset();
                 }, (err) => {
-                    // Error message below the button
-                    responseMessage.innerHTML = "<span style='color: red;'>❌ Failed to send message. Please try again.</span>";
-                    console.error("EmailJS Error:", err); // Log the full error to the console
+                    responseMessage.innerHTML = "<span style='color: #F44336;'>❌ Failed to send message. Please try again.</span>";
+                    console.error("EmailJS Error:", err);
                 });
         });
     }
