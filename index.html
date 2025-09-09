@@ -14,14 +14,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* NEW BACKGROUND COLORS */
+            --gradient-start: #151525;
+            --gradient-mid1: #202038;
+            --gradient-mid2: #2B2B4D;
+            --gradient-end: #151525;
+            
+            /* RETAINED ACCENT COLORS */
             --primary-color: #00FFFF; /* Vibrant Cyan */
-            --secondary-color: #2c3e50;
-            --gradient-start: #0c0c1e;
-            --gradient-mid1: #1a1a2e;
-            --gradient-mid2: #25283d;
-            --gradient-end: #0c0c1e;
-            --overlay-color1: rgba(0, 255, 255, 0.05); /* Cyan overlay */
-            --overlay-color2: rgba(255, 105, 180, 0.03); /* Pink overlay */
+            --secondary-color: #00D8D8;
+            --overlay-color1: rgba(0, 255, 255, 0.05);
+            --overlay-color2: rgba(138, 43, 226, 0.03); /* Purple overlay */
+            
             --text-color: #e0e0e0;
             --heading-color: #ffffff;
             --card-background: rgba(255, 255, 255, 0.08); 
@@ -73,7 +77,7 @@
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #4ac7e2;
+            background-color: var(--secondary-color);
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
         }
@@ -315,8 +319,8 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            flex-basis: 48%;
-            max-width: 48%;
+            flex-basis: 100%; /* INCREASED WIDTH */
+            max-width: 100%; /* INCREASED WIDTH */
             margin-bottom: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -844,8 +848,7 @@
                     <div class="social-icons">
                         <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i><span class="visually-hidden">LinkedIn profile</span></a>
                         <a href="https://github.com/Kumara5KN" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span class="visually-hidden">GitHub profile</span></a>
-                        <a href="https://twitter.com/your_twitter_handle" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i><span class="visually-hidden">Twitter profile</span></a>
-                    </div>
+                        <a href="https://x.com/Kumara_N2003" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i><span class="visually-hidden">Twitter profile</span></a>                    </div>
                 </div>
             </div>
             <div class="col-md-6 contact-form-column">
@@ -923,7 +926,7 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             
-            responseMessage.innerHTML = "<span style='color: #00FFFF;'>Sending...</span>";
+            responseMessage.innerHTML = "<span style='color: var(--primary-color);'>Sending...</span>";
 
             const serviceID = 'service_bzrdewt';
             const templateID = 'template_vxjrj34';
@@ -942,7 +945,3 @@
 
 </body>
 </html>
-
-
-
-
