@@ -1,947 +1,723 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kumara N's professional portfolio showcasing expertise in Data Science, Machine Learning, and Python. Explore my projects, skills, and contact information.">
-    <title>Kumara N - Data Scientist</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* NEW BACKGROUND COLORS */
-            --gradient-start: #151525;
-            --gradient-mid1: #202038;
-            --gradient-mid2: #2B2B4D;
-            --gradient-end: #151525;
-            
-            /* RETAINED ACCENT COLORS */
-            --primary-color: #00FFFF; /* Vibrant Cyan */
-            --secondary-color: #00D8D8;
-            --overlay-color1: rgba(0, 255, 255, 0.05);
-            --overlay-color2: rgba(138, 43, 226, 0.03); /* Purple overlay */
-            
-            --text-color: #e0e0e0;
-            --heading-color: #ffffff;
-            --card-background: rgba(255, 255, 255, 0.08); 
-            --navbar-background-scrolled: rgba(0, 0, 0, 0.85);
-            --border-color: rgba(255, 255, 255, 0.15); 
-            --input-background: rgba(255, 255, 255, 0.05);
-            --input-placeholder-color: #bdbdbd;
-            --shadow-color: rgba(0, 0, 0, 0.5);
-            --skill-card-hover: rgba(255, 255, 255, 0.15);
-            --tag-bg-color: rgba(255, 255, 255, 0.1);
-            --tag-text-color: var(--primary-color);
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(160deg, var(--gradient-start), var(--gradient-mid1), var(--gradient-mid2), var(--gradient-end));
-            background-attachment: fixed;
-            color: var(--text-color);
-            overflow-x: hidden;
-            margin: 0;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            background: radial-gradient(circle at 15% 50%, var(--overlay-color1) 0%, transparent 40%),
-                        radial-gradient(circle at 85% 60%, var(--overlay-color2) 0%, transparent 40%);
-            background-size: 200% 200%;
-            animation: moveGradient 30s ease infinite alternate;
-            opacity: 0.8;
-        }
-        @keyframes moveGradient {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
-        }
-        .text-primary {
-            color: var(--primary-color) !important;
-            background: linear-gradient(90deg, #00FFFF, #8A2BE2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            border: none;
-            color: black;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
-        }
-        .btn-outline-light {
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            font-weight: 500;
-            background-color: transparent;
-            transition: all 0.3s ease;
-        }
-        .btn-outline-light:hover {
-            background-color: white;
-            color: var(--gradient-start);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-        }
-        .navbar {
-            background-color: transparent;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1030;
-            transition: all 0.5s ease;
-        }
-        .navbar.scrolled-navbar {
-            background-color: var(--navbar-background-scrolled);
-            box-shadow: 0 2px 10px var(--shadow-color);
-            backdrop-filter: blur(10px);
-        }
-        .navbar-brand {
-            color: var(--heading-color);
-            font-weight: 700;
-            font-size: 1.6rem;
-        }
-        .navbar-nav .nav-link {
-            color: var(--heading-color);
-            margin: 0 15px;
-            font-weight: 500;
-            position: relative;
-        }
-        .navbar-nav .nav-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
-            width: 100%;
-        }
-        /* FIX: Bootstrap Toggle Icon Color */
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-        }
-        .introduction-section {
-            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid1));
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--heading-color);
-            position: relative;
-            padding: 50px 0;
-        }
-        .introduction-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 50px;
-            max-width: 1200px;
-            margin: auto;
-            flex-wrap: wrap-reverse;
-            position: relative;
-            padding-bottom: 80px; 
-        }
-        .text-content {
-            max-width: 50%;
-            text-align: left;
-        }
-        .text-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-            color: white;
-        }
-        .text-content .role {
-            font-size: 1.6rem;
-            font-weight: normal;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        .text-content p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--text-color);
-        }
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-            margin-left: 50px;
-            animation: fadeIn 2s ease-in-out;
-        }
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: filter 0.3s ease;
-        }
-        .profile-image img:hover {
-            filter: grayscale(0%);
-        }
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        .animate-up {
-            animation: moveUp 1.5s ease-out forwards;
-            transform: translateY(50px);
-            opacity: 0;
-        }
-        @keyframes moveUp {
-            0% {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .delay-1 { animation-delay: 0.3s; }
-        .delay-2 { animation-delay: 0.6s; }
-        .delay-3 { animation-delay: 0.9s; }
-        .delay-4 { animation-delay: 1.2s; }
-        
-        /* FIX: Align 'Scroll to explore' properly on mobile */
-        .scroll-wrapper {
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-        }
-        .scroll-container {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            color: #fff;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        .scroll-container:hover {
-            opacity: 1;
-        }
-        .scroll-text {
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        .scroll-icon {
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Kumara N - Data Science Portfolio</title>
 
-        .content-section {
-            padding: 100px 0;
-            text-align: center;
-        }
-        .content-section h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--heading-color);
-            position: relative;
-        }
-        .content-section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-        .content-section p.sub-heading {
-            font-size: 1.2rem;
-            color: #bdbdbd;
-            margin-bottom: 2rem;
-        }
-        .content-section .section-text {
-            max-width: 900px;
-            margin: 0 auto 2rem auto;
-            color: #ffffff;
-            line-height: 1.8;
-            font-size: 1rem;
-        }
-        
-        #about-me .section-text {
-            font-weight: 300;
-        }
-        
-        .education-container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
-        }
-        .education-card {
-            background-color: rgba(26, 32, 44, 0.4); 
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: left;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-basis: 100%; /* INCREASED WIDTH */
-            max-width: 100%; /* INCREASED WIDTH */
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .education-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-        }
-        .education-card .icon-container {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-        }
-        .education-card h3 {
-            font-size: 1.4rem; 
-            color: white;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        .education-card .details p {
-            font-size: 1rem;
-            margin: 0;
-            color: #bdbdbd;
-        }
-        .details-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-        .details-flex .status-tag {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #1a1a2e;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        .details-flex .cgpa {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-        
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .skill-card {
-            background: var(--card-background); 
-            border: 1px solid var(--border-color); 
-            border-radius: 12px;
-            padding: 25px;
-            text-align: left;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-        .skill-card:hover {
-            transform: translateY(-8px);
-            background-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        .skill-card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .skill-card-header .icon {
-            font-size: 2rem;
-            margin-right: 15px;
-            color: var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-        .skill-card:hover .icon {
-            transform: scale(1.1);
-        }
-        .skill-card-header h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin: 0;
-            color: white;
-        }
-        .skill-tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .skill-tag {
-            background-color: var(--tag-bg-color);
-            color: var(--tag-text-color);
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .project-card {
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 6px 12px var(--shadow-color);
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-            color: var(--text-color);
-        }
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
-        }
-        .project-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease;
-        }
-        .project-card:hover img {
-            transform: scale(1.02);
-        }
-        .project-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-        .project-card .btn {
-            margin: 5px;
-        }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  
+  <style>
+    /* Custom variables for color/aesthetics not provided by Bootstrap */
+    :root {
+      --primary-color: #1e90ff; /* Dodger Blue */
+      --secondary-color: #32cd32; /* Lime Green */
+      --text-color: #333;
+      --background-light: #f9f9f9;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --project-color-1: #ff8c4a;
+      --project-color-2: #e91e63;
+      --project-color-3: #1da1f2;
+    }
+    
+    body { 
+        font-family: 'Poppins', sans-serif; 
+        color: var(--text-color); 
+        background: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+    }
 
-        #contact-me .container {
-            max-width: 900px;
-        }
-        .contact-content {
-            display: flex;
-            flex-wrap: wrap;
-            background: var(--card-background);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 6px 15px var(--shadow-color);
-            border: 1px solid var(--border-color);
-        }
-        .contact-info, .contact-form-column {
-            padding: 0 20px;
-        }
-        .contact-info {
-            border-right: 1px solid var(--border-color);
-        }
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        .contact-info-item .icon {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            width: 30px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .contact-content:hover .contact-info-item .icon {
-            transform: scale(1.1);
-        }
-        .contact-info-item h4 {
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 5px;
-        }
-        .contact-info-item p {
-            font-size: 1rem;
-            margin: 0;
-            color: #bdbdbd;
-        }
-        .contact-info .social-icons {
-            margin-top: 30px;
-            text-align: left;
-        }
-        .contact-info .social-icons a {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            margin-right: 15px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .contact-info .social-icons a:hover {
-            color: var(--primary-color);
-            transform: scale(1.1);
-        }
-        .form-control, .form-control:focus {
-            background-color: var(--input-background);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            box-shadow: none;
-            transition: border-color 0.3s ease;
-        }
-        .form-control:focus {
-            border-color: var(--primary-color);
-        }
-        .form-control::placeholder {
-            color: var(--input-placeholder-color);
-        }
-        .btn-send {
-            background-color: var(--primary-color);
-            color: black;
-            font-weight: bold;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .btn-send:hover {
-            background-color: #4ac7e2;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
-        }
-        .footer {
-            padding: 30px 0;
-            text-align: center;
-            background-color: var(--navbar-background-scrolled);
-            color: #ccc;
-            margin-top: 50px;
-        }
-        .footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .footer a:hover {
-            color: #fff;
-        }
+    /* --- SIDEBAR (Minimal custom CSS for fixed position) --- */
+    .sidebar {
+        position: fixed; top: 50%; left: 20px; transform: translateY(-50%);
+        display: flex; flex-direction: column; gap: 15px; z-index: 1000; 
+    }
+    .sidebar a {
+        position: relative; background: #fff; color: var(--primary-color);
+        width: 45px; height: 45px; display: flex; justify-content: center;
+        align-items: center; border-radius: 50%; text-decoration: none;
+        /* FIX: Added smooth transition for color change */
+        transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .sidebar a:hover, .sidebar a.active-link { background: var(--primary-color); color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+    .sidebar a span { display: none; } 
+    @media (max-width: 768px) { .sidebar { display: none; } }
 
-        @media (max-width: 992px) {
-            .introduction-content {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .text-content {
-                max-width: 100%;
-                text-align: center;
-                margin-top: 40px;
-            }
-            .profile-image {
-                margin: 0;
-                width: 250px;
-                height: 250px;
-            }
-            .text-content h1 {
-                font-size: 2.8rem;
-            }
-            .text-content .role {
-                font-size: 1.4rem;
-            }
-            .buttons {
-                justify-content: center;
-            }
-            .education-card {
-                flex-basis: 100%;
-                max-width: 100%;
-                flex-direction: column;
-                text-align: center;
-            }
-            .education-card .details {
-                width: 100%;
-            }
-            .education-card .icon-container {
-                margin-bottom: 15px;
-            }
-            .details-flex {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            .skills-container {
-                grid-template-columns: 1fr;
-            }
-            .contact-info {
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                margin-bottom: 30px;
-                padding-bottom: 30px;
-            }
-            .contact-form-column {
-                padding-top: 0;
-            }
-        }
-    </style>
+    /* --- HERO SECTION BACKGROUND & IMAGE --- */
+    .hero { 
+        min-height: 100vh;
+        background: linear-gradient(125deg, var(--primary-color) 40%, #fff 40%); 
+    }
+    .hero-profile-img { 
+        width: 350px; height: 350px; object-fit: cover; 
+        border: 10px solid rgba(255, 255, 255, 0.9); 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+        transition: transform 0.3s; 
+    }
+
+    /* --- SECTION TITLES (Custom bar restored) --- */
+    .section-title { position: relative; text-transform: uppercase; }
+    .section-title::after {
+      content: ""; display: block; width: 70px; height: 3px;
+      background: var(--primary-color); margin: 12px auto 0; border-radius: 3px;
+    }
+    
+    /* --- RESUME BUTTON --- */
+    .resume-button {
+        background-color: var(--primary-color); border: 2px solid var(--primary-color);
+        border-radius: 50px; transition: all 0.3s ease;
+    }
+    .resume-button:hover { 
+        background-color: #0d6efd; border-color: #0d6efd; 
+        transform: translateY(-2px); 
+    }
+    
+    /* --- EDUCATION TIMELINE --- */
+    .education-container { position: relative; }
+    .education-container::before {
+        content: ''; position: absolute; top: 0; left: 20px; bottom: 0; width: 4px;
+        background: #e9ecef; border-radius: 2px;
+    }
+    .education-item { padding-left: 50px; position: relative; }
+    .education-item::before {
+        content: ''; position: absolute; width: 15px; height: 15px; border-radius: 50%;
+        left: 13px; top: 6px; background: var(--primary-color); border: 3px solid #fff;
+        z-index: 1; box-shadow: 0 0 0 2px var(--background-light);
+    }
+    @media (max-width: 768px) {
+      .education-container::before { left: 25px; }
+      .education-item { padding-left: 60px; }
+      .education-item::before { left: 18px; }
+    }
+
+    /* --- SKILL BARS --- */
+    .skill-bar { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+    .skill-bar.visible { opacity: 1; transform: translateY(0); }
+    .skill-bar-fill { 
+        transition: width 1.5s ease-in-out;
+        background-color: var(--secondary-color) !important;
+    }
+
+    /* --- PROJECT CARDS --- */
+    .project-card { 
+        cursor: pointer; 
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: var(--card-bg) !important;
+    }
+    .project-card:hover { 
+        transform: translateY(-8px); 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+    }
+    .project-icon-wrapper { 
+        position: relative; display: inline-flex; justify-content: center; align-items: center; 
+        width: 80px; height: 80px; transition: color 0.3s;
+    }
+    .project-icon-wrapper i { 
+        color: #b0b0b0; 
+        transition: color 0.3s ease;
+    }
+    
+    /* Project Icon Color Logic (RESTORING CUSTOM HOVER EFFECT) */
+    .project-card:hover .project-icon-wrapper i {
+        color: inherit !important; 
+    }
+
+    .project-icon-wrapper::before {
+        content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+        border-radius: 40% 60% 70% 30% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.1; background-color: currentColor; 
+    }
+    .card-1 .project-icon-wrapper { color: var(--project-color-1); }
+    .card-2 .project-icon-wrapper { color: var(--project-color-2); }
+    .card-3 .project-icon-wrapper { color: var(--project-color-3); }
+
+    /* --- CONTACT FORM LAYOUT/STYLE --- */
+    .contact-wrapper { overflow: hidden; }
+    .contact-info-panel { background-color: #f0f0f0; }
+    .contact-form button { background-color: var(--primary-color); border: none; }
+    .contact-form button:hover { background-color: #0d6efd; transform: translateY(-1px); }
+    
+    /* --- ANIMATIONS & UTILS --- */
+    .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    .skill-bar { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
+    .skill-bar.visible { opacity: 1; transform: translateY(0); }
+    .skill-bar-fill { transition: width 1.5s ease-in-out; }
+    
+    /* Scroll to Top Button (Kept custom) */
+    #scrollToTopBtn {
+      position: fixed; bottom: 20px; right: 20px; z-index: 1000; width: 50px; height: 50px;
+      background-color: var(--primary-color); color: white; border: none; border-radius: 50%;
+      display: none; justify-content: center; align-items: center; font-size: 24px; box-shadow: var(--shadow);
+      opacity: 0.8; transition: all 0.3s;
+    }
+    #scrollToTopBtn:hover { background-color: #0d6efd; opacity: 1; transform: scale(1.05); }
+    @media (max-width: 768px) { #scrollToTopBtn { width: 40px; height: 40px; font-size: 20px; } }
+  </style>
 </head>
-<body>
+<body data-bs-spy="scroll" data-bs-target=".sidebar" data-bs-offset="200">
 
-<nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand animate__animated animate__fadeInLeft" href="#introduction">Kumara N</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto animate__animated animate__fadeInRight">
-                <li class="nav-item"><a class="nav-link" href="#introduction">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about-me">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects-showcase">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact-me">Contact</a></li>
-            </ul>
+  <div class="sidebar">
+    <a href="#home" class="sidebar-link" data-target="home" aria-label="Home"><i class="fa fa-home"></i></a>
+    <a href="#about" class="sidebar-link" data-target="about" aria-label="About"><i class="fa fa-user"></i></a>
+    <a href="#education" class="sidebar-link" data-target="education" aria-label="Education"><i class="fa fa-book"></i></a>
+    <a href="#skills" class="sidebar-link" data-target="skills" aria-label="Skills"><i class="fa fa-cogs"></i></a>
+    <a href="#projects" class="sidebar-link" data-target="projects" aria-label="Projects"><i class="fa fa-briefcase"></i></a>
+    <a href="#contact" class="sidebar-link" data-target="contact" aria-label="Contact"><i class="fa fa-envelope"></i></a>
+  </div>
+
+  <section class="hero d-flex align-items-center" id="home" style="padding-top: 0;">
+    <div class="container hero-content py-5">
+      <div class="row align-items-center justify-content-center g-5">
+        
+        <div class="col-12 col-md-5 col-lg-4 text-center">
+          <img src="profile_img.jpeg" alt="Profile Image of Kumara N" class="img-fluid rounded-circle hero-profile-img">
         </div>
+        
+        <div class="col-12 col-md-7 col-lg-6 text-center text-md-start">
+          <h1 class="display-1 fw-bold mb-0">Kumara N</h1>
+          <p class="fs-4 mt-2">I'm a <span class="typed text-primary fw-bold"></span></p>
+          
+          <div class="socials mb-4">
+            <a href="https://github.com/Kumara5KN" target="_blank" class="text-dark me-3 fs-3"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" class="text-dark me-3 fs-3"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:kn998799@gmail.com" class="text-dark fs-3"><i class="fa fa-envelope"></i></a>
+          </div>
+          
+          <a href="Kumara_N_Resume.pdf" download class="btn btn-lg text-white resume-button shadow">
+              <i class="fas fa-file-download me-2"></i> Download Resume
+          </a>
+        </div>
+      </div>
     </div>
-</nav>
+  </section>
 
-<section id="introduction" class="introduction-section">
-    <div class="introduction-content">
-        <div class="text-content">
-            <p class="role animate-up delay-1">Aspiring Data Scientist</p>
-            <h1 class="animate-up delay-2">Hi, I'm <br><span class="text-primary">Kumara N</span></h1>
-            <p class="animate-up delay-3"> 
-                A passionate and motivated data science enthusiast, I specialize in leveraging data to solve complex problems. My expertise lies in Python, machine learning, and data analysis. I'm a quick learner and eager to contribute to innovative projects.
+  <section class="about py-5 min-vh-100 d-flex align-items-center" id="about" style="background-color: var(--background-light);">
+    <div class="container">
+      <h2 class="section-title text-center fw-bold mb-5 fs-2">ABOUT ME</h2>
+      
+      <div class="card shadow-lg p-4 reveal-on-scroll" style="background-color: var(--card-bg);">
+        <div class="row align-items-start g-4">
+          <div class="col-lg-4 text-center">
+            <img src="aaa.png" 
+                 alt="Abstract visualization of a glowing AI brain and neural network." 
+                 class="img-fluid rounded shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;">
+          </div>
+          <div class="col-lg-8">
+            <div class="about-text">
+              <p class="fs-5 text-justify">
+                I'm Kumara N, a passionate and motivated Data Science enthusiast currently pursuing my MCA at Presidency University, Bangalore. My journey into the world of data began with curiosity about how insights can be drawn from raw information to create impactful solutions—and ever since, I've been exploring ways to turn data into meaningful stories.
+              </p>
+              <p class="fs-5 text-justify">
+                Beyond the technical side, I value qualities like being a fast learner, team player, and good communicator—skills that help me adapt quickly and collaborate effectively in diverse environments.
+              </p>
+              <p class="fs-5 text-justify">
+                My ultimate goal is to leverage data-driven solutions to solve real-world challenges, innovate smarter systems, and grow into a well-rounded Data Scientist who makes an impact in the tech industry.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="my-0"></div>
+
+  <section class="education py-5 min-vh-100 d-flex align-items-center" id="education" style="background-color: #fff;">
+    <div class="container">
+      <h2 class="section-title text-center fw-bold mb-5 fs-2">EDUCATION</h2>
+      <div class="education-container reveal-on-scroll">
+        
+        <div class="education-item">
+          <div class="edu-date text-muted mb-2"><i class="fas fa-calendar-alt me-2" style="color: var(--secondary-color);"></i> Currently Pursuing (2024 - 2026)</div>
+          <h3 class="h5 fw-bold mb-1" style="color: var(--primary-color);">Master of Computer Applications (MCA)</h3>
+          <p class="institution fst-italic text-secondary">Presidency University, Bengaluru - 560064</p>
+          <p class="details text-dark">
+            Focus on Data Science, Artificial Intelligence, and Machine Learning.
+            <strong class="d-block mt-1">Current CGPA: 9.12</strong>
+          </p>
+        </div>
+
+        <div class="education-item">
+          <div class="edu-date text-muted mb-2"><i class="fas fa-graduation-cap me-2" style="color: var(--secondary-color);"></i> Completed (2023)</div>
+          <h3 class="h5 fw-bold mb-1" style="color: var(--primary-color);">Bachelor of Computer Applications (BCA)</h3>
+          <p class="institution fst-italic text-secondary">Government First Grade College, Kadur - 577548</p>
+          <p class="details text-dark">
+            Completed foundational studies in computer science, software development, and programming.
+            <strong class="d-block mt-1">Final CGPA: 8.99</strong>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="my-0"></div>
+
+  <section class="skills py-5 min-vh-100 d-flex align-items-center" id="skills" style="background-color: var(--background-light);">
+    <div class="container">
+      <h2 class="section-title text-center fw-bold mb-5 fs-2">TECHNICAL STACK</h2>
+      <div class="row skills-container g-4">
+        
+        <div class="col-md-6 skill-bar" data-percent="75">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>PYTHON</span><span>75%</span></div>
+          <div class="progress" style="height: 10px;">
+              <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 skill-bar" data-percent="30">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>TENSORFLOW</span><span>30%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 skill-bar" data-percent="55">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>C++</span><span>55%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 skill-bar" data-percent="70">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>PANDAS</span><span>70%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 skill-bar" data-percent="40">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>R</span><span>40%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 skill-bar" data-percent="60">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>NUMPY</span><span>60%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 skill-bar" data-percent="40">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>SQL</span><span>40%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 skill-bar" data-percent="60">
+          <div class="skill-info d-flex justify-content-between mb-1"><span>SCI-KIT LEARN</span><span>60%</span></div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="projects py-5 min-vh-100 d-flex align-items-center" id="projects" style="background-color: #fff;">
+    <div class="container">
+      <h2 class="section-title text-center fw-bold mb-5 fs-2">PROJECTS</h2>
+      
+      <div class="row projects-grid g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow p-4 h-100 reveal-on-scroll project-card card-1 text-center" onclick="openModal('project-1')" style="box-shadow: var(--shadow);">
+            <div class="project-icon-wrapper mx-auto mb-3">
+              <i class="fas fa-dna fa-3x"></i> 
+            </div>
+            <h3 class="h5 fw-bold">AI in Biotechnology</h3>
+            <p class="text-muted small">
+              An AI-based framework and data-driven methodology for post-PCR High-Resolution Melting Analysis (HRMA).
             </p>
-            <div class="buttons animate-up delay-4">
-                <a href="#projects-showcase" class="btn btn-lg btn-primary">View My Work <i class="fas fa-arrow-right ms-2"></i></a>
-                <a href="Kumara_Resume.pdf" class="btn btn-lg btn-outline-light" download>Download CV <i class="fas fa-download ms-2"></i></a>
+            <div class="project-links-new mt-auto d-flex justify-content-center">
+              <a href="#link1" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-1'); return false;">
+                <i class="fas fa-rocket me-1"></i> Learn More
+              </a>
             </div>
+          </div>
         </div>
-        <div class="profile-image animate-up delay-3">
-            <img src="profile_img.jpeg" alt="Kumara N's profile photo, a professional headshot.">
-        </div>
-        <div class="scroll-wrapper">
-            <a href="#about-me" class="scroll-container animate-up delay-4">
-                <span class="scroll-text">Scroll to explore</span>
-                <i class="fas fa-chevron-down scroll-icon"></i>
-            </a>
-        </div>
-    </div>
-</section>
 
-<section id="about-me" class="content-section">
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow p-4 h-100 reveal-on-scroll project-card card-2 text-center" onclick="openModal('project-2')" style="box-shadow: var(--shadow);">
+            <div class="project-icon-wrapper mx-auto mb-3">
+              <i class="fas fa-university fa-3x"></i>
+            </div>
+            <h3 class="h5 fw-bold">Churn ML</h3>
+            <p class="text-muted small">
+              ML-based web application for predicting Bank customer Churn using Deep Learning.
+            </p>
+            <div class="project-links-new mt-auto d-flex justify-content-center">
+              <a href="#link2" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-2'); return false;">
+                <i class="fas fa-rocket me-1"></i> Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow p-4 h-100 reveal-on-scroll project-card card-3 text-center" onclick="openModal('project-3')" style="box-shadow: var(--shadow);">
+            <div class="project-icon-wrapper mx-auto mb-3">
+              <i class="fab fa-twitter fa-3x"></i>
+            </div>
+            <h3 class="h5 fw-bold">Image to Hashtags</h3>
+            <p class="text-muted small">
+              An AI tool that generates trending hashtags for images based on their content, using pre-trained models.
+            </p>
+            <div class="project-links-new mt-auto d-flex justify-content-center">
+              <a href="#link3" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-3'); return false;">
+                <i class="fas fa-rocket me-1"></i> Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="container"><hr class="my-0"></div>
+
+  <section class="contact py-5 min-vh-100 d-flex align-items-center" id="contact" style="background-color: var(--background-light);">
     <div class="container">
-        <h2>About Me</h2>
-        <p class="sub-heading">Get to know me</p>
-        <p class="section-text">
-            My journey into data science is driven by a profound curiosity to uncover insights from complex datasets and a desire to build intelligent systems that solve real-world challenges. With a strong academic background in computer applications, I am well-versed in statistical analysis, machine learning algorithms, and data visualization. I am actively seeking opportunities to apply my skills in a professional environment and contribute to innovative projects in the field.
-        </p>
-    </div>
-</section>
+      <h2 class="section-title text-center fw-bold mb-5 fs-2">CONTACT ME</h2>
+      
+      <div class="card shadow-lg contact-wrapper reveal-on-scroll" style="background-color: var(--card-bg);">
+        <div class="row g-0">
+          
+          <div class="col-lg-4 p-4 contact-info-panel border-end" style="background-color: #f0f0f0;">
+              <h3 class="h5 fw-bold mb-3" style="color: var(--primary-color);">Get in Touch</h3>
+              <p class="text-muted small mb-4">
+                  I'm currently seeking new opportunities and challenges. Feel free to connect via any of the channels below or use the contact form.
+              </p>
 
-<section id="education" class="content-section">
-    <div class="container">
-        <h2>Education</h2>
-        <p class="sub-heading">My academic journey</p>
-        <div class="education-container">
-            <div class="education-card animate__animated animate__fadeInLeft animate__delay-1s">
-                <div class="icon-container">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="details">
-                    <h3>Master of Computer Applications</h3>
-                    <p>Presidency University, Bengaluru-560064</p>
-                    <p class="text-muted">Specialization: Data Science</p>
-                    <div class="details-flex">
-                        <span class="status-tag">Currently Pursuing (2024 - 2026)</span>
-                        <p class="cgpa">CGPA: 9.12</p>
-                    </div>
-                </div>
-            </div>
-            <div class="education-card animate__animated animate__fadeInRight animate__delay-1s">
-                <div class="icon-container">
-                    <i class="fas fa-user-graduate"></i>
-                </div>
-                <div class="details">
-                    <h3>Bachelor of Computer Applications</h3>
-                    <p>Government First Grade College, Kadur-577548</p>
-                    <div class="details-flex">
-                        <span class="status-tag">Completed (2023)</span>
-                        <p class="cgpa">CGPA: 8.99</p>
-                    </div>
-                </div>
-            </div>
+              <div class="contact-info-grid">
+                  
+                  <div class="contact-info-item d-flex align-items-start mb-3">
+                      <i class="fas fa-envelope fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
+                      <div>
+                          <p class="fw-bold mb-0">Email</p>
+                          <a href="mailto:kn998799@gmail.com" class="text-decoration-none text-muted small">kn998799@gmail.com</a>
+                      </div>
+                  </div>
+                  
+                  <div class="contact-info-item d-flex align-items-start mb-3">
+                      <i class="fab fa-linkedin fs-5 me-3 mt-1" style="color: var(--primary-color);"></i> 
+                      <div>
+                          <p class="fw-bold mb-0">LinkedIn</p>
+                          <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" class="text-decoration-none text-muted small">/in/kumara-n-2003k2003</a>
+                      </div>
+                  </div>
+                  
+                  <div class="contact-info-item d-flex align-items-start mb-3">
+                      <i class="fab fa-github fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
+                      <div>
+                          <p class="fw-bold mb-0">GitHub</p>
+                          <a href="https://github.com/Kumara5KN" target="_blank" class="text-decoration-none text-muted small">/Kumara5KN</a>
+                      </div>
+                  </div>
+                  
+                  <div class="contact-info-item d-flex align-items-start mb-3">
+                      <i class="fas fa-phone-alt fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
+                      <div>
+                          <p class="fw-bold mb-0">Phone Number</p>
+                          <a href="tel:+91 63636 94110" class="text-decoration-none text-muted small">+91 63636 94110</a>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+          <div class="col-lg-8 p-4 contact-form-panel">
+              <h3 class="h5 fw-bold mb-3">Send Me a Message</h3>
+              
+              <form id="contact-form" class="d-flex flex-column gap-3">
+                  
+                  <div class="mb-2">
+                      <input type="text" id="name" name="from_name" class="form-control" placeholder="Your Name" required>
+                  </div>
+                  
+                  <div class="mb-2">
+                      <input type="email" id="email" name="reply_to" class="form-control" placeholder="Your Email" required>
+                  </div>
+                  
+                  <div class="mb-2">
+                      <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
+                  </div>
+                  
+                  <div class="mb-2">
+                      <textarea id="message" name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
+                  </div>
+                  
+                  <button type="submit" id="submitButton" class="btn text-white fw-bold shadow align-self-start" style="background-color: var(--primary-color);">Send Message</button>
+              </form>
+              
+              <p id="response-message" class="mt-3 small" style="display: none;">
+              </p>
+              
+          </div>
         </div>
+      </div>
     </div>
-</section>
-
-<section id="skills" class="content-section">
+  </section>
+  <footer class="py-3 mt-5 border-top" style="background-color: var(--card-bg);">
     <div class="container">
-        <h2>Skills & Expertise</h2>
-        <p class="sub-heading">Technologies I work with</p>
-        <div class="skills-container">
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fas fa-brain icon"></i>
-                    <h3>Data Science & ML</h3>
-                </div>
-                <div class="skill-tag-container">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">NumPy</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">Keras</span>
-                    <span class="skill-tag">Jupyter</span>
-                    <span class="skill-tag">Natural Language Processing (NLP)</span>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fas fa-database icon"></i>
-                    <h3>Data & Databases</h3>
-                </div>
-                <div class="skill-tag-container">
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">Data Cleaning</span>
-                    <span class="skill-tag">Data Visualization</span>
-                    <span class="skill-tag">Power BI</span>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fas fa-code icon"></i>
-                    <h3>Web Development</h3>
-                </div>
-                <div class="skill-tag-container">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript (ES6+)</span>
-                    <span class="skill-tag">Bootstrap</span>
-                    <span class="skill-tag">Flask</span>
-                    <span class="skill-tag">Streamlit</span>
-                </div>
-            </div>
-            <div class="skill-card">
-                <div class="skill-card-header">
-                    <i class="fas fa-tools icon"></i>
-                    <h3>Tools & Platforms</h3>
-                </div>
-                <div class="skill-tag-container">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">GitHub</span>
-                    <span class="skill-tag">VS Code</span>
-                    <span class="skill-tag">Google Colab</span>
-                </div>
-            </div>
-        </div>
+      <p class="text-center text-muted mb-0 small">
+        &copy; 2025 Kumara N. All Rights Reserved.
+      </p>
     </div>
-</section>
-
-<section id="projects-showcase" class="content-section">
-    <div class="container">
-        <h2>My Projects</h2>
-        <p class="sub-heading">A selection of my recent work</p>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
-                <div class="project-card">
-                    <div class="project-title">Movie Recommendation Engine</div>
-                    <img src="./static/projects_IMG/movie_recommendation.png" class="img-fluid" alt="Screenshot of the Movie Recommendation System live application.">
-                    <p class="text-start mt-3">A content-based movie recommendation system built with Python, Pandas, and Scikit-learn. It recommends movies based on user-selected preferences, using a cosine similarity algorithm.</p>
-                    <div class="d-flex justify-content-center flex-wrap mt-3">
-                         <a href="https://cineverserecommender.streamlit.app/" class="btn btn-primary mt-2 mx-1" target="_blank" rel="noopener noreferrer">View Live App <i class="fas fa-external-link-alt"></i></a>
-                         <a href="https://github.com/Kumara5KN/CineVerseRecommender" class="btn btn-outline-light mt-2 mx-1" target="_blank" rel="noopener noreferrer">View on GitHub <i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp animate__delay-1s">
-                <div class="project-card">
-                    <div class="project-title">Emotion Detection System</div>
-                    <img src="./static/projects_IMG/Interface1.png" class="img-fluid" alt="User interface of the Emotion Detection System, showing text input and emotion output.">
-                    <p class="text-start mt-3">An application that detects human emotions from text using Natural Language Processing (NLP) techniques. It analyzes input text to classify emotions like joy, sadness, anger, etc., providing insightful analytics.</p>
-                    <div class="d-flex justify-content-center flex-wrap mt-3">
-                         <a href="https://github.com/Kumara5KN/python-project" class="btn btn-outline-light mt-2 mx-1" target="_blank" rel="noopener noreferrer">View on GitHub <i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp animate__delay-2s">
-                <div class="project-card">
-                    <div class="project-title">Project Title Placeholder</div>
-                    <img src="https://via.placeholder.com/400x300/1C160E/FF6700?text=Coming+Soon" class="img-fluid" alt="Placeholder image for a future project.">
-                    <p class="text-start mt-3">This space is reserved for a future project. It will showcase my skills in [Your Technology] and demonstrate my ability to [Your Skill].</p>
-                    <div class="d-flex justify-content-center flex-wrap mt-3">
-                         <a href="#" class="btn btn-outline-light mt-2 mx-1 disabled">Project In Progress</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+  </footer>
+  
+  <div id="project-modal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); padding-top: 50px;">
+    <div class="bg-white p-4 mx-auto rounded shadow-lg" style="max-width: 800px; position: relative;">
+      <span class="position-absolute top-0 end-0 me-3 mt-1 fs-3 fw-bold" style="color: var(--text-color); cursor: pointer;" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title" class="h3 fw-bold mb-3" style="color: var(--primary-color);"></h2>
+      
+      <img id="modal-image" class="img-fluid rounded mb-3 shadow" src="" alt="Project Image">
+      
+      <p id="modal-description"></p>
+      
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a id="modal-github" href="#" target="_blank" class="btn btn-dark"><i class="fab fa-github me-2"></i> GitHub</a>
+        <a id="modal-live" href="#" target="_blank" class="btn text-white" style="background-color: var(--primary-color);"><i class="fas fa-external-link-alt me-2"></i> Live Demo</a>
+      </div>
     </div>
-</section>
+  </div>
 
-<section id="contact-me" class="content-section">
-    <div class="container">
-        <h2>Contact Me</h2>
-        <p class="sub-heading">Let's connect and build something great</p>
-        <div class="contact-content row g-4">
-            <div class="col-md-6 contact-info-column">
-                <div class="contact-info">
-                    <div class="contact-info-item">
-                        <i class="fas fa-user-circle icon"></i>
-                        <div>
-                            <h4>Name</h4>
-                            <p>Kumara N</p>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-envelope icon"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>kn998799@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-info-item">
-                        <i class="fas fa-phone-alt icon"></i>
-                        <div>
-                            <h4>Phone Number</h4>
-                            <p>+91 63636 94110</p>
-                        </div>
-                    </div>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i><span class="visually-hidden">LinkedIn profile</span></a>
-                        <a href="https://github.com/Kumara5KN" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i><span class="visually-hidden">GitHub profile</span></a>
-                        <a href="https://x.com/Kumara_N2003" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i><span class="visually-hidden">Twitter profile</span></a>                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 contact-form-column">
-                <form id="contact-form">
-                    <div class="mb-3">
-                        <label for="name" class="form-label visually-hidden">Your Name</label>
-                        <input type="text" class="form-control" id="name" name="from_name" placeholder="Your Name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label visually-hidden">Your Email</label>
-                        <input type="email" class="form-control" id="email" name="reply_to" placeholder="Your Email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label visually-hidden">Your Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required></textarea>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-send">Send Message</button>
-                    </div>
-                    <div id="response-message" class="text-center mt-3 fw-bold"></div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+  <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2024 Kumara N. All Rights Reserved.</p>
-    </div>
-</footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>
-    // Navbar scroll effect
-    document.addEventListener('DOMContentLoaded', () => {
-        const navbar = document.getElementById('mainNavbar');
-        const introductionSection = document.getElementById('introduction');
-        
-        function checkScroll() {
-            const introductionSectionBottom = introductionSection.getBoundingClientRect().bottom;
-            if (introductionSectionBottom <= navbar.offsetHeight) {
-                navbar.classList.add('scrolled-navbar');
-            } else {
-                navbar.classList.remove('scrolled-navbar');
-            }
+  <script>
+    // -----------------------------------------------------------
+    // 1. PROJECT DATA 
+    // -----------------------------------------------------------
+    const projectData = {
+        'project-1': {
+            title: "AI in Biotechnology",
+            image: "https://images.unsplash.com/photo-1547841243-e4d688402f06?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+            full_description: "This project features an AI-based framework and data-driven methodology developed for post-PCR High-Resolution Melting Analysis (HRMA). It uses advanced machine learning models (e.g., CNNs) to classify and analyze complex biological melt curves, significantly speeding up diagnosis and research in the biotech field. Technologies used include Python, TensorFlow, Scikit-learn, and Flask.",
+            github_link: "https://github.com/kumaran-data/biotech-ai",
+            live_link: "https://cineverserecommender.streamlit.app/", 
+            live_text: "View Live App"
+        },
+        'project-2': {
+            title: "Churn ML Prediction",
+            image: "https://images.unsplash.com/photo-1551288258-293c310461ae?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            full_description: "A comprehensive ML-based web application designed to predict Bank customer churn using Deep Learning techniques (LSTM/RNNs) on sequential customer data. The system allows bank managers to identify high-risk customers proactively, enabling targeted retention campaigns. The front-end uses Flask for deployment.",
+            github_link: "https://github.com/kumaran-data/churn-ml",
+            live_link: "#link2-live",
+            live_text: "Try Predictor"
+        },
+        'project-3': {
+            title: "Image to Hashtags",
+            image: "https://images.unsplash.com/photo-1549490349-8c90b1c97a55?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            full_description: "An AI tool leveraging pre-trained computer vision models (like ResNet or CLIP) to accurately identify objects and contexts in uploaded images, generating a list of trending and relevant social media hashtags for better reach and engagement. This was built using Python and the Hugging Face Transformers library.",
+            github_link: "https://github.com/kumaran-data/image-hashtags",
+            live_link: "#link3-live",
+            live_text: "View Live Tool"
         }
-        
-        window.addEventListener('scroll', checkScroll);
-        checkScroll();
+    };
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    // -----------------------------------------------------------
+    // 2. MODAL FUNCTIONS
+    // -----------------------------------------------------------
+    const modal = document.getElementById('project-modal');
+    
+    function openModal(projectId) {
+        const data = projectData[projectId];
+        if (!data) return;
+
+        document.getElementById('modal-title').innerText = data.title;
+        document.getElementById('modal-description').innerText = data.full_description;
+        document.getElementById('modal-image').src = data.image;
+        document.getElementById('modal-image').alt = data.title + " Image";
+        
+        document.getElementById('modal-github').href = data.github_link;
+        const liveLink = document.getElementById('modal-live');
+        liveLink.href = data.live_link;
+        liveLink.innerHTML = `<i class="fas fa-external-link-alt me-2"></i> ${data.live_text || 'Live Demo'}`;
+
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = ''; 
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    // -----------------------------------------------------------
+    // 3. TYPED.JS AND SCROLL ANIMATION 
+    // -----------------------------------------------------------
+    
+    // Typed.js Init
+    var typed = new Typed('.typed', {
+      strings: ["Data Scientist", "Machine Learning Enthusiast", "AI Explorer"],
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 2000,
+      loop: true
     });
 
-    // EmailJS for contact form
+    // Scroll Animation Setup
+    const elementsToReveal = document.querySelectorAll('.reveal-on-scroll');
+    const skillSection = document.getElementById('skills');
+    const skillBars = document.querySelectorAll('.skill-bar');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    elementsToReveal.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    const skillObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          skillBars.forEach((skill, index) => {
+            setTimeout(() => {
+                skill.classList.add('visible'); 
+                const percent = skill.getAttribute('data-percent');
+                const fill = skill.querySelector('.skill-bar-fill');
+                if (fill && percent) {
+                    fill.style.width = percent + '%';
+                }
+            }, index * 100); 
+          });
+          observer.unobserve(skillSection); 
+        }
+      });
+    }, { threshold: 0.5 });
+
+    if (skillSection) {
+      skillObserver.observe(skillSection);
+    }
+    
+    // -----------------------------------------------------------
+    // 4. SIDEBAR ACTIVE LINK HIGHLIGHTER
+    // -----------------------------------------------------------
+    const sections = document.querySelectorAll('section');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+    const observerOptions = {
+      root: null, 
+      rootMargin: "0px 0px -50% 0px", 
+      threshold: 0 
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          
+          sidebarLinks.forEach(link => {
+            link.classList.remove('active-link');
+          });
+
+          const activeLink = document.querySelector(`.sidebar-link[data-target="${sectionId}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active-link');
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+    
+    // -----------------------------------------------------------
+    // 5. SCROLL TO TOP FUNCTIONALITY
+    // -----------------------------------------------------------
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollToTopBtn.style.display = "flex"; 
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    };
+
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' 
+        });
+    });
+    
+    // -----------------------------------------------------------
+    // 6. EMAILJS SUBMISSION LOGIC
+    // -----------------------------------------------------------
+    
+    // EmailJS Initialization
     (function() {
         emailjs.init({
             publicKey: "0rjOnY4sV-Cy61yhS",
         });
     })();
-
+    
     window.onload = function() {
         const form = document.getElementById('contact-form');
         const responseMessage = document.getElementById('response-message');
+        const submitButton = document.getElementById('submitButton');
 
         form.addEventListener('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault();                        
             
-            responseMessage.innerHTML = "<span style='color: var(--primary-color);'>Sending...</span>";
+            // Show sending status
+            responseMessage.style.display = 'block';
+            responseMessage.innerHTML = "<span class='text-primary fw-bold'>Sending...</span>";
+            submitButton.disabled = true; // Disable button
 
             const serviceID = 'service_bzrdewt';
             const templateID = 'template_vxjrj34';
 
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
-                    responseMessage.innerHTML = "<span style='color: #4CAF50;'>✅ Message sent successfully!</span>";
+                    // Success
+                    responseMessage.innerHTML = "<span class='text-success fw-bold'>✅ Message sent successfully!</span>";
                     form.reset();
+                    
+                    // Re-enable button after a short delay
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        responseMessage.style.display = 'none';
+                    }, 5000);
+
                 }, (err) => {
-                    responseMessage.innerHTML = "<span style='color: #F44336;'>❌ Failed to send message. Please try again.</span>";
+                    // Error
+                    responseMessage.innerHTML = "<span class='text-danger fw-bold'>❌ Failed to send message. Please try again.</span>";
+                    submitButton.disabled = false;
                     console.error("EmailJS Error:", err);
                 });
-        });
+        });    
     }
-</script>
+  </script>
 
 </body>
 </html>
