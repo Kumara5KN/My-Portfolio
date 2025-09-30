@@ -10,14 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   
   <style>
-    /* Custom variables for color/aesthetics not provided by Bootstrap */
     :root {
-      --primary-color: #1e90ff; /* Dodger Blue */
-      --secondary-color: #32cd32; /* Lime Green */
+      --primary-color: #1e90ff; 
+      --secondary-color: #32cd32; 
       --text-color: #333;
       --background-light: #f9f9f9;
       --card-bg: #ffffff;
@@ -28,131 +26,218 @@
     }
     
     body { 
-        font-family: 'Poppins', sans-serif; 
-        color: var(--text-color); 
-        background: #fff;
-        scroll-behavior: smooth;
-        overflow-x: hidden;
+      font-family: 'Poppins', sans-serif; 
+      color: var(--text-color); 
+      background: #fff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      padding-top: 0; 
+      padding-bottom: 0; 
     }
 
-    /* --- SIDEBAR (Minimal custom CSS for fixed position) --- */
     .sidebar {
-        position: fixed; top: 50%; left: 20px; transform: translateY(-50%);
-        display: flex; flex-direction: column; gap: 15px; z-index: 1000; 
+      position: fixed; top: 50%; left: 20px; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 15px; z-index: 1000; 
     }
     .sidebar a {
-        position: relative; background: #fff; color: var(--primary-color);
-        width: 45px; height: 45px; display: flex; justify-content: center;
-        align-items: center; border-radius: 50%; text-decoration: none;
-        /* FIX: Added smooth transition for color change */
-        transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: relative; background: #fff; color: var(--primary-color);
+      width: 45px; height: 45px; display: flex; justify-content: center;
+      align-items: center; border-radius: 50%; text-decoration: none;
+      transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     .sidebar a:hover, .sidebar a.active-link { background: var(--primary-color); color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
     .sidebar a span { display: none; } 
-    @media (max-width: 768px) { .sidebar { display: none; } }
+    
+    @media (max-width: 768px) { 
+        .sidebar { display: none; } 
+        body { padding-top: 56px; } 
+    }
 
-    /* --- HERO SECTION BACKGROUND & IMAGE --- */
+    .mobile-nav-toggle {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1040;
+        display: none;
+        width: 45px;
+        height: 45px;
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+    }
+    .mobile-nav-toggle:hover {
+        background-color: #0d6efd;
+    }
+    .offcanvas-close-btn {
+        background-color: var(--primary-color);
+        color: #fff;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1; 
+        transform: scale(1.1);
+    }
+    .offcanvas-close-btn:focus {
+        box-shadow: none;
+        background-color: #0a0a0a;
+    }
+    
+    @media (max-width: 768px) {
+        .mobile-nav-toggle { display: flex; align-items: center; justify-content: center; }
+    }
+
+    #mobileOffcanvas {
+        max-width: 75%; 
+        background-color: var(--card-bg); 
+    }
+    .offcanvas-link-wrapper {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px; 
+    }
+    .offcanvas-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--text-color);
+        padding: 12px 20px;
+        margin: 0 10px;
+        border-radius: 10px; 
+        transition: all 0.3s;
+        background-color: #f0f0f0; 
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .offcanvas-link i {
+        font-size: 1.2rem;
+        margin-right: 15px;
+        color: var(--primary-color); 
+    }
+    .offcanvas-link:hover {
+        background-color: var(--background-light);
+    }
+    .offcanvas-link.active-link {
+        background-color: var(--primary-color);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(30, 144, 255, 0.5);
+    }
+    .offcanvas-link.active-link i {
+        color: #fff;
+    }
+    
     .hero { 
-        min-height: 100vh;
-        background: linear-gradient(125deg, var(--primary-color) 40%, #fff 40%); 
+      min-height: 100vh;
+      background: linear-gradient(125deg, var(--primary-color) 40%, #fff 40%); 
     }
+    @media (max-width: 768px) {
+        .hero-content {
+            padding-top: 2rem !important; 
+        }
+    }
+    
+    .reveal-on-scroll { 
+        opacity: 0; 
+        transform: translateY(30px); 
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+    }
+    .reveal-on-scroll.visible { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+    
+    .contact-form button {
+      background-color: var(--primary-color) !important;
+      border: none; 
+      color: white; 
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .contact-form button:hover { 
+      background-color: #0d6efd !important; 
+      transform: translateY(-1px); 
+    }
+    
+    
     .hero-profile-img { 
-        width: 350px; height: 350px; object-fit: cover; 
-        border: 10px solid rgba(255, 255, 255, 0.9); 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-        transition: transform 0.3s; 
+      width: 350px; height: 350px; object-fit: cover; 
+      border: 10px solid rgba(255, 255, 255, 0.9); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+      transition: transform 0.3s; 
     }
-
-    /* --- SECTION TITLES (Custom bar restored) --- */
     .section-title { position: relative; text-transform: uppercase; }
     .section-title::after {
       content: ""; display: block; width: 70px; height: 3px;
       background: var(--primary-color); margin: 12px auto 0; border-radius: 3px;
     }
-    
-    /* --- RESUME BUTTON --- */
     .resume-button {
-        background-color: var(--primary-color); border: 2px solid var(--primary-color);
-        border-radius: 50px; transition: all 0.3s ease;
+      background-color: var(--primary-color); border: 2px solid var(--primary-color);
+      border-radius: 50px; transition: all 0.3s ease;
     }
     .resume-button:hover { 
-        background-color: #0d6efd; border-color: #0d6efd; 
-        transform: translateY(-2px); 
+      background-color: #0d6efd; border-color: #0d6efd; 
+      transform: translateY(-2px); 
     }
-    
-    /* --- EDUCATION TIMELINE --- */
     .education-container { position: relative; }
     .education-container::before {
-        content: ''; position: absolute; top: 0; left: 20px; bottom: 0; width: 4px;
-        background: #e9ecef; border-radius: 2px;
+      content: ''; position: absolute; top: 0; left: 20px; bottom: 0; width: 4px;
+      background: #e9ecef; border-radius: 2px;
     }
     .education-item { padding-left: 50px; position: relative; }
     .education-item::before {
-        content: ''; position: absolute; width: 15px; height: 15px; border-radius: 50%;
-        left: 13px; top: 6px; background: var(--primary-color); border: 3px solid #fff;
-        z-index: 1; box-shadow: 0 0 0 2px var(--background-light);
+      content: ''; position: absolute; width: 15px; height: 15px; border-radius: 50%;
+      left: 13px; top: 6px; background: var(--primary-color); border: 3px solid #fff;
+      z-index: 1; box-shadow: 0 0 0 2px var(--background-light);
     }
     @media (max-width: 768px) {
       .education-container::before { left: 25px; }
       .education-item { padding-left: 60px; }
       .education-item::before { left: 18px; }
     }
-
-    /* --- SKILL BARS --- */
     .skill-bar { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
     .skill-bar.visible { opacity: 1; transform: translateY(0); }
     .skill-bar-fill { 
-        transition: width 1.5s ease-in-out;
-        background-color: var(--secondary-color) !important;
+      transition: width 1.5s ease-in-out;
+      background-color: var(--secondary-color) !important;
     }
-
-    /* --- PROJECT CARDS --- */
     .project-card { 
-        cursor: pointer; 
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background-color: var(--card-bg) !important;
+      cursor: pointer; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--card-bg) !important;
     }
     .project-card:hover { 
-        transform: translateY(-8px); 
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+      transform: translateY(-8px); 
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
     }
     .project-icon-wrapper { 
-        position: relative; display: inline-flex; justify-content: center; align-items: center; 
-        width: 80px; height: 80px; transition: color 0.3s;
+      position: relative; display: inline-flex; justify-content: center; align-items: center; 
+      width: 80px; height: 80px; transition: color 0.3s;
     }
     .project-icon-wrapper i { 
-        color: #b0b0b0; 
-        transition: color 0.3s ease;
+      color: #b0b0b0; 
+      transition: color 0.3s ease;
     }
-    
-    /* Project Icon Color Logic (RESTORING CUSTOM HOVER EFFECT) */
     .project-card:hover .project-icon-wrapper i {
-        color: inherit !important; 
+      color: inherit !important; 
     }
-
     .project-icon-wrapper::before {
-        content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
-        border-radius: 40% 60% 70% 30% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0.1; background-color: currentColor; 
+      content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
+      border-radius: 40% 60% 70% 30% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0.1; background-color: currentColor; 
     }
     .card-1 .project-icon-wrapper { color: var(--project-color-1); }
     .card-2 .project-icon-wrapper { color: var(--project-color-2); }
     .card-3 .project-icon-wrapper { color: var(--project-color-3); }
-
-    /* --- CONTACT FORM LAYOUT/STYLE --- */
     .contact-wrapper { overflow: hidden; }
     .contact-info-panel { background-color: #f0f0f0; }
-    .contact-form button { background-color: var(--primary-color); border: none; }
-    .contact-form button:hover { background-color: #0d6efd; transform: translateY(-1px); }
-    
-    /* --- ANIMATIONS & UTILS --- */
-    .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
-    .skill-bar { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
-    .skill-bar.visible { opacity: 1; transform: translateY(0); }
+
     .skill-bar-fill { transition: width 1.5s ease-in-out; }
-    
-    /* Scroll to Top Button (Kept custom) */
     #scrollToTopBtn {
       position: fixed; bottom: 20px; right: 20px; z-index: 1000; width: 50px; height: 50px;
       background-color: var(--primary-color); color: white; border: none; border-radius: 50%;
@@ -160,10 +245,41 @@
       opacity: 0.8; transition: all 0.3s;
     }
     #scrollToTopBtn:hover { background-color: #0d6efd; opacity: 1; transform: scale(1.05); }
-    @media (max-width: 768px) { #scrollToTopBtn { width: 40px; height: 40px; font-size: 20px; } }
+    @media (max-width: 768px) { #scrollToTopBtn { bottom: 20px; } }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target=".sidebar" data-bs-offset="200">
+
+  <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas">
+    <i class="fas fa-bars fa-lg"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+    <div class="offcanvas-header justify-content-end">
+      <button type="button" class="btn-close offcanvas-close-btn" data-bs-dismiss="offcanvas" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="offcanvas-link-wrapper">
+        <a class="offcanvas-link mobile-link" href="#home" data-target="home">
+          <i class="fa fa-home"></i> Home
+        </a>
+        <a class="offcanvas-link mobile-link" href="#about" data-target="about">
+          <i class="fa fa-user"></i> About
+        </a>
+        <a class="offcanvas-link mobile-link" href="#education" data-target="education">
+          <i class="fa fa-book"></i> Education
+        </a>
+        <a class="offcanvas-link mobile-link" href="#projects" data-target="projects">
+          <i class="fa fa-folder-open"></i> Projects
+        </a>
+        <a class="offcanvas-link mobile-link" href="#contact" data-target="contact">
+          <i class="fa fa-envelope"></i> Contact
+        </a>
+      </div>
+    </div>
+  </div>
 
   <div class="sidebar">
     <a href="#home" class="sidebar-link" data-target="home" aria-label="Home"><i class="fa fa-home"></i></a>
@@ -208,20 +324,22 @@
         <div class="row align-items-start g-4">
           <div class="col-lg-4 text-center">
             <img src="./static/about.png" 
-                 alt="Abstract visualization of a glowing AI brain and neural network." 
-                 class="img-fluid rounded shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;">
+                  alt="Abstract visualization of a glowing AI brain and neural network." 
+                  class="img-fluid rounded shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;">
           </div>
           <div class="col-lg-8">
             <div class="about-text">
-              <p class="fs-5 text-justify">
-                I'm Kumara N, a passionate and motivated Data Science enthusiast currently pursuing my MCA at Presidency University, Bangalore. My journey into the world of data began with curiosity about how insights can be drawn from raw information to create impactful solutions—and ever since, I've been exploring ways to turn data into meaningful stories.
-              </p>
-              <p class="fs-5 text-justify">
-                Beyond the technical side, I value qualities like being a fast learner, team player, and good communicator—skills that help me adapt quickly and collaborate effectively in diverse environments.
-              </p>
-              <p class="fs-5 text-justify">
-                My ultimate goal is to leverage data-driven solutions to solve real-world challenges, innovate smarter systems, and grow into a well-rounded Data Scientist who makes an impact in the tech industry.
-              </p>
+              <div class="reveal-on-scroll visible">
+                <p class="fs-5 text-justify">
+                  I'm Kumara N, a passionate and motivated Data Science enthusiast currently pursuing my MCA at Presidency University, Bangalore. My journey into the world of data began with curiosity about how insights can be drawn from raw information to create impactful solutions—and ever since, I've been exploring ways to turn data into meaningful stories.
+                </p>
+                <p class="fs-5 text-justify">
+                  Beyond the technical side, I value qualities like being a fast learner, team player, and good communicator—skills that help me adapt quickly and collaborate effectively in diverse environments.
+                </p>
+                <p class="fs-5 text-justify">
+                  My ultimate goal is to leverage data-driven solutions to solve real-world challenges, innovate smarter systems, and grow into a well-rounded Data Scientist who makes an impact in the tech industry.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -265,7 +383,7 @@
   <section class="skills py-5 min-vh-100 d-flex align-items-center" id="skills" style="background-color: var(--background-light);">
     <div class="container">
       <h2 class="section-title text-center fw-bold mb-5 fs-2">TECHNICAL STACK</h2>
-      <div class="row skills-container g-4">
+      <div class="row skills-container reveal-on-scroll g-4">
         
         <div class="col-md-6 skill-bar" data-percent="75">
           <div class="skill-info d-flex justify-content-between mb-1"><span>PYTHON</span><span>75%</span></div>
@@ -331,10 +449,10 @@
     <div class="container">
       <h2 class="section-title text-center fw-bold mb-5 fs-2">PROJECTS</h2>
       
-      <div class="row projects-grid g-4">
+      <div class="row projects-grid reveal-on-scroll g-4">
         
         <div class="col-md-6 col-lg-4">
-          <div class="card shadow p-4 h-100 reveal-on-scroll project-card card-1 text-center" onclick="openModal('project-1')" style="box-shadow: var(--shadow);">
+          <div class="card shadow p-4 h-100 project-card card-1 text-center" onclick="openModal('project-1')" style="box-shadow: var(--shadow);">
             <div class="project-icon-wrapper mx-auto mb-3">
               <i class="fas fa-dna fa-3x"></i> 
             </div>
@@ -351,7 +469,7 @@
         </div>
 
         <div class="col-md-6 col-lg-4">
-          <div class="card shadow p-4 h-100 reveal-on-scroll project-card card-2 text-center" onclick="openModal('project-2')" style="box-shadow: var(--shadow);">
+          <div class="card shadow p-4 h-100 project-card card-2 text-center" onclick="openModal('project-2')" style="box-shadow: var(--shadow);">
             <div class="project-icon-wrapper mx-auto mb-3">
               <i class="fas fa-university fa-3x"></i>
             </div>
@@ -368,7 +486,7 @@
         </div>
 
         <div class="col-md-6 col-lg-4">
-          <div class="card shadow p-4 h-100 reveal-on-scroll project-card card-3 text-center" onclick="openModal('project-3')" style="box-shadow: var(--shadow);">
+          <div class="card shadow p-4 h-100 project-card card-3 text-center" onclick="openModal('project-3')" style="box-shadow: var(--shadow);">
             <div class="project-icon-wrapper mx-auto mb-3">
               <i class="fab fa-twitter fa-3x"></i>
             </div>
@@ -399,7 +517,7 @@
           <div class="col-lg-4 p-4 contact-info-panel border-end" style="background-color: #f0f0f0;">
               <h3 class="h5 fw-bold mb-3" style="color: var(--primary-color);">Get in Touch</h3>
               <p class="text-muted small mb-4">
-                  I'm currently seeking new opportunities and challenges. Feel free to connect via any of the channels below or use the contact form.
+                I'm currently seeking new opportunities and challenges. Feel free to connect via any of the channels below or use the contact form.
               </p>
 
               <div class="contact-info-grid">
@@ -442,29 +560,29 @@
           <div class="col-lg-8 p-4 contact-form-panel">
               <h3 class="h5 fw-bold mb-3">Send Me a Message</h3>
               
-              <form id="contact-form" class="d-flex flex-column gap-3">
-                  
-                  <div class="mb-2">
-                      <input type="text" id="name" name="from_name" class="form-control" placeholder="Your Name" required>
-                  </div>
-                  
-                  <div class="mb-2">
-                      <input type="email" id="email" name="reply_to" class="form-control" placeholder="Your Email" required>
-                  </div>
-                  
-                  <div class="mb-2">
-                      <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
-                  </div>
-                  
-                  <div class="mb-2">
-                      <textarea id="message" name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
-                  </div>
-                  
-                  <button type="submit" id="submitButton" class="btn text-white fw-bold shadow align-self-start" style="background-color: var(--primary-color);">Send Message</button>
-              </form>
-              
-              <p id="response-message" class="mt-3 small" style="display: none;">
-              </p>
+              <div class="contact-form">
+                <form action="https://formspree.io/f/xblzowvw" method="POST" id="formspree-contact-form">
+                    
+                    <div class="mb-3">
+                        <label for="name" class="form-label visually-hidden">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label visually-hidden">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your Email" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="message" class="form-label visually-hidden">Your Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submitButton" class="btn btn-lg text-white fw-bold shadow align-self-start">Send Message</button>
+                    
+                    <p id="response-message" class="mt-3 small" style="display: none;"></p>
+                </form>
+              </div>
               
           </div>
         </div>
@@ -501,9 +619,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
   <script>
-    // -----------------------------------------------------------
-    // 1. PROJECT DATA 
-    // -----------------------------------------------------------
+    
     const projectData = {
         'project-1': {
             title: "AI in Biotechnology",
@@ -531,9 +647,7 @@
         }
     };
 
-    // -----------------------------------------------------------
-    // 2. MODAL FUNCTIONS
-    // -----------------------------------------------------------
+    
     const modal = document.getElementById('project-modal');
     
     function openModal(projectId) {
@@ -565,11 +679,8 @@
         }
     }
 
-    // -----------------------------------------------------------
-    // 3. TYPED.JS AND SCROLL ANIMATION 
-    // -----------------------------------------------------------
+  
     
-    // Typed.js Init
     var typed = new Typed('.typed', {
       strings: ["Data Scientist", "Machine Learning Enthusiast", "AI Explorer"],
       typeSpeed: 80,
@@ -578,7 +689,6 @@
       loop: true
     });
 
-    // Scroll Animation Setup
     const elementsToReveal = document.querySelectorAll('.reveal-on-scroll');
     const skillSection = document.getElementById('skills');
     const skillBars = document.querySelectorAll('.skill-bar');
@@ -602,7 +712,7 @@
             setTimeout(() => {
                 skill.classList.add('visible'); 
                 const percent = skill.getAttribute('data-percent');
-                const fill = skill.querySelector('.skill-bar-fill');
+                const fill = skill.querySelector('.progress-bar');
                 if (fill && percent) {
                     fill.style.width = percent + '%';
                 }
@@ -617,15 +727,29 @@
       skillObserver.observe(skillSection);
     }
     
-    // -----------------------------------------------------------
-    // 4. SIDEBAR ACTIVE LINK HIGHLIGHTER
-    // -----------------------------------------------------------
+   
     const sections = document.querySelectorAll('section');
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const mobileNavLinks = document.querySelectorAll('.offcanvas-link'); 
+
+    function setActiveLink(sectionId) {
+        sidebarLinks.forEach(link => link.classList.remove('active-link'));
+        mobileNavLinks.forEach(link => link.classList.remove('active-link')); 
+
+        const activeSidebarLink = document.querySelector(`.sidebar-link[data-target="${sectionId}"]`);
+        if (activeSidebarLink) {
+            activeSidebarLink.classList.add('active-link');
+        }
+        
+        const activeMobileLink = document.querySelector(`.offcanvas-link[data-target="${sectionId}"]`);
+        if (activeMobileLink) {
+            activeMobileLink.classList.add('active-link');
+        }
+    }
 
     const observerOptions = {
       root: null, 
-      rootMargin: "0px 0px -50% 0px", 
+      rootMargin: "-50% 0px -50% 0px", 
       threshold: 0 
     };
 
@@ -633,15 +757,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
-          
-          sidebarLinks.forEach(link => {
-            link.classList.remove('active-link');
-          });
-
-          const activeLink = document.querySelector(`.sidebar-link[data-target="${sectionId}"]`);
-          if (activeLink) {
-            activeLink.classList.add('active-link');
-          }
+          setActiveLink(sectionId);
         }
       });
     }, observerOptions);
@@ -650,9 +766,76 @@
       sectionObserver.observe(section);
     });
     
-    // -----------------------------------------------------------
-    // 5. SCROLL TO TOP FUNCTIONALITY
-    // -----------------------------------------------------------
+    
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); 
+            const targetId = this.getAttribute('href');
+            
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+
+            const offcanvasElement = document.getElementById('mobileOffcanvas');
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement);
+            bsOffcanvas.hide();
+
+            setActiveLink(targetId.substring(1));
+        });
+    });
+
+    window.onload = function() {
+        const form = document.getElementById('formspree-contact-form');
+        const responseMessage = document.getElementById('response-message');
+        const submitButton = document.getElementById('submitButton');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            responseMessage.style.display = 'block';
+            responseMessage.innerHTML = "<span class='text-primary fw-bold'>Sending...</span>";
+            submitButton.disabled = true;
+
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json' 
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    responseMessage.innerHTML = "<span class='text-success fw-bold'>✅ Message sent successfully!</span>";
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        let errorMessage = "❌ An unknown error occurred.";
+                        if (data.errors) {
+                            errorMessage = `❌ Submission failed. Check fields: ${data.errors.map(e => e.field).join(', ')}.`;
+                        } else if (data.error) {
+                             errorMessage = `❌ ${data.error}`;
+                        }
+                        responseMessage.innerHTML = `<span class='text-danger fw-bold'>${errorMessage}</span>`;
+                    });
+                }
+            })
+            .catch(error => {
+                responseMessage.innerHTML = "<span class='text-danger fw-bold'>❌ Network error. Check your connection or Formspree setup.</span>";
+                console.error("Formspree Fetch Error:", error);
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    if (!responseMessage.innerHTML.includes("success")) {
+                        responseMessage.style.display = 'none';
+                    }
+                }, 5000); 
+            });
+        });    
+    }
+    
     const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
     window.onscroll = function() {
@@ -669,56 +852,7 @@
             behavior: 'smooth' 
         });
     });
-    
-    // -----------------------------------------------------------
-    // 6. EMAILJS SUBMISSION LOGIC
-    // -----------------------------------------------------------
-    
-    // EmailJS Initialization
-    (function() {
-        emailjs.init({
-            publicKey: "0rjOnY4sV-Cy61yhS",
-        });
-    })();
-    
-    window.onload = function() {
-        const form = document.getElementById('contact-form');
-        const responseMessage = document.getElementById('response-message');
-        const submitButton = document.getElementById('submitButton');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();                        
-            
-            // Show sending status
-            responseMessage.style.display = 'block';
-            responseMessage.innerHTML = "<span class='text-primary fw-bold'>Sending...</span>";
-            submitButton.disabled = true; // Disable button
-
-            const serviceID = 'service_bzrdewt';
-            const templateID = 'template_vxjrj34';
-
-            emailjs.sendForm(serviceID, templateID, this)
-                .then(() => {
-                    // Success
-                    responseMessage.innerHTML = "<span class='text-success fw-bold'>✅ Message sent successfully!</span>";
-                    form.reset();
-                    
-                    // Re-enable button after a short delay
-                    setTimeout(() => {
-                        submitButton.disabled = false;
-                        responseMessage.style.display = 'none';
-                    }, 5000);
-
-                }, (err) => {
-                    // Error
-                    responseMessage.innerHTML = "<span class='text-danger fw-bold'>❌ Failed to send message. Please try again.</span>";
-                    submitButton.disabled = false;
-                    console.error("EmailJS Error:", err);
-                });
-        });    
-    }
   </script>
 
 </body>
 </html>
-
