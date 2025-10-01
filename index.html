@@ -390,9 +390,9 @@
       <div class="card shadow-lg p-4 reveal-on-scroll" style="background-color: var(--card-bg);">
         <div class="row align-items-start g-4">
           <div class="col-lg-4 text-center">
-            <img src="./static/about.png" 
+            <img src="about.png" 
                   alt="Abstract visualization of a glowing AI brain and neural network." 
-                  class="img-fluid rounded shadow-lg" style="max-height: 350px; width: 100%; object-fit: cover;">
+                  class="img-fluid rounded shadow-lg" style="max-height: 375px; width: 100%; object-fit: cover;">
           </div>
           <div class="col-lg-8">
             <div class="about-text">
@@ -401,8 +401,7 @@
                   I'm Kumara N, a passionate and motivated Data Science enthusiast currently pursuing my MCA at Presidency University, Bangalore. My journey into the world of data began with curiosity about how insights can be drawn from raw information to create impactful solutions—and ever since, I've been exploring ways to turn data into meaningful stories.
                 </p>
                 <p class="fs-5 text-justify">
-                  Beyond the technical side, I value qualities like being a fast learner, team player, and good communicator—skills that help me adapt quickly and collaborate effectively in diverse environments.
-                </p>
+                  Beyond the technical side, I value qualities like being a fast learner, a team player, and a good communicator—skills that help me adapt quickly and collaborate effectively in diverse environments. I enjoy working on projects that challenge my analytical thinking and push me to learn new tools, techniques, and approaches in data science.                </p>
                 <p class="fs-5 text-justify">
                   My ultimate goal is to leverage data-driven solutions to solve real-world challenges, innovate smarter systems, and grow into a well-rounded Data Scientist who makes an impact in the tech industry.
                 </p>
@@ -436,7 +435,7 @@
           <h3 class="h5 fw-bold mb-1" style="color: var(--primary-color);">Bachelor of Computer Applications (BCA)</h3>
           <p class="institution fst-italic text-secondary">Government First Grade College, Kadur - 577548</p>
           <p class="details text-dark">
-            Completed foundational studies in computer science, software development, and programming.
+            Completed foundational studies in computer Applications, software development, and programming.
             <strong class="d-block mt-1">Final CGPA: 8.99</strong>
           </p>
         </div>
@@ -521,11 +520,11 @@
         <div class="col-md-6 col-lg-4">
           <div class="card shadow p-4 h-100 project-card card-1 text-center" onclick="openModal('project-1')" style="box-shadow: var(--shadow);">
             <div class="project-icon-wrapper mx-auto mb-3">
-              <i class="fas fa-dna fa-3x"></i> 
+              <i class="fas fa-chart-line fa-3x"></i>
             </div>
-            <h3 class="h5 fw-bold">AI in Biotechnology</h3>
+            <h3 class="h5 fw-bold">Predictive Analytics E-commerce Churn</h3>
             <p class="text-muted small">
-              An AI-based framework and data-driven methodology for post-PCR High-Resolution Melting Analysis (HRMA).
+              A machine learning project that predicts customer churn for e-commerce platforms. Helps businesses identify at-risk customers and improve retention strategies.
             </p>
             <div class="project-links-new mt-auto d-flex justify-content-center">
               <a href="#link1" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-1'); return false;">
@@ -538,12 +537,11 @@
         <div class="col-md-6 col-lg-4">
           <div class="card shadow p-4 h-100 project-card card-2 text-center" onclick="openModal('project-2')" style="box-shadow: var(--shadow);">
             <div class="project-icon-wrapper mx-auto mb-3">
-              <i class="fas fa-university fa-3x"></i>
+              <i class="fas fa-film fa-3x"></i>
             </div>
-            <h3 class="h5 fw-bold">Churn ML</h3>
+            <h3 class="h5 fw-bold">CineVerseRecommender</h3>
             <p class="text-muted small">
-              ML-based web application for predicting Bank customer Churn using Deep Learning.
-            </p>
+              A Streamlit-based movie recommendation system using the TMDb dataset and cosine similarity. Allows users to search, explore trending films, and get personalized movie suggestions.            </p>
             <div class="project-links-new mt-auto d-flex justify-content-center">
               <a href="#link2" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-2'); return false;">
                 <i class="fas fa-rocket me-1"></i> Learn More
@@ -555,11 +553,11 @@
         <div class="col-md-6 col-lg-4">
           <div class="card shadow p-4 h-100 project-card card-3 text-center" onclick="openModal('project-3')" style="box-shadow: var(--shadow);">
             <div class="project-icon-wrapper mx-auto mb-3">
-              <i class="fab fa-twitter fa-3x"></i>
+              <i class="fas fa-smile-beam fa-3x"></i>
             </div>
-            <h3 class="h5 fw-bold">Image to Hashtags</h3>
+            <h3 class="h5 fw-bold"> Real-Time Facial Emotion Recognition</h3>
             <p class="text-muted small">
-              An AI tool that generates trending hashtags for images based on their content, using pre-trained models.
+              A Python-based system that detects and analyzes facial emotions in real time using computer vision and deep learning. Provides instant emotion percentages for images or live video feeds.
             </p>
             <div class="project-links-new mt-auto d-flex justify-content-center">
               <a href="#link3" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-3'); return false;">
@@ -640,6 +638,8 @@
                         <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your Email" required>
                     </div>
                     
+                   
+                    
                     <div class="mb-3">
                         <label for="message" class="form-label visually-hidden">Your Message</label>
                         <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -689,62 +689,80 @@
    
     const projectData = {
         'project-1': {
-            title: "AI in Biotechnology",
+            title: "Churn ML Prediction",
             image: "https://images.unsplash.com/photo-1547841243-e4d688402f06?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
-            full_description: "This project features an AI-based framework and data-driven methodology developed for post-PCR High-Resolution Melting Analysis (HRMA). It uses advanced machine learning models (e.g., CNNs) to classify and analyze complex biological melt curves, significantly speeding up diagnosis and research in the biotech field. Technologies used include Python, TensorFlow, Scikit-learn, and Flask.",
+            full_description: "A machine learning project that predicts customer churn for e-commerce platforms. Helps businesses identify at-risk customers and improve retention strategies.",
             github_link: "https://github.com/kumaran-data/biotech-ai",
             live_link: "https://cineverserecommender.streamlit.app/", 
             live_text: "View Live App"
+            
         },
         'project-2': {
-            title: "Churn ML Prediction",
+            title: "CineVerseRecommender",
             image: "https://images.unsplash.com/photo-1551288258-293c310461ae?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            full_description: "A comprehensive ML-based web application designed to predict Bank customer churn using Deep Learning techniques (LSTM/RNNs) on sequential customer data. The system allows bank managers to identify high-risk customers proactively, enabling targeted retention campaigns. The front-end uses Flask for deployment.",
+            full_description: "A Streamlit-based movie recommendation system using the TMDb dataset and cosine similarity. Allows users to search, explore trending films, and get personalized movie suggestions.",
             github_link: "https://github.com/kumaran-data/churn-ml",
             live_link: "#link2-live",
             live_text: "Try Predictor"
         },
         'project-3': {
-            title: "Image to Hashtags",
-            image: "https://images.unsplash.com/photo-1549490349-8c90b1c97a55?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            full_description: "An AI tool leveraging pre-trained computer vision models (like ResNet or CLIP) to accurately identify objects and contexts in uploaded images, generating a list of trending and relevant social media hashtags for better reach and engagement. This was built using Python and the Hugging Face Transformers library.",
-            github_link: "https://github.com/kumaran-data/image-hashtags",
-            live_link: "#link3-live",
-            live_text: "View Live Tool"
+            title: "Real-Time Facial Emotion Recognition",
+            image: "https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3", 
+            full_description: `
+                       A computer vision system that automatically detects and classifies human facial emotions in real time.It applies deep learning techniques (CNNs) combined with OpenCV for accurate image analysis.The system identifies multiple emotions such as happiness, sadness, anger, fear, surprise, and neutrality.A Tkinter-based GUI provides an interactive interface for live webcam-based recognition.  
+
+                      Key Highlights:
+                          - Uses CNNs and OpenCV for emotion classification  
+                          - Recognizes: Happiness, Sadness, Anger, Surprise, Fear, Neutral  
+                          - Built with Python, TensorFlow/Keras, and Scikit-learn  
+                          - Tkinter GUI for live real-time recognition  
+                          - Applications: Human-Computer Interaction, Mental Health Monitoring, Smart Surveillance
+            `,
+                         github_link: "https://github.com/Kumara5KN/Real-Time-Facial-Emotion-Recognition", 
         }
     };
 
     
-    const modal = document.getElementById('project-modal');
+
+
+const modal = document.getElementById('project-modal');
+
+function openModal(projectId) {
+    const data = projectData[projectId];
+    if (!data) return;
+
+    document.getElementById('modal-title').innerText = data.title;
+    document.getElementById('modal-description').innerText = data.full_description;
+    document.getElementById('modal-image').src = data.image;
+    document.getElementById('modal-image').alt = data.title + " Image";
     
-    function openModal(projectId) {
-        const data = projectData[projectId];
-        if (!data) return;
+    document.getElementById('modal-github').href = data.github_link;
+    const liveLinkElement = document.getElementById('modal-live');
 
-        document.getElementById('modal-title').innerText = data.title;
-        document.getElementById('modal-description').innerText = data.full_description;
-        document.getElementById('modal-image').src = data.image;
-        document.getElementById('modal-image').alt = data.title + " Image";
-        
-        document.getElementById('modal-github').href = data.github_link;
-        const liveLink = document.getElementById('modal-live');
-        liveLink.href = data.live_link;
-        liveLink.innerHTML = `<i class="fas fa-external-link-alt me-2"></i> ${data.live_text || 'Live Demo'}`;
-
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; 
+    // CONDITIONAL LOGIC: Display Live Demo button only if link exists
+    if (data.live_link) {
+        liveLinkElement.style.display = 'inline-flex';
+        liveLinkElement.href = data.live_link;
+        liveLinkElement.innerHTML = `<i class="fas fa-external-link-alt me-2"></i> ${data.live_text || 'Live Demo'}`;
+    } else {
+        liveLinkElement.style.display = 'none'; // Hide the button
     }
 
-    function closeModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = ''; 
-    }
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; 
+}
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            closeModal();
-        }
+function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = ''; 
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
     }
+}
+
 
  
     var typed = new Typed('.typed', {
@@ -923,4 +941,3 @@
 
 </body>
 </html>
-
