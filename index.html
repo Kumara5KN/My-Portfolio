@@ -36,17 +36,70 @@
     }
 
     .sidebar {
-      position: fixed; top: 50%; left: 20px; transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 15px; z-index: 1000; 
+      position: fixed; 
+      top: 50%; 
+      left: 20px; 
+      transform: translateY(-50%);
+      display: flex; 
+      flex-direction: column; 
+      gap: 15px; 
+      z-index: 1000; 
     }
     .sidebar a {
-      position: relative; background: #fff; color: var(--primary-color);
-      width: 45px; height: 45px; display: flex; justify-content: center;
-      align-items: center; border-radius: 50%; text-decoration: none;
-      transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: relative; 
+      background: #fff; 
+      color: var(--primary-color);
+      width: 45px; 
+      height: 45px; 
+      display: flex; 
+      justify-content: center;
+      align-items: center; 
+      border-radius: 50%; 
+      text-decoration: none;
+      transition: all 0.3s; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .sidebar a:hover, .sidebar a.active-link { background: var(--primary-color); color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-    .sidebar a span { display: none; } 
+    .sidebar a i {
+        font-size: 20px;
+        z-index: 10;
+    }
+    .sidebar a span { 
+        display: none; 
+    } 
+
+    .sidebar a::after {
+        content: attr(aria-label); 
+        position: absolute;
+        left: 100%; 
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 5px 10px;
+        margin-left: 15px; 
+        background-color: var(--primary-color); 
+        color: #fff;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 990; 
+    }
+
+    .sidebar a:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .sidebar a.active-link { 
+        background: var(--primary-color); 
+        color: #fff; 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .sidebar a.active-link i {
+        color: #fff;
+    }
     
     @media (max-width: 768px) { 
         .sidebar { display: none; } 
@@ -65,7 +118,7 @@
         color: #fff;
         border: none;
         border-radius: 50%;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: none; 
         transition: background-color 0.3s;
     }
     .mobile-nav-toggle:hover {
@@ -81,11 +134,12 @@
         align-items: center;
         justify-content: center;
         opacity: 1; 
-        transform: scale(1.1);
+        transform: none;
+        box-shadow: none;
     }
     .offcanvas-close-btn:focus {
         box-shadow: none;
-        background-color: #0a0a0a;
+        background-color: #0d6efd;
     }
     
     @media (max-width: 768px) {
@@ -95,6 +149,7 @@
     #mobileOffcanvas {
         max-width: 75%; 
         background-color: var(--card-bg); 
+        box-shadow: none; 
     }
     .offcanvas-link-wrapper {
         padding: 10px 0;
@@ -117,28 +172,45 @@
     .offcanvas-link i {
         font-size: 1.2rem;
         margin-right: 15px;
-        color: var(--primary-color); 
+        color: var(--text-color); 
+        opacity: 0.7;
     }
     .offcanvas-link:hover {
         background-color: var(--background-light);
+        color: var(--primary-color);
     }
     .offcanvas-link.active-link {
         background-color: var(--primary-color);
-        color: #fff;
+        color: #fff; 
         font-weight: 600;
-        box-shadow: 0 4px 8px rgba(30, 144, 255, 0.5);
     }
     .offcanvas-link.active-link i {
         color: #fff;
+        opacity: 1;
     }
     
     .hero { 
       min-height: 100vh;
       background: linear-gradient(125deg, var(--primary-color) 40%, #fff 40%); 
     }
+    
+    .hero-profile-img { 
+      width: 350px; 
+      height: 350px; 
+      object-fit: cover; 
+      border: 10px solid rgba(255, 255, 255, 0.9); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+      transition: transform 0.3s; 
+    }
+
     @media (max-width: 768px) {
         .hero-content {
             padding-top: 2rem !important; 
+        }
+        .hero-profile-img {
+            width: 180px; 
+            height: 180px; 
+            border-width: 6px; 
         }
     }
     
@@ -165,13 +237,6 @@
     }
     
     
-    .hero-profile-img { 
-      width: 350px; height: 350px; object-fit: cover; 
-      border: 10px solid rgba(255, 255, 255, 0.9); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-      transition: transform 0.3s; 
-    }
-    .section-title { position: relative; text-transform: uppercase; }
     .section-title::after {
       content: ""; display: block; width: 70px; height: 3px;
       background: var(--primary-color); margin: 12px auto 0; border-radius: 3px;
@@ -257,7 +322,6 @@
   <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
     <div class="offcanvas-header justify-content-end">
       <button type="button" class="btn-close offcanvas-close-btn" data-bs-dismiss="offcanvas" aria-label="Close">
-        <i class="fas fa-times"></i>
       </button>
     </div>
     <div class="offcanvas-body">
@@ -271,8 +335,11 @@
         <a class="offcanvas-link mobile-link" href="#education" data-target="education">
           <i class="fa fa-book"></i> Education
         </a>
+        <a class="offcanvas-link mobile-link" href="#skills" data-target="skills">
+          <i class="fa fa-cogs"></i> Skills
+        </a>
         <a class="offcanvas-link mobile-link" href="#projects" data-target="projects">
-          <i class="fa fa-folder-open"></i> Projects
+          <i class="fa fa-briefcase"></i> Projects
         </a>
         <a class="offcanvas-link mobile-link" href="#contact" data-target="contact">
           <i class="fa fa-envelope"></i> Contact
@@ -282,12 +349,12 @@
   </div>
 
   <div class="sidebar">
-    <a href="#home" class="sidebar-link" data-target="home" aria-label="Home"><i class="fa fa-home"></i></a>
-    <a href="#about" class="sidebar-link" data-target="about" aria-label="About"><i class="fa fa-user"></i></a>
-    <a href="#education" class="sidebar-link" data-target="education" aria-label="Education"><i class="fa fa-book"></i></a>
-    <a href="#skills" class="sidebar-link" data-target="skills" aria-label="Skills"><i class="fa fa-cogs"></i></a>
-    <a href="#projects" class="sidebar-link" data-target="projects" aria-label="Projects"><i class="fa fa-briefcase"></i></a>
-    <a href="#contact" class="sidebar-link" data-target="contact" aria-label="Contact"><i class="fa fa-envelope"></i></a>
+    <a href="#home" class="sidebar-link" data-target="home" aria-label="Home"><i class="fa fa-home"></i><span>Home</span></a>
+    <a href="#about" class="sidebar-link" data-target="about" aria-label="About"><i class="fa fa-user"></i><span>About</span></a>
+    <a href="#education" class="sidebar-link" data-target="education" aria-label="Education"><i class="fa fa-book"></i><span>Education</span></a>
+    <a href="#skills" class="sidebar-link" data-target="skills" aria-label="Skills"><i class="fa fa-cogs"></i><span>Skills</span></a>
+    <a href="#projects" class="sidebar-link" data-target="projects" aria-label="Projects"><i class="fa fa-briefcase"></i><span>Projects</span></a>
+    <a href="#contact" class="sidebar-link" data-target="contact" aria-label="Contact"><i class="fa fa-envelope"></i><span>Contact</span></a>
   </div>
 
   <section class="hero d-flex align-items-center" id="home" style="padding-top: 0;">
@@ -574,6 +641,11 @@
                     </div>
                     
                     <div class="mb-3">
+                        <label for="subject" class="form-label visually-hidden">Subject</label>
+                        <input type="text" class="form-control" id="subject" name="_subject" placeholder="Subject">
+                    </div>
+                    
+                    <div class="mb-3">
                         <label for="message" class="form-label visually-hidden">Your Message</label>
                         <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                     </div>
@@ -619,7 +691,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
   <script>
-    
+   
     const projectData = {
         'project-1': {
             title: "AI in Biotechnology",
@@ -679,10 +751,9 @@
         }
     }
 
-  
-    
+ 
     var typed = new Typed('.typed', {
-      strings: ["Data Scientist", "Machine Learning Enthusiast", "AI Explorer"],
+      strings: ["Data Scientist", "Machine Learning Enthusiast",],
       typeSpeed: 80,
       backSpeed: 50,
       backDelay: 2000,
@@ -766,7 +837,7 @@
       sectionObserver.observe(section);
     });
     
-    
+   
     document.querySelectorAll('.mobile-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault(); 
@@ -784,6 +855,7 @@
         });
     });
 
+  
     window.onload = function() {
         const form = document.getElementById('formspree-contact-form');
         const responseMessage = document.getElementById('response-message');
