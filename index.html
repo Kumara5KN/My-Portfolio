@@ -1,951 +1,1236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Kumara N - Data Science Portfolio</title>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Kumara N - Data Science Portfolio (Dark Mode)</title>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<style>
+  /* --- DARK MODE CONFIGURATION (Fixed) --- */
+  :root {
+    --primary-color: #3cd3f5;       /* Bright Cyan/Blue for accents (Kept as is) */
+    --text-color: #fff;             /* White/Light text for main content (Kept as is) */
+    --muted-text: #a0a0a0;          /* Soft gray for small/muted text (Kept as is) */
+    --bg-color: #0d1117;            /* DEEPEST DARK background */
+    --second-bg-color: #161b22;     /* SLIGHTLY LIGHTER dark for alternating sections */
+    --card-bg: #1f242d;             /* Darker card backgrounds - subtle contrast */
+    --shadow: 0 0 15px rgba(60, 211, 245, 0.2); /* Soft glow shadow (Kept as is) */
+    --background-light: #0d1117;    /* Alternating background: using --bg-color here */
+    --project-color-1: #ff8c4a;     /* Project accent color 1 (Kept as is) */
+    --project-color-2: #e91e63;     /* Project accent color 2 (Kept as is) */
+    --project-color-3: #1da1f2;     /* Project accent color 3 (Kept as is) */
+  }
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  body {
+    font-family: "Poppins", sans-serif;
+    color: var(--text-color);
+    background: var(--bg-color); 
+    overflow-x: hidden;
+    padding-top: 70px;
+    position: relative;
+    transition: none;
+  }
   
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  /* --- FIX: Adjust Scroll Target Position for Fixed Header --- */
+  section[id] {
+    scroll-behavior: smooth;
+    scroll-margin-top: 70px; 
+  }
   
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  /* FIX: Ensure all scrollable sections have enough height (min 100vh) for smooth active link switching */
+  section[id]:not(#home) {
+    min-height: 70vh;
+  }
+
+  /* --- ABOUT SECTION STYLING --- */
+  .about-bg-image {
+    background-image: url('AB.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 60px 0; 
+  }
+
+  /* Overlay for readability */
+  .about-bg-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* Opacity 0.35 for max image visibility */
+    background-color: rgba(22, 27, 34, 0.35); 
+    z-index: 1;
+  }
   
-  <style>
-    :root {
-      --primary-color: #1e90ff; 
-      --secondary-color: #32cd32; 
-      --text-color: #333;
-      --background-light: #f9f9f9;
-      --card-bg: #ffffff;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      --project-color-1: #ff8c4a;
-      --project-color-2: #e91e63;
-      --project-color-3: #1da1f2;
+  .about-bg-image .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Enhance text readability for high-visibility background */
+  #about .container p {
+      font-weight: 400; 
+      line-height: 1.7; 
+  }
+
+  /* --- PROJECT BUTTON STYLING (NEW ATTRACTIVE LOOK) --- */
+  .project-card .btn-outline-primary {
+    background-color: var(--primary-color) !important; /* Solid Cyan */
+    border-color: var(--primary-color) !important;
+    color: var(--bg-color) !important; /* Dark text */
+    font-weight: 600;
+    transition: all 0.3s;
+    /* Adding a subtle initial glow */
+    box-shadow: 0 0 5px rgba(60, 211, 245, 0.5); 
+  }
+
+  .project-card .btn-outline-primary:hover {
+    background: transparent !important; /* Revert background on hover */
+    color: var(--primary-color) !important; /* Revert text color */
+    box-shadow: 0 0 15px var(--primary-color); /* Strong cyan glow on hover */
+  }
+
+
+  /* --- CONTACT SECTION STYLING --- */
+  .contact-info-panel {
+      background-color: var(--second-bg-color) !important; /* Panel background */
+      color: var(--text-color) !important;
+  }
+  .contact-info-panel .text-muted {
+      color: var(--muted-text) !important;
+  }
+  .contact-form-panel .form-control {
+      background-color: var(--second-bg-color);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-color);
+  }
+  .contact-form-panel .form-control::placeholder {
+      color: var(--muted-text);
+  }
+  /* Style for the Send Message button */
+  .contact-form-panel .btn-send-message {
+    background-color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color);
+    color: var(--bg-color) !important;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s;
+  }
+  .contact-form-panel .btn-send-message:hover {
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 0 15px var(--primary-color);
+  }
+
+  /* --- SCROLL TO TOP BUTTON STYLING --- */
+  #scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    opacity: 0.8;
+    transition: opacity 0.3s, background-color 0.3s;
+  }
+
+  #scrollToTopBtn:hover {
+    opacity: 1;
+    background-color: #31a8c2; /* Slightly darker cyan on hover */
+  }
+
+  /* --- PROJECT MODAL STYLING (NEW TECH BADGES) --- */
+  .tech-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 5px 5px 5px 0;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--bg-color);
+    background-color: var(--primary-color);
+  }
+  
+  /* --- General Dark Mode Text Adjustments --- */
+  .text-muted, .text-secondary {
+    color: var(--muted-text) !important;
+  }
+  .card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* --- Header & Navigation (Desktop/Top Bar) --- */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 8%;
+    background: var(--bg-color); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+      display: flex; /* Makes it a row */
+    align-items: center; /* Vertically centers items */
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+  }
+  .logo span {
+    color: var(--primary-color);
+  }
+  .navbar-links a {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-left: 2.5rem;
+    font-weight: 500;
+    padding: 10px 0;
+    position: relative;
+    text-decoration: none;
+  }
+  .navbar-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+  }
+  .navbar-links a:hover::after,
+  .navbar-links a.active-link::after {
+    width: 100%;
+  }
+  .navbar-links a.active-link {
+    color: var(--primary-color);
+  }
+  
+  /* --- Mobile Toggle Button Styling --- */
+  .mobile-nav-toggle {
+    display: none; 
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+    line-height: 1; 
+  }
+  .mobile-nav-toggle:hover {
+      background: rgba(60, 211, 245, 0.1);
+  }
+  
+  /* --- Offcanvas (Mobile Menu) Styling --- */
+  .offcanvas {
+    background-color: var(--second-bg-color) !important; 
+    color: var(--text-color) !important;
+  }
+  .offcanvas-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .offcanvas-title {
+    color: var(--primary-color) !important;
+  }
+  .offcanvas-link {
+    color: var(--text-color) !important;
+    text-decoration: none;
+    padding: 10px 0;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+  }
+  .offcanvas-link:hover,
+  .offcanvas-link.active-link {
+    color: var(--primary-color) !important;
+  }
+  .btn-close-white {
+    filter: invert(1); 
+  }
+
+
+  /* --- Responsiveness (Mobile View) --- */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 60px;
+    }
+    .header {
+      padding: 0.75rem 4%;
+      height: 60px; 
     }
     
-    body { 
-      font-family: 'Poppins', sans-serif; 
-      color: var(--text-color); 
-      background: #fff;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      padding-top: 0; 
-      padding-bottom: 0; 
-    }
-
-    .sidebar {
-      position: fixed; 
-      top: 50%; 
-      left: 20px; 
-      transform: translateY(-50%);
-      display: flex; 
-      flex-direction: column; 
-      gap: 15px; 
-      z-index: 1000; 
-    }
-    .sidebar a {
-      position: relative; 
-      background: #fff; 
-      color: var(--primary-color);
-      width: 45px; 
-      height: 45px; 
-      display: flex; 
-      justify-content: center;
-      align-items: center; 
-      border-radius: 50%; 
-      text-decoration: none;
-      transition: all 0.3s; 
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .sidebar a i {
-        font-size: 20px;
-        z-index: 10;
-    }
-    .sidebar a span { 
-        display: none; 
-    } 
-
-    .sidebar a::after {
-        content: attr(aria-label); 
-        position: absolute;
-        left: 100%; 
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 5px 10px;
-        margin-left: 15px; 
-        background-color: var(--primary-color); 
-        color: #fff;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: 500;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        z-index: 990; 
-    }
-
-    .sidebar a:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .sidebar a.active-link { 
-        background: var(--primary-color); 
-        color: #fff; 
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-    .sidebar a.active-link i {
-        color: #fff;
-    }
-    
-    @media (max-width: 768px) { 
-        .sidebar { display: none; } 
-        body { padding-top: 15px; } 
-    }
-
+    /* Show the mobile toggle button */
     .mobile-nav-toggle {
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        z-index: 1040;
-        display: none;
-        width: 45px;
-        height: 45px;
-        background-color: var(--primary-color);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        box-shadow: none; 
-        transition: background-color 0.3s;
+      display: block; 
     }
-    .mobile-nav-toggle:hover {
-        background-color: #0d6efd;
+    .hero .text-md-start {
+      text-align: center !important;
     }
-    .offcanvas-close-btn {
-        background-color: var(--primary-color);
-        color: #fff;
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 1; 
-        transform: none;
-        box-shadow: none;
-    }
-    .offcanvas-close-btn:focus {
-        box-shadow: none;
-        background-color: #0d6efd;
-    }
-    
-    @media (max-width: 768px) {
-        .mobile-nav-toggle { display: flex; align-items: center; justify-content: center; }
-    }
+  }
 
-    #mobileOffcanvas {
-        max-width: 75%; 
-        background-color: var(--card-bg); 
-        box-shadow: none; 
-    }
-    .offcanvas-link-wrapper {
-        padding: 10px 0;
-        display: flex;
-        flex-direction: column;
-        gap: 15px; 
-    }
-    .offcanvas-link {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: var(--text-color);
-        padding: 12px 20px;
-        margin: 0 10px;
-        border-radius: 10px; 
-        transition: all 0.3s;
-        background-color: #f0f0f0; 
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-    .offcanvas-link i {
-        font-size: 1.2rem;
-        margin-right: 15px;
-        color: var(--text-color); 
-        opacity: 0.7;
-    }
-    .offcanvas-link:hover {
-        background-color: var(--background-light);
-        color: var(--primary-color);
-    }
-    .offcanvas-link.active-link {
-        background-color: var(--primary-color);
-        color: #fff; 
-        font-weight: 600;
-    }
-    .offcanvas-link.active-link i {
-        color: #fff;
-        opacity: 1;
-    }
-    
-    .hero { 
-      min-height: 100vh;
-      background: linear-gradient(125deg, var(--primary-color) 40%, #fff 40%); 
-    }
-    
-    .hero-profile-img { 
-      width: 350px; 
-      height: 350px; 
-      object-fit: cover; 
-      border: 10px solid rgba(255, 255, 255, 0.9); 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
-      transition: transform 0.3s; 
-    }
+  /* --- Other Existing Styles (Kept for completeness) --- */
+  .hero { min-height: 100vh !important; position: relative; display: flex; align-items: center; overflow: hidden; }
+  #hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+  .hero-profile-container { position: relative; display: inline-block; border-radius: 50%; }
+  .hero-profile-container::before { content: ""; position: absolute; top: -10px; left: -10px; width: calc(100% + 20px); height: calc(100% + 20px); border-radius: 50%; background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%); filter: blur(20px); opacity: 0.8; animation: pulseGlow 2.5s infinite alternate; z-index: -1; }
+  .hero-profile-img { border-radius: 50%; width: 320px; height: 320px; object-fit: cover; border: 4px solid var(--primary-color); display: block; }
+  @keyframes pulseGlow { 0% { transform: scale(0.95); opacity: 0.6; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.6; } }
+  .typed { color: var(--primary-color); }
+  .socials a { color: var(--text-color); margin-right: 15px; font-size: 2rem; transition: color 0.3s, text-shadow 0.3s, transform 0.3s; }
+  .socials a:hover { color: var(--primary-color); text-shadow: 0 0 15px var(--primary-color); transform: scale(1.1); }
+  .resume-button { background-color: var(--primary-color); border: 2px solid var(--primary-color); color: var(--bg-color) !important; font-weight: 600; padding: 0.75rem 2rem; transition: all 0.3s; }
+  .resume-button:hover { background: transparent; color: var(--primary-color) !important; box-shadow: 0 0 15px var(--primary-color); }
+  .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+  .section-title::after { content: ""; display: block; width: 70px; height: 3px; background: var(--primary-color); margin: 12px auto 0; border-radius: 3px; }
+  .skill-info span:last-child { color: var(--primary-color); }
+  .skill-bar-fill { transition: width 1.5s ease-in-out; background-color: var(--primary-color) !important; }
+  .progress { background-color: #555; }
+  .project-card { 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    background-color: var(--card-bg) !important; 
+    color: var(--text-color); 
+    border: none; 
+    box-shadow: var(--shadow) !important; 
+  }
+  .project-card:hover { transform: translateY(-8px); box-shadow: 0 0 25px rgba(60, 211, 245, 0.4) !important; }
+  
+  /* --- Project Card Icon Styling Fix --- */
+  .project-icon-wrapper { 
+    position: relative; 
+    display: inline-flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    border: 2px solid var(--muted-text); 
+    transition: all 0.4s ease; 
+  }
+  
+  .project-icon-wrapper i { 
+    color: var(--muted-text); 
+    transition: color 0.4s ease; 
+    font-size: 2.5rem; 
+  }
+  
+  /* Hover Effect: Changes the border and icon color to the primary cyan */
+  .project-card:hover .project-icon-wrapper {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(60, 211, 245, 0.6); 
+  }
+  
+  .project-card:hover .project-icon-wrapper i {
+    color: var(--primary-color);
+  }
 
-    @media (max-width: 768px) {
-        .hero-content {
-            padding-top: 2rem !important; 
-        }
-        .hero-profile-img {
-            width: 180px; 
-            height: 180px; 
-            border-width: 6px; 
-        }
-    }
-    
-    .reveal-on-scroll { 
-        opacity: 0; 
-        transform: translateY(30px); 
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-    }
-    .reveal-on-scroll.visible { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-    
-    .contact-form button {
-      background-color: var(--primary-color) !important;
-      border: none; 
-      color: white; 
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-    .contact-form button:hover { 
-      background-color: #0d6efd !important; 
-      transform: translateY(-1px); 
-    }
-    
-    
-    .section-title::after {
-      content: ""; display: block; width: 70px; height: 3px;
-      background: var(--primary-color); margin: 12px auto 0; border-radius: 3px;
-    }
-    .resume-button {
-      background-color: var(--primary-color); border: 2px solid var(--primary-color);
-      border-radius: 50px; transition: all 0.3s ease;
-    }
-    .resume-button:hover { 
-      background-color: #0d6efd; border-color: #0d6efd; 
-      transform: translateY(-2px); 
-    }
-    .education-container { position: relative; }
-    .education-container::before {
-      content: ''; position: absolute; top: 0; left: 20px; bottom: 0; width: 4px;
-      background: #e9ecef; border-radius: 2px;
-    }
-    .education-item { padding-left: 50px; position: relative; }
-    .education-item::before {
-      content: ''; position: absolute; width: 15px; height: 15px; border-radius: 50%;
-      left: 13px; top: 6px; background: var(--primary-color); border: 3px solid #fff;
-      z-index: 1; box-shadow: 0 0 0 2px var(--background-light);
-    }
-    @media (max-width: 768px) {
-      .education-container::before { left: 25px; }
-      .education-item { padding-left: 60px; }
-      .education-item::before { left: 18px; }
-    }
-    .skill-bar { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
-    .skill-bar.visible { opacity: 1; transform: translateY(0); }
-    .skill-bar-fill { 
-      transition: width 1.5s ease-in-out;
-      background-color: var(--secondary-color) !important;
-    }
-    .project-card { 
-      cursor: pointer; 
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-color: var(--card-bg) !important;
-    }
-    .project-card:hover { 
-      transform: translateY(-8px); 
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
-    }
-    .project-icon-wrapper { 
-      position: relative; display: inline-flex; justify-content: center; align-items: center; 
-      width: 80px; height: 80px; transition: color 0.3s;
-    }
-    .project-icon-wrapper i { 
-      color: #b0b0b0; 
-      transition: color 0.3s ease;
-    }
-    .project-card:hover .project-icon-wrapper i {
-      color: inherit !important; 
-    }
-    .project-icon-wrapper::before {
-      content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%;
-      border-radius: 40% 60% 70% 30% / 50% 50% 50% 50%; transform: translate(-50%, -50%) scale(1.5);
-      opacity: 0.1; background-color: currentColor; 
-    }
-    .card-1 .project-icon-wrapper { color: var(--project-color-1); }
-    .card-2 .project-icon-wrapper { color: var(--project-color-2); }
-    .card-3 .project-icon-wrapper { color: var(--project-color-3); }
-    .contact-wrapper { overflow: hidden; }
-    .contact-info-panel { background-color: #f0f0f0; }
-
-    .skill-bar-fill { transition: width 1.5s ease-in-out; }
-    #scrollToTopBtn {
-      position: fixed; bottom: 20px; right: 20px; z-index: 1000; width: 50px; height: 50px;
-      background-color: var(--primary-color); color: white; border: none; border-radius: 50%;
-      display: none; justify-content: center; align-items: center; font-size: 24px; box-shadow: var(--shadow);
-      opacity: 0.8; transition: all 0.3s;
-    }
-    #scrollToTopBtn:hover { background-color: #0d6efd; opacity: 1; transform: scale(1.05); }
-    @media (max-width: 768px) { #scrollToTopBtn { bottom: 20px; } }
-  </style>
+  #project-modal .modal-content-wrapper { background-color: var(--second-bg-color) !important; color: var(--text-color) !important; }
+  #project-modal .bg-white { background-color: var(--second-bg-color) !important; color: var(--text-color) !important; }
+  #project-modal .btn-dark { background-color: #555 !important; border-color: #555 !important; color: #fff !important; }
+</style>
 </head>
-<body data-bs-spy="scroll" data-bs-target=".sidebar" data-bs-offset="200">
+<body>
 
-  <button class="mobile-nav-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas">
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="mobileOffcanvas"
+  aria-labelledby="mobileOffcanvasLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title logo" id="mobileOffcanvasLabel">
+      Kumara N<span>.</span>
+    </h5>
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <nav class="d-flex flex-column gap-3">
+      <a
+        href="#home"
+        class="fs-4 offcanvas-link active-link"
+        onclick="navigateAndClose(event, this.getAttribute('href'))"
+        >Home</a
+      >
+      <a 
+        href="#about" 
+        class="fs-4 offcanvas-link"
+        onclick="navigateAndClose(event, this.getAttribute('href'))"
+        >About</a
+      >
+      <a 
+        href="#skills" 
+        class="fs-4 offcanvas-link"
+        onclick="navigateAndClose(event, this.getAttribute('href'))"
+        >Skills</a
+      >
+      <a
+        href="#projects"
+        class="fs-4 offcanvas-link"
+        onclick="navigateAndClose(event, this.getAttribute('href'))"
+        >Projects</a
+      >
+      <a
+        href="#contact"
+        class="fs-4 offcanvas-link"
+        onclick="navigateAndClose(event, this.getAttribute('href'))"
+        >Contact</a
+      >
+    </nav>
+  </div>
+</div>
+<header class="header">
+  <a href="#home" class="logo">Kumara N<span>.</span></a>
+  <nav class="navbar-links d-none d-md-block"> 
+    <a href="#home" class="active-link">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+     <a href="#contact">Contact</a>
+  </nav>
+  <button
+      class="mobile-nav-toggle d-md-none"
+    type="button"
+     data-bs-toggle="offcanvas"
+    data-bs-target="#mobileOffcanvas"
+    aria-controls="mobileOffcanvas">
     <i class="fas fa-bars fa-lg"></i>
   </button>
+</header>
+<section class="hero d-flex align-items-center" id="home">
+  <canvas id="hero-bg"></canvas>
+  <div class="container py-5" style="position: relative; z-index: 1">
+    <div class="row align-items-center justify-content-center g-5">
+      <div class="col-12 col-md-5 text-center reveal-on-scroll">
+        <div class="hero-profile-container">
+          <img
+            src="profile_img.jpeg"
+            alt="Kumara N Profile Image"
+            class="hero-profile-img"
+          />
+        </div>
+      </div>
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
-    <div class="offcanvas-header justify-content-end">
-      <button type="button" class="btn-close offcanvas-close-btn" data-bs-dismiss="offcanvas" aria-label="Close">
-      </button>
-    </div>
-    <div class="offcanvas-body">
-      <div class="offcanvas-link-wrapper">
-        <a class="offcanvas-link mobile-link" href="#home" data-target="home">
-          <i class="fa fa-home"></i> Home
-        </a>
-        <a class="offcanvas-link mobile-link" href="#about" data-target="about">
-          <i class="fa fa-user"></i> About
-        </a>
-        <a class="offcanvas-link mobile-link" href="#education" data-target="education">
-          <i class="fa fa-book"></i> Education
-        </a>
-        <a class="offcanvas-link mobile-link" href="#skills" data-target="skills">
-          <i class="fa fa-cogs"></i> Skills
-        </a>
-        <a class="offcanvas-link mobile-link" href="#projects" data-target="projects">
-          <i class="fa fa-briefcase"></i> Projects
-        </a>
-        <a class="offcanvas-link mobile-link" href="#contact" data-target="contact">
-          <i class="fa fa-envelope"></i> Contact
-        </a>
+      <div class="col-12 col-md-7 text-center text-md-start reveal-on-scroll">
+        <p class="lead text-uppercase fw-semibold mb-1" style="color: var(--primary-color);">
+          Hello, I'm
+        </p>
+        <h1 class="display-2 fw-bolder mb-0">Kumara N</h1>
+        <p class="fs-3 mt-2">
+          I'm a <span class="typed fw-bold"></span>
+        </p>
+
+        <div class="socials mb-4 mt-4">
+          <a href="https://github.com/Kumara5KN" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/kumara-n-2003k2003/"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="mailto:kn998799@gmail.com"><i class="fa fa-envelope"></i></a>
+        </div>
+
+        <a
+          href="Kumara_N_Resume.pdf"
+          download
+          class="btn btn-lg resume-button shadow"
+          ><i class="fas fa-file-download me-2"></i> Download Resume</a
+        >
       </div>
     </div>
   </div>
+</section>
 
-  <div class="sidebar">
-    <a href="#home" class="sidebar-link" data-target="home" aria-label="Home"><i class="fa fa-home"></i><span>Home</span></a>
-    <a href="#about" class="sidebar-link" data-target="about" aria-label="About"><i class="fa fa-user"></i><span>About</span></a>
-    <a href="#education" class="sidebar-link" data-target="education" aria-label="Education"><i class="fa fa-book"></i><span>Education</span></a>
-    <a href="#skills" class="sidebar-link" data-target="skills" aria-label="Skills"><i class="fa fa-cogs"></i><span>Skills</span></a>
-    <a href="#projects" class="sidebar-link" data-target="projects" aria-label="Projects"><i class="fa fa-briefcase"></i><span>Projects</span></a>
-    <a href="#contact" class="sidebar-link" data-target="contact" aria-label="Contact"><i class="fa fa-envelope"></i><span>Contact</span></a>
+<section
+  id="about"
+  class="about-bg-image"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center reveal-on-scroll">
+        <h2 class="section-title fw-bold mb-4 fs-2">ABOUT</h2>
+        <p class="lead mb-3">
+          Hi, I'm Kumara N, an MCA student passionate about data science,
+          machine learning, and AI application development. I love using
+          real-world data to solve meaningful problems and believe that
+          combining technical depth with strong communication is the key to
+          impactful analytics.
+        </p>
+        <p class="mb-3">
+          My journey spans designing modular Python solutions, exploring
+          advanced image and speech processing, and developing dashboard
+          architectures for analytics and insights. Every project is an
+          opportunity to learn, collaborate, and build tools that empower
+          smarter decisions.
+        </p>
+        <p>
+          This portfolio showcases my skills, stack, and featured projects.
+          Let's connect or collaborate to leverage data for innovation!
+        </p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <section class="hero d-flex align-items-center" id="home" style="padding-top: 0;">
-    <div class="container hero-content py-5">
-      <div class="row align-items-center justify-content-center g-5">
-        
-        <div class="col-12 col-md-5 col-lg-4 text-center">
-          <img src="profile_img.jpeg" alt="Profile Image of Kumara N" class="img-fluid rounded-circle hero-profile-img">
+<hr class="my-5" />
+
+<section
+  class="skills py-5"
+  id="skills"
+  style="background-color: var(--background-light)"
+>
+  <div class="container">
+    <h2 class="section-title text-center fw-bold mb-5 fs-2">TECHNICAL STACK</h2>
+    <div class="row skills-container reveal-on-scroll g-4">
+      <div class="col-md-6 skill-bar" data-percent="75">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>PYTHON</span><span>75%</span>
         </div>
-        
-        <div class="col-12 col-md-7 col-lg-6 text-center text-md-start">
-          <h1 class="display-1 fw-bold mb-0">Kumara N</h1>
-          <p class="fs-4 mt-2">I'm a <span class="typed text-primary fw-bold"></span></p>
-          
-          <div class="socials mb-4">
-            <a href="https://github.com/Kumara5KN" target="_blank" class="text-dark me-3 fs-3"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" class="text-dark me-3 fs-3"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:kn998799@gmail.com" class="text-dark fs-3"><i class="fa fa-envelope"></i></a>
-          </div>
-          
-          <a href="Kumara_N_Resume.pdf" download class="btn btn-lg text-white resume-button shadow">
-              <i class="fas fa-file-download me-2"></i> Download Resume
-          </a>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="75"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="30">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>TENSORFLOW</span><span>30%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="30"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="55">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>C++</span><span>55%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="55"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="70">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>PANDAS</span><span>70%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="70"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="40">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>R</span><span>40%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="40"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="60">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>NUMPY</span><span>60%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="60"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="40">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>SQL</span><span>40%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="40"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+
+      <div class="col-md-6 skill-bar" data-percent="60">
+        <div class="skill-info d-flex justify-content-between mb-1">
+          <span>SCI-KIT LEARN</span><span>60%</span>
+        </div>
+        <div class="progress" style="height: 10px">
+          <div
+            class="progress-bar skill-bar-fill"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="60"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="about py-5 min-vh-100 d-flex align-items-center" id="about" style="background-color: var(--background-light);">
-    <div class="container">
-      <h2 class="section-title text-center fw-bold mb-5 fs-2">ABOUT ME</h2>
-      
-      <div class="card shadow-lg p-4 reveal-on-scroll" style="background-color: var(--card-bg);">
-        <div class="row align-items-start g-4">
-          <div class="col-lg-4 text-center">
-            <img src="./static/about.png" 
-                  alt="" 
-                  class="img-fluid rounded shadow-lg" style="max-height: 375px; width: 100%; object-fit: cover;">
+<hr class="my-5" />
+
+<section
+  class="projects py-5"
+  id="projects"
+  style="background-color: var(--second-bg-color)"
+>
+  <div class="container">
+    <h2 class="section-title text-center fw-bold mb-5 fs-2">PROJECTS</h2>
+
+    <div class="row projects-grid reveal-on-scroll g-4">
+      <div class="col-md-6 col-lg-4">
+        <div
+          class="card shadow p-4 h-100 project-card card-1 text-center"
+          >
+          <div class="project-icon-wrapper mx-auto mb-3">
+            <i class="fas fa-chart-line fa-3x"></i>
           </div>
-          <div class="col-lg-8">
-            <div class="about-text">
-              <div class="reveal-on-scroll visible">
-                <p class="fs-5 text-justify">
-                  I'm Kumara N, a passionate and motivated Data Science enthusiast currently pursuing my MCA at Presidency University, Bangalore. My journey into the world of data began with curiosity about how insights can be drawn from raw information to create impactful solutions—and ever since, I've been exploring ways to turn data into meaningful stories.
-                </p>
-                <p class="fs-5 text-justify">
-                  Beyond the technical side, I value qualities like being a fast learner, a team player, and a good communicator—skills that help me adapt quickly and collaborate effectively in diverse environments. I enjoy working on projects that challenge my analytical thinking and push me to learn new tools, techniques, and approaches in data science.                </p>
-                <p class="fs-5 text-justify">
-                  My ultimate goal is to leverage data-driven solutions to solve real-world challenges, innovate smarter systems, and grow into a well-rounded Data Scientist who makes an impact in the tech industry.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="container"><hr class="my-0"></div>
-
-  <section class="education py-5 min-vh-100 d-flex align-items-center" id="education" style="background-color: #fff;">
-    <div class="container">
-      <h2 class="section-title text-center fw-bold mb-5 fs-2">EDUCATION</h2>
-      <div class="education-container reveal-on-scroll">
-        
-        <div class="education-item">
-          <div class="edu-date text-muted mb-2"><i class="fas fa-calendar-alt me-2" style="color: var(--secondary-color);"></i> Currently Pursuing (2024 - 2026)</div>
-          <h3 class="h5 fw-bold mb-1" style="color: var(--primary-color);">Master of Computer Applications (MCA)</h3>
-          <p class="institution fst-italic text-secondary">Presidency University, Bengaluru - 560064</p>
-          <p class="details text-dark">
-              Focus on Data Science, Artificial Intelligence, and Machine Learning.
-            <strong class="d-block mt-1">Current CGPA: 9.12</strong>
+          <h3 class="h5 fw-bold">Churn ML Prediction</h3>
+          <p class="text-muted small">
+            A machine learning project that predicts customer churn for
+            e-commerce platforms. Helps businesses identify at-risk customers
+            and improve retention strategies.
           </p>
+          <div
+            class="project-links-new mt-auto d-flex justify-content-center"
+          >
+            <a
+              href="#"
+              class="btn btn-outline-primary btn-sm"
+              onclick="event.stopPropagation(); openModal('project-1'); return false;"
+            >
+              <i class="fas fa-rocket me-2"></i> Learn More
+            </a>
+          </div>
         </div>
+      </div>
 
-        <div class="education-item">
-          <div class="edu-date text-muted mb-2"><i class="fas fa-graduation-cap me-2" style="color: var(--secondary-color);"></i> Completed (2023)</div>
-          <h3 class="h5 fw-bold mb-1" style="color: var(--primary-color);">Bachelor of Computer Applications (BCA)</h3>
-          <p class="institution fst-italic text-secondary">Government First Grade College, Kadur - 577548</p>
-          <p class="details text-dark">
-              Completed foundational studies in computer Applications, software development, and programming.
-            <strong class="d-block mt-1">Final CGPA: 8.99</strong>
+      <div class="col-md-6 col-lg-4">
+        <div
+          class="card shadow p-4 h-100 project-card card-2 text-center"
+          >
+          <div class="project-icon-wrapper mx-auto mb-3">
+            <i class="fas fa-film fa-3x"></i>
+          </div>
+          <h3 class="h5 fw-bold">CineVerseRecommender</h3>
+          <p class="text-muted small">
+            A Streamlit-based movie recommendation system using the TMDb dataset
+            and cosine similarity. Allows users to search, explore trending
+            films, and get personalized movie suggestions.
           </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="container"><hr class="my-0"></div>
-
-  <section class="skills py-5 min-vh-100 d-flex align-items-center" id="skills" style="background-color: var(--background-light);">
-    <div class="container">
-      <h2 class="section-title text-center fw-bold mb-5 fs-2">TECHNICAL STACK</h2>
-      <div class="row skills-container reveal-on-scroll g-4">
-        
-        <div class="col-md-6 skill-bar" data-percent="75">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>PYTHON</span><span>75%</span></div>
-          <div class="progress" style="height: 10px;">
-              <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="col-md-6 skill-bar" data-percent="30">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>TENSORFLOW</span><span>30%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="col-md-6 skill-bar" data-percent="55">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>C++</span><span>55%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="col-md-6 skill-bar" data-percent="70">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>PANDAS</span><span>70%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="col-md-6 skill-bar" data-percent="40">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>R</span><span>40%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="col-md-6 skill-bar" data-percent="60">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>NUMPY</span><span>60%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        
-        <div class="col-md-6 skill-bar" data-percent="40">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>SQL</span><span>40%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-        <div class="col-md-6 skill-bar" data-percent="60">
-          <div class="skill-info d-flex justify-content-between mb-1"><span>SCI-KIT LEARN</span><span>60%</span></div>
-          <div class="progress" style="height: 10px;">
-            <div class="progress-bar skill-bar-fill" role="progressbar" style="width: 0%; background-color: var(--secondary-color);" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="projects py-5 min-vh-100 d-flex align-items-center" id="projects" style="background-color: #fff;">
-    <div class="container">
-      <h2 class="section-title text-center fw-bold mb-5 fs-2">PROJECTS</h2>
-      
-      <div class="row projects-grid reveal-on-scroll g-4">
-        
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow p-4 h-100 project-card card-1 text-center" onclick="openModal('project-1')" style="box-shadow: var(--shadow);">
-            <div class="project-icon-wrapper mx-auto mb-3">
-              <i class="fas fa-chart-line fa-3x"></i>
-            </div>
-            <h3 class="h5 fw-bold">Churn ML Prediction</h3>
-            <p class="text-muted small">
-              A machine learning project that predicts customer churn for e-commerce platforms. Helps businesses identify at-risk customers and improve retention strategies.
-            </p>
-            <div class="project-links-new mt-auto d-flex justify-content-center">
-              <a href="#link1" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-1'); return false;">
-                <i class="fas fa-rocket me-1"></i> Learn More
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow p-4 h-100 project-card card-2 text-center" onclick="openModal('project-2')" style="box-shadow: var(--shadow);">
-            <div class="project-icon-wrapper mx-auto mb-3">
-              <i class="fas fa-film fa-3x"></i>
-            </div>
-            <h3 class="h5 fw-bold">CineVerseRecommender</h3>
-            <p class="text-muted small">
-              A Streamlit-based movie recommendation system using the TMDb dataset and cosine similarity. Allows users to search, explore trending films, and get personalized movie suggestions.            </p>
-            <div class="project-links-new mt-auto d-flex justify-content-center">
-              <a href="#link2" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-2'); return false;">
-                <i class="fas fa-rocket me-1"></i> Learn More
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card shadow p-4 h-100 project-card card-3 text-center" onclick="openModal('project-3')" style="box-shadow: var(--shadow);">
-            <div class="project-icon-wrapper mx-auto mb-3">
-              <i class="fas fa-smile-beam fa-3x"></i>
-            </div>
-            <h3 class="h5 fw-bold"> Real-Time Facial Emotion Recognition</h3>
-            <p class="text-muted small">
-              A Python-based system that detects and analyzes facial emotions in real time using computer vision and deep learning. Provides instant emotion percentages for images or live video feeds.
-            </p>
-            <div class="project-links-new mt-auto d-flex justify-content-center">
-              <a href="#link3" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation(); openModal('project-3'); return false;">
-                <i class="fas fa-rocket me-1"></i> Learn More
-              </a>
-            </div>
+          <div
+            class="project-links-new mt-auto d-flex justify-content-center"
+          >
+            <a
+              href="#"
+              class="btn btn-outline-primary btn-sm"
+              onclick="event.stopPropagation(); openModal('project-2'); return false;"
+            >
+              <i class="fas fa-rocket me-2"></i> Learn More
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <div class="container"><hr class="my-0"></div>
 
-  <section class="contact py-5 min-vh-100 d-flex align-items-center" id="contact" style="background-color: var(--background-light);">
-    <div class="container">
-      <h2 class="section-title text-center fw-bold mb-5 fs-2">CONTACT ME</h2>
-      
-      <div class="card shadow-lg contact-wrapper reveal-on-scroll" style="background-color: var(--card-bg);">
-        <div class="row g-0">
-          
-          <div class="col-lg-4 p-4 contact-info-panel border-end" style="background-color: #f0f0f0;">
-              <h3 class="h5 fw-bold mb-3" style="color: var(--primary-color);">Get in Touch</h3>
-              <p class="text-muted small mb-4">
-                I'm currently seeking new opportunities and challenges. Feel free to connect via any of the channels below or use the contact form.
-              </p>
-
-              <div class="contact-info-grid">
-                  
-                  <div class="contact-info-item d-flex align-items-start mb-3">
-                      <i class="fas fa-envelope fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
-                      <div>
-                          <p class="fw-bold mb-0">Email</p>
-                          <a href="mailto:kn998799@gmail.com" class="text-decoration-none text-muted small">kn998799@gmail.com</a>
-                      </div>
-                  </div>
-                  
-                  <div class="contact-info-item d-flex align-items-start mb-3">
-                      <i class="fab fa-linkedin fs-5 me-3 mt-1" style="color: var(--primary-color);"></i> 
-                      <div>
-                          <p class="fw-bold mb-0">LinkedIn</p>
-                          <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" class="text-decoration-none text-muted small">/in/kumara-n-2003k2003</a>
-                      </div>
-                  </div>
-                  
-                  <div class="contact-info-item d-flex align-items-start mb-3">
-                      <i class="fab fa-github fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
-                      <div>
-                          <p class="fw-bold mb-0">GitHub</p>
-                          <a href="https://github.com/Kumara5KN" target="_blank" class="text-decoration-none text-muted small">/Kumara5KN</a>
-                      </div>
-                  </div>
-                  
-                  <div class="contact-info-item d-flex align-items-start mb-3">
-                      <i class="fas fa-phone-alt fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
-                      <div>
-                          <p class="fw-bold mb-0">Phone Number</p>
-                          <a href="tel:+91 63636 94110" class="text-decoration-none text-muted small">+91 63636 94110</a>
-                      </div>
-                  </div>
-
-              </div>
+      <div class="col-md-6 col-lg-4">
+        <div
+          class="card shadow p-4 h-100 project-card card-3 text-center"
+          >
+          <div class="project-icon-wrapper mx-auto mb-3">
+            <i class="fas fa-smile-beam fa-3x"></i>
           </div>
-
-          <div class="col-lg-8 p-4 contact-form-panel">
-              <h3 class="h5 fw-bold mb-3">Send Me a Message</h3>
-              
-              <div class="contact-form">
-                <form action="https://formspree.io/f/xblzowvw" method="POST" id="formspree-contact-form">
-                    
-                    <div class="mb-3">
-                        <label for="name" class="form-label visually-hidden">Your Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="email" class="form-label visually-hidden">Your Email</label>
-                        <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your Email" required>
-                    </div>
-                    
-                   
-                    
-                    <div class="mb-3">
-                        <label for="message" class="form-label visually-hidden">Your Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" id="submitButton" class="btn btn-lg text-white fw-bold shadow align-self-start">Send Message</button>
-                    
-                    <p id="response-message" class="mt-3 small" style="display: none;"></p>
-                </form>
-              </div>
-              
+          <h3 class="h5 fw-bold"> Real-Time Facial Emotion Recognition</h3>
+          <p class="text-muted small">
+            A Python-based system that detects and analyzes facial emotions in
+            real time using computer vision and deep learning. Provides instant
+            emotion percentages for images or live video feeds.
+          </p>
+          <div
+            class="project-links-new mt-auto d-flex justify-content-center"
+          >
+            <a
+              href="#"
+              class="btn btn-outline-primary btn-sm"
+              onclick="event.stopPropagation(); openModal('project-3'); return false;"
+            >
+              <i class="fas fa-rocket me-2"></i> Learn More
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <footer class="py-3 mt-5 border-top" style="background-color: var(--card-bg);">
-    <div class="container">
-      <p class="text-center text-muted mb-0 small">
-        &copy; 2025 Kumara N. All Rights Reserved.
-      </p>
-    </div>
-  </footer>
-  
-  <div id="project-modal" style="display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); padding-top: 50px;">
-    <div class="bg-white p-4 mx-auto rounded shadow-lg" style="max-width: 800px; position: relative;">
-      <span class="position-absolute top-0 end-0 me-3 mt-1 fs-3 fw-bold" style="color: var(--text-color); cursor: pointer;" onclick="closeModal()">&times;</span>
-      <h2 id="modal-title" class="h3 fw-bold mb-3" style="color: var(--primary-color);"></h2>
-      
-      <img id="modal-image" class="img-fluid rounded mb-3 shadow" src="" alt="Project Image">
-      
-      <p id="modal-description"></p>
-      
-      <div class="d-flex justify-content-center gap-3 mt-4">
-        <a id="modal-github" href="#" target="_blank" class="btn btn-dark"><i class="fab fa-github me-2"></i> GitHub</a>
-        <a id="modal-live" href="#" target="_blank" class="btn text-white" style="background-color: var(--primary-color);"><i class="fas fa-external-link-alt me-2"></i> Live Demo</a>
       </div>
     </div>
   </div>
+</section>
 
-  <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+<div class="container">
+  <hr class="my-0">
+</div>
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-  <script>
-   
-    const projectData = {
-        'project-1': {
-            title: "Predictive Analytics E-commerce Churn",
-            image: "https://images.unsplash.com/photo-1547841243-e4d688402f06?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
-            full_description: "A machine learning project that predicts customer churn for e-commerce platforms. Helps businesses identify at-risk customers and improve retention strategies.",
-            github_link: "https://github.com/kumaran-data/biotech-ai",
-            live_link: "https://property-price-forecast.streamlit.app/", 
-            live_text: "View Live App"
-            
-        },
-        'project-2': {
-            title: "CineVerseRecommender",
-            image: "https://images.unsplash.com/photo-1551288258-293c310461ae?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            full_description: "A Streamlit-based movie recommendation system using the TMDb dataset and cosine similarity. Allows users to search, explore trending films, and get personalized movie suggestions.",
-            github_link: "https://github.com/Kumara5KN/CineVerseRecommender",
-            live_link: "https://cineverserecommender.streamlit.app/",
-            live_text: "View Live App"
-        },
-        'project-3': {
-            title: "Real-Time Facial Emotion Recognition",
-            image: "./static/Interface3.png", 
-            full_description: `
-                       A computer vision system that automatically detects and classifies human facial emotions in real time.It applies deep learning techniques (CNNs) combined with OpenCV for accurate image analysis.The system identifies multiple emotions such as happiness, sadness, anger, fear, surprise, and neutrality.A Tkinter-based GUI provides an interactive interface for live webcam-based recognition.  
-
-                      Key Highlights:
-                          - Uses CNNs and OpenCV for emotion classification  
-                          - Recognizes: Happiness, Sadness, Anger, Surprise, Fear, Neutral  
-                          - Built with Python, TensorFlow/Keras, and Scikit-learn  
-                          - Tkinter GUI for live real-time recognition  
-                          - Applications: Human-Computer Interaction, Mental Health Monitoring, Smart Surveillance
-            `,
-                         github_link: "https://github.com/Kumara5KN/Real-Time-Facial-Emotion-Recognition", 
-        }
-    };
-
+<section class="contact py-5 min-vh-100 d-flex align-items-center" id="contact" style="background-color: var(--background-light);">
+  <div class="container">
+    <h2 class="section-title text-center fw-bold mb-5 fs-2">CONTACT ME</h2>
     
+    <div class="card shadow-lg contact-wrapper reveal-on-scroll" style="background-color: var(--card-bg);">
+      <div class="row g-0">
+        
+        <div class="col-lg-4 p-4 contact-info-panel border-end">
+          <h3 class="h5 fw-bold mb-3" style="color: var(--primary-color);">Get in Touch</h3>
+          <p class="text-muted small mb-4">
+            I'm currently seeking new opportunities and challenges. Feel free to connect via any of the channels below or use the contact form.
+          </p>
 
+          <div class="contact-info-grid">
+              
+            <div class="contact-info-item d-flex align-items-start mb-3">
+              <i class="fas fa-envelope fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
+              <div>
+                <p class="fw-bold mb-0">Email</p>
+                <a href="mailto:kn998799@gmail.com" class="text-decoration-none text-muted small">kn998799@gmail.com</a>
+              </div>
+            </div>
+              
+            <div class="contact-info-item d-flex align-items-start mb-3">
+              <i class="fab fa-linkedin fs-5 me-3 mt-1" style="color: var(--primary-color);"></i> 
+              <div>
+                <p class="fw-bold mb-0">LinkedIn</p>
+                <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" class="text-decoration-none text-muted small">/in/kumara-n-2003k2003</a>
+              </div>
+            </div>
+              
+            <div class="contact-info-item d-flex align-items-start mb-3">
+              <i class="fab fa-github fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
+              <div>
+                <p class="fw-bold mb-0">GitHub</p>
+                <a href="https://github.com/Kumara5KN" target="_blank" class="text-decoration-none text-muted small">/Kumara5KN</a>
+              </div>
+            </div>
+              
+            <div class="contact-info-item d-flex align-items-start mb-3">
+              <i class="fas fa-phone-alt fs-5 me-3 mt-1" style="color: var(--primary-color);"></i>
+              <div>
+                <p class="fw-bold mb-0">Phone Number</p>
+                <a href="tel:+91 63636 94110" class="text-decoration-none text-muted small">+91 63636 94110</a>
+              </div>
+            </div>
 
-const modal = document.getElementById('project-modal');
+          </div>
+        </div>
 
-function openModal(projectId) {
-    const data = projectData[projectId];
-    if (!data) return;
+        <div class="col-lg-8 p-4 contact-form-panel">
+          <h3 class="h5 fw-bold mb-3">Send Me a Message</h3>
+          
+          <div class="contact-form">
+            <form action="https://formspree.io/f/xblzowvw" method="POST" id="formspree-contact-form">
+              <div class="mb-3">
+                <label for="name" class="form-label visually-hidden">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="email" class="form-label visually-hidden">Your Email</label>
+                <input type="email" class="form-control" id="email" name="_replyto" placeholder="Your Email" required>
+              </div>
+              
+              <div class="mb-3">
+                <label for="message" class="form-label visually-hidden">Your Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+              </div>
+              
+              <button type="submit" id="submitButton" class="btn btn-lg btn-send-message fw-bold shadow align-self-start">Send Message</button>
+              
+              <p id="response-message" class="mt-3 small" style="display: none;"></p>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="py-3 mt-0 border-top" style="background-color: var(--card-bg);">
+  <div class="container">
+    <p class="text-center text-muted mb-0 small">
+      &copy; 2025 Kumara N. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+<div
+  id="project-modal"
+  style="
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    padding-top: 50px;
+    justify-content: center;
+  "
+>
+  <div
+    class="bg-white p-4 mx-auto rounded shadow-lg"
+    style="max-width: 800px; position: relative"
+  >
+    <span
+      class="position-absolute top-0 end-0 me-3 mt-1 fs-3 fw-bold"
+      style="color: var(--text-color); cursor: pointer"
+      onclick="closeModal()"
+      >&times;</span
+    >
+    <h2 id="modal-title" class="h3 fw-bold mb-3" style="color: var(--primary-color)"></h2>
 
-    document.getElementById('modal-title').innerText = data.title;
-    document.getElementById('modal-description').innerText = data.full_description;
-    document.getElementById('modal-image').src = data.image;
-    document.getElementById('modal-image').alt = data.title + " Image";
+    <img
+      id="modal-image"
+      class="img-fluid rounded mb-3 shadow"
+      src=""
+      alt="Project Image"
+    />
+
+    <p id="modal-description" style="color: var(--text-color);"></p>
+
+    <h5 class="fw-bold mb-2 mt-4" style="color: var(--primary-color);">Technologies Used</h5>
+    <div id="modal-technologies" class="d-flex flex-wrap mb-4">
+      </div>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <a
+        id="modal-github"
+        href="#"
+        target="_blank"
+        class="btn btn-dark"
+        ><i class="fab fa-github me-2"></i> GitHub</a
+      >
+      <a
+        id="modal-live"
+        href="#"
+        target="_blank"
+        class="btn text-white"
+        style="background-color: var(--primary-color)"
+        ><i class="fas fa-external-link-alt me-2"></i> Live Demo</a
+      >
+    </div>
+  </div>
+</div>
+
+<button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  // --- NEW FUNCTION: Navigate and Close Offcanvas ---
+  function navigateAndClose(event, href) {
+    event.preventDefault(); 
+
+    const offcanvasElement = document.querySelector('#mobileOffcanvas');
+    const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
     
-    document.getElementById('modal-github').href = data.github_link;
-    const liveLinkElement = document.getElementById('modal-live');
-
-    // CONDITIONAL LOGIC: Display Live Demo button only if link exists
-    if (data.live_link) {
-        liveLinkElement.style.display = 'inline-flex';
-        liveLinkElement.href = data.live_link;
-        liveLinkElement.innerHTML = `<i class="fas fa-external-link-alt me-2"></i> ${data.live_text || 'Live Demo'}`;
-    } else {
-        liveLinkElement.style.display = 'none'; // Hide the button
-    }
-
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; 
-}
-
-function closeModal() {
-    modal.style.display = 'none';
-    document.body.style.overflow = ''; 
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-        closeModal();
-    }
-}
-
-
- 
-    var typed = new Typed('.typed', {
-      strings: ["Data Scientist", "Machine Learning Enthusiast",],
-      typeSpeed: 80,
-      backSpeed: 50,
-      backDelay: 2000,
-      loop: true
-    });
-
-    const elementsToReveal = document.querySelectorAll('.reveal-on-scroll');
-    const skillSection = document.getElementById('skills');
-    const skillBars = document.querySelectorAll('.skill-bar');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+    if (offcanvasInstance) {
+        offcanvasElement.addEventListener('hidden.bs.offcanvas', function handler() {
+            window.location.href = href;
+            offcanvasElement.removeEventListener('hidden.bs.offcanvas', handler); 
         });
-    }, { threshold: 0.1 });
 
-    elementsToReveal.forEach(el => {
-        revealObserver.observe(el);
-    });
+        offcanvasInstance.hide(); 
+    } else {
+        window.location.href = href;
+    }
+  }
 
-    const skillObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+
+  // --- Typed.js for Hero Section ---
+  var typed = new Typed(".typed", {
+    strings: [
+      "Data Scientist",
+      "Machine Learning Enthusiast",
+      "Data Analyst",
+      "AI Developer",
+    ],
+    typeSpeed: 80,
+    backSpeed: 50,
+    backDelay: 1500,
+    loop: true,
+  });
+
+  // --- Scroll Reveal Animation ---
+  const revealElements = document.querySelectorAll(".reveal-on-scroll");
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          skillBars.forEach((skill, index) => {
-            setTimeout(() => {
-                skill.classList.add('visible'); 
-                const percent = skill.getAttribute('data-percent');
-                const fill = skill.querySelector('.progress-bar');
-                if (fill && percent) {
-                    fill.style.width = percent + '%';
-                }
-            }, index * 100); 
-          });
-          observer.unobserve(skillSection); 
+          entry.target.classList.add("visible");
         }
       });
-    }, { threshold: 0.5 });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  );
+  revealElements.forEach((el) => observer.observe(el));
+
+  // --- Animated Background (Hero Section) ---
+  const canvas = document.getElementById("hero-bg");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      const heroSection = document.getElementById('home');
+      if (heroSection) {
+        canvas.height = heroSection.clientHeight;
+      } else {
+        canvas.height = window.innerHeight * 0.9;
+      }
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    let nodes = [];
+    const nodeCount = 50;
+
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 3 + 1,
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          let dx = nodes[i].x - nodes[j].x;
+          let dy = nodes[i].y - nodes[j].y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.strokeStyle = "rgba(60,211,245," + (1 - dist / 120) + ")";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach((node) => {
+        ctx.fillStyle = "rgba(60,211,245,0.9)";
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fill();
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+      });
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+
+  // --- Skills Bar Animation (Triggered by Intersection Observer) ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const skillSection = document.getElementById("skills");
+    const skillBars = document.querySelectorAll(".skill-bar");
+
+    const skillObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            skillBars.forEach((skill, index) => {
+              setTimeout(() => {
+                skill.classList.add("visible");
+                const percent = skill.getAttribute("data-percent");
+                const fill = skill.querySelector(".progress-bar");
+                if (fill && percent) {
+                  fill.style.width = percent + "%";
+                }
+              }, index * 100);
+            });
+            observer.unobserve(skillSection);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
     if (skillSection) {
       skillObserver.observe(skillSection);
     }
-    
-   
-    const sections = document.querySelectorAll('section');
-    const sidebarLinks = document.querySelectorAll('.sidebar-link');
-    const mobileNavLinks = document.querySelectorAll('.offcanvas-link'); 
+  });
 
-    function setActiveLink(sectionId) {
-        sidebarLinks.forEach(link => link.classList.remove('active-link'));
-        mobileNavLinks.forEach(link => link.classList.remove('active-link')); 
 
-        const activeSidebarLink = document.querySelector(`.sidebar-link[data-target="${sectionId}"]`);
-        if (activeSidebarLink) {
-            activeSidebarLink.classList.add('active-link');
-        }
-        
-        const activeMobileLink = document.querySelector(`.offcanvas-link[data-target="${sectionId}"]`);
-        if (activeMobileLink) {
-            activeMobileLink.classList.add('active-link');
-        }
+  // --- Projects Modal Data (UPDATED) ---
+  const projectData = {
+    "project-1": {
+      title: "Predictive Analytics E-commerce Churn",
+      image:
+        "https://images.unsplash.com/photo-1547841243-e4d688402f06?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      full_description:
+        "A machine learning project that predicts customer churn for e-commerce platforms. Helps businesses identify at-risk customers and improve retention strategies. Key technologies used include Python, Scikit-learn, Pandas, and Matplotlib for visualization. The final model achieved 88% accuracy in identifying high-risk customers, leading to targeted retention campaigns.",
+      github_link: "https://github.com/kumaran-data/biotech-ai",
+      live_link: "https://cineverserecommender.streamlit.app/",
+      live_text: "View Live App",
+      technologies: ["Python", "Scikit-learn", "Pandas", "Matplotlib", "Jupyter"],
+    },
+    "project-2": {
+      title: "CineVerseRecommender",
+      image:
+        "https://images.unsplash.com/photo-1551288258-293c310461ae?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      full_description:
+        "A Streamlit-based movie recommendation system using the TMDb dataset and cosine similarity. It provides instant, personalized movie suggestions based on user input, enhancing the user discovery experience. Built primarily with Python, Pandas, and Streamlit, showcasing deployment capability.",
+      github_link: "https://github.com/kumaran-data/churn-ml",
+      live_link: "#",
+      live_text: "Try Predictor",
+      technologies: ["Python", "Streamlit", "Pandas", "Cosine Similarity", "TMDb API"],
+    },
+    "project-3": {
+      title: "Real-Time Facial Emotion Recognition",
+      image:
+        "https://images.unsplash.com/photo-1551288258-293c310461ae?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      full_description: `
+        A computer vision system that automatically detects and classifies human facial emotions in real time using deep learning (CNNs) and OpenCV. The system processes live video feeds to provide instant emotion percentages (e.g., happiness, anger, surprise), demonstrating strong computer vision skills.
+      `,
+      github_link:
+        "https://github.com/Kumara5KN/Real-Time-Facial-Emotion-Recognition",
+      live_link: null,
+      technologies: ["Python", "OpenCV", "TensorFlow", "CNN", "Tkinter"],
+    },
+  };
+
+  const modal = document.getElementById("project-modal");
+  const techDisplay = document.getElementById("modal-technologies");
+
+  function openModal(projectId) {
+    const data = projectData[projectId];
+    if (!data) return;
+
+    document.getElementById("modal-title").innerText = data.title;
+    document.getElementById("modal-description").innerText =
+      data.full_description.trim();
+    document.getElementById("modal-image").src = data.image;
+    document.getElementById("modal-image").alt = data.title + " Image";
+
+    // Populate Technologies
+    techDisplay.innerHTML = '';
+    if (data.technologies && data.technologies.length > 0) {
+        data.technologies.forEach(tech => {
+            const badge = document.createElement('span');
+            badge.className = 'tech-badge';
+            badge.textContent = tech;
+            techDisplay.appendChild(badge);
+        });
     }
 
-    const observerOptions = {
-      root: null, 
-      rootMargin: "-50% 0px -50% 0px", 
-      threshold: 0 
-    };
+    document.getElementById("modal-github").href = data.github_link;
+    const liveLinkElement = document.getElementById("modal-live");
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id;
-          setActiveLink(sectionId);
-        }
-      });
-    }, observerOptions);
+    if (data.live_link) {
+      liveLinkElement.style.display = "inline-flex";
+      liveLinkElement.href = data.live_link;
+      liveLinkElement.innerHTML = `<i class="fas fa-external-link-alt me-2"></i> ${
+        data.live_text || "Live Demo"
+      }`;
+    } else {
+      liveLinkElement.style.display = "none";
+    }
 
-    sections.forEach(section => {
-      sectionObserver.observe(section);
-    });
-    
-   
-    document.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault(); 
-            const targetId = this.getAttribute('href');
-            
-            document.querySelector(targetId).scrollIntoView({
-                behavior: 'smooth'
-            });
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
 
-            const offcanvasElement = document.getElementById('mobileOffcanvas');
-            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement) || new bootstrap.Offcanvas(offcanvasElement);
-            bsOffcanvas.hide();
-
-            setActiveLink(targetId.substring(1));
-        });
-    });
-
+  function closeModal() {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  }
   
-    window.onload = function() {
-        const form = document.getElementById('formspree-contact-form');
-        const responseMessage = document.getElementById('response-message');
-        const submitButton = document.getElementById('submitButton');
+  // --- Active Link Logic for Top/Offcanvas Nav ---
+  const sections = document.querySelectorAll('section[id]');
+  const desktopNavLinks = document.querySelectorAll('.navbar-links a');
+  const offcanvasNavLinks = document.querySelectorAll('.offcanvas-link');
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            
-            responseMessage.style.display = 'block';
-            responseMessage.innerHTML = "<span class='text-primary fw-bold'>Sending...</span>";
-            submitButton.disabled = true;
+  function updateActiveLink() {
+      let current = '';
 
-            const formData = new FormData(form);
-            
-            fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json' 
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    responseMessage.innerHTML = "<span class='text-success fw-bold'>✅ Message sent successfully!</span>";
-                    form.reset();
-                } else {
-                    response.json().then(data => {
-                        let errorMessage = "❌ An unknown error occurred.";
-                        if (data.errors) {
-                            errorMessage = `❌ Submission failed. Check fields: ${data.errors.map(e => e.field).join(', ')}.`;
-                        } else if (data.error) {
-                             errorMessage = `❌ ${data.error}`;
-                        }
-                        responseMessage.innerHTML = `<span class='text-danger fw-bold'>${errorMessage}</span>`;
-                    });
-                }
-            })
-            .catch(error => {
-                responseMessage.innerHTML = "<span class='text-danger fw-bold'>❌ Network error. Check your connection or Formspree setup.</span>";
-                console.error("Formspree Fetch Error:", error);
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    submitButton.disabled = false;
-                    if (!responseMessage.innerHTML.includes("success")) {
-                        responseMessage.style.display = 'none';
-                    }
-                }, 5000); 
-            });
-        });    
-    }
+      sections.forEach(section => {
+          // FIX: Uses 200px offset for smoother active link switching
+          const sectionTop = section.offsetTop - 200; 
+          if (window.scrollY >= sectionTop) {
+              current = section.getAttribute('id');
+          }
+      });
+
+      [...desktopNavLinks, ...offcanvasNavLinks].forEach(link => {
+          link.classList.remove('active-link');
+          if (link.getAttribute('href').includes(current)) {
+              link.classList.add('active-link');
+          }
+      });
+  }
+
+  window.addEventListener('scroll', updateActiveLink);
+  window.addEventListener('load', updateActiveLink);
+
+  // --- Formspree AJAX Submission Logic ---
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('formspree-contact-form');
     
-    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    if (form) {
+      const responseMessage = document.getElementById('response-message');
+      const submitButton = document.getElementById('submitButton');
 
-    window.onscroll = function() {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            scrollToTopBtn.style.display = "flex"; 
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    };
+      form.addEventListener('submit', function(event) {
+          event.preventDefault(); 
+          
+          responseMessage.style.display = 'block';
+          responseMessage.innerHTML = "<span class='text-primary fw-bold'>Sending...</span>";
+          submitButton.disabled = true;
 
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' 
-        });
+          const formData = new FormData(form);
+          
+          fetch(form.action, {
+              method: form.method,
+              body: formData,
+              headers: {
+                  'Accept': 'application/json' 
+              }
+          })
+          .then(response => {
+              if (response.ok) {
+                  responseMessage.innerHTML = "<span class='text-success fw-bold'>✅ Message sent successfully!</span>";
+                  form.reset();
+              } else {
+                  response.json().then(data => {
+                      let errorMessage = "❌ An unknown error occurred.";
+                      if (data.errors) {
+                          errorMessage = `❌ Submission failed. Check fields: ${data.errors.map(e => e.field).join(', ')}.`;
+                      } else if (data.error) {
+                            errorMessage = `❌ ${data.error}`;
+                      }
+                      responseMessage.innerHTML = `<span class='text-danger fw-bold'>${errorMessage}</span>`;
+                  });
+              }
+          })
+          .catch(error => {
+              responseMessage.innerHTML = "<span class='text-danger fw-bold'>❌ Network error. Check your connection or Formspree setup.</span>";
+              console.error("Formspree Fetch Error:", error);
+          })
+          .finally(() => {
+              setTimeout(() => {
+                  submitButton.disabled = false;
+                  if (responseMessage.innerHTML.includes("success")) {
+                       setTimeout(() => {
+                           responseMessage.style.display = 'none';
+                       }, 3000); 
+                  }
+              }, 1000); 
+          });
+      });
+    }
+  });
+
+  // --- SCROLL TO TOP LOGIC ---
+  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  const rootElement = document.documentElement;
+  
+  function handleScroll() {
+    if (rootElement.scrollTop > 200) {
+      scrollToTopBtn.style.display = "block";
+    } else {
+      scrollToTopBtn.style.display = "none";
+    }
+  }
+
+  function scrollToTop() {
+    rootElement.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
-  </script>
+  }
 
+  window.addEventListener("scroll", handleScroll);
+  scrollToTopBtn.addEventListener("click", scrollToTop);
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
