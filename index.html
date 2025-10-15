@@ -388,7 +388,6 @@
   #project-modal .modal-content-wrapper { background-color: var(--second-bg-color) !important; color: var(--text-color) !important; }
   #project-modal .bg-white { background-color: var(--second-bg-color) !important; color: var(--text-color) !important; }
   #project-modal .btn-dark { background-color: #555 !important; border-color: #555 !important; color: #fff !important; }
-  #project-modal .modal-body-scroll {max-height: 65vh;overflow-y: auto;padding-right: 15px;}
 </style>
 </head>
 <body>
@@ -885,50 +884,48 @@
     justify-content: center;
   "
 >
- <div
+  <div
     class="bg-white p-4 mx-auto rounded shadow-lg"
-    style="max-width: 800px; position: relative">
+    style="max-width: 800px; position: relative"
+  >
     <span
       class="position-absolute top-0 end-0 me-3 mt-1 fs-3 fw-bold"
-       style="color: var(--text-color); cursor: pointer"
+      style="color: var(--text-color); cursor: pointer"
       onclick="closeModal()"
-      >&times;</span>
+      >&times;</span
+    >
     <h2 id="modal-title" class="h3 fw-bold mb-3" style="color: var(--primary-color)"></h2>
-
-    <div class="modal-body-scroll"> 
 
     <img
       id="modal-image"
       class="img-fluid rounded mb-3 shadow"
       src=""
-       alt="Project Image"
+      alt="Project Image"
     />
 
     <p id="modal-description" style="color: var(--text-color);"></p>
 
     <h5 class="fw-bold mb-2 mt-4" style="color: var(--primary-color);">Technologies Used</h5>
     <div id="modal-technologies" class="d-flex flex-wrap mb-4">
+      </div>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <a
+        id="modal-github"
+        href="#"
+        target="_blank"
+        class="btn btn-dark"
+        ><i class="fab fa-github me-2"></i> GitHub</a
+      >
+      <a
+        id="modal-live"
+        href="#"
+        target="_blank"
+        class="btn text-white"
+        style="background-color: var(--primary-color)"
+        ><i class="fas fa-external-link-alt me-2"></i> Live Demo</a
+      >
     </div>
-
-   </div>
-      <div class="d-flex justify-content-center gap-3 mt-4 pt-3 border-top" style="background: var(--card-bg);"> 
-    <a
-    id="modal-github"
-    href="#"
-    target="_blank"
-    class="btn btn-dark"
-    ><i class="fab fa-github me-2"></i> GitHub</a
-    >
-     <a
-     id="modal-live"
-    href="#"
-     target="_blank"
-     class="btn text-white"
-     style="background-color: var(--primary-color)"
-    ><i class="fas fa-external-link-alt me-2"></i> Live Demo</a
-    >
   </div>
-</div>
 </div>
 
 <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
@@ -936,6 +933,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
+  // --- NEW FUNCTION: Navigate and Close Offcanvas ---
   function navigateAndClose(event, href) {
     event.preventDefault(); 
 
