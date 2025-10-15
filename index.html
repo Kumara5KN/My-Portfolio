@@ -388,6 +388,85 @@
   #project-modal .modal-content-wrapper { background-color: var(--second-bg-color) !important; color: var(--text-color) !important; }
   #project-modal .bg-white { background-color: var(--second-bg-color) !important; color: var(--text-color) !important; }
   #project-modal .btn-dark { background-color: #555 !important; border-color: #555 !important; color: #fff !important; }
+
+  /* --- SIMPLE PROJECT MODAL STYLING (Scrollable without scrollbar) --- */
+  #project-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  #project-modal .modal-content {
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--second-bg-color);
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    
+    /* Hide scrollbar but keep scrolling functionality */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  #project-modal .modal-content::-webkit-scrollbar {
+    display: none;
+  }
+
+  #project-modal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 10;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+  }
+
+  #project-modal .close-btn:hover {
+    color: var(--primary-color);
+  }
+
+  #project-modal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  /* Responsive adjustments for modal */
+  @media (max-width: 768px) {
+    #project-modal {
+      padding: 10px;
+    }
+    
+    #project-modal .modal-content {
+      padding: 20px;
+    }
+    
+    #project-modal .close-btn {
+      top: 15px;
+      right: 20px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -867,63 +946,30 @@
     </p>
   </div>
 </footer>
-<div
-  id="project-modal"
-  style="
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(5px);
-    padding-top: 50px;
-    justify-content: center;
-  "
->
-  <div
-    class="bg-white p-4 mx-auto rounded shadow-lg"
-    style="max-width: 800px; position: relative"
-  >
-    <span
-      class="position-absolute top-0 end-0 me-3 mt-1 fs-3 fw-bold"
-      style="color: var(--text-color); cursor: pointer"
-      onclick="closeModal()"
-      >&times;</span
-    >
-    <h2 id="modal-title" class="h3 fw-bold mb-3" style="color: var(--primary-color)"></h2>
 
-    <img
-      id="modal-image"
-      class="img-fluid rounded mb-3 shadow"
-      src=""
-      alt="Project Image"
-    />
-
+<!-- Simple Project Modal - No Scrollbar Visible -->
+<div id="project-modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    
+    <h2 id="modal-title" class="h3 fw-bold mb-3" style="color: var(--primary-color);"></h2>
+    
+    <img id="modal-image" src="" alt="Project Image" />
+    
     <p id="modal-description" style="color: var(--text-color);"></p>
-
-    <h5 class="fw-bold mb-2 mt-4" style="color: var(--primary-color);">Technologies Used</h5>
-    <div id="modal-technologies" class="d-flex flex-wrap mb-4">
-      </div>
+    
+    <h5 class="fw-bold mb-2 mt-4" style="color: var(--primary-color);">
+      Technologies Used
+    </h5>
+    <div id="modal-technologies" class="d-flex flex-wrap mb-4"></div>
+    
     <div class="d-flex justify-content-center gap-3 mt-4">
-      <a
-        id="modal-github"
-        href="#"
-        target="_blank"
-        class="btn btn-dark"
-        ><i class="fab fa-github me-2"></i> GitHub</a
-      >
-      <a
-        id="modal-live"
-        href="#"
-        target="_blank"
-        class="btn text-white"
-        style="background-color: var(--primary-color)"
-        ><i class="fas fa-external-link-alt me-2"></i> Live Demo</a
-      >
+      <a id="modal-github" href="#" target="_blank" class="btn btn-dark">
+        <i class="fab fa-github me-2"></i> GitHub
+      </a>
+      <a id="modal-live" href="#" target="_blank" class="btn text-white" style="background-color: var(--primary-color)">
+        <i class="fas fa-external-link-alt me-2"></i> Live Demo
+      </a>
     </div>
   </div>
 </div>
@@ -1272,6 +1318,3 @@
 </script>
 </body>
 </html>
-
-
-
