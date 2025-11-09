@@ -906,6 +906,7 @@
       border-radius: 10px;
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
+      width: 100%; /* Ensure full width */
     }
 
     .form-control::placeholder {
@@ -1038,18 +1039,31 @@
         width: 100%;
         padding: 1rem;
       }
+      
+      /* FIX FOR MOBILE CONTACT FORM OVERLAPPING */
+      .contact-form-panel {
+        width: 100%;
+      }
+      
+      .contact-form {
+        width: 100%;
+      }
+      
+      .form-group {
+        width: 100%;
+      }
+      
+      .form-control {
+        width: 100%;
+        max-width: 100%;
+      }
     }
 
     @media (max-width: 576px) {
       .name { font-size: 3rem; }
       .title { font-size: 1.5rem; }
       .cta-buttons { flex-direction: column; }
-      .btn { 
-        justify-content: center; 
-        width: 100%; 
-        padding: 0.8rem 1.5rem; /* Reduced padding for mobile */
-        font-size: 0.9rem; /* Slightly smaller font */
-      }
+      .btn { justify-content: center; width: 100%; }
       
       .icon-skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1061,36 +1075,34 @@
 
       .btn-send-message {
         align-self: stretch;
-        padding: 0.8rem 1.5rem; /* Reduced padding for mobile */
-        font-size: 0.9rem; /* Slightly smaller font */
       }
       
-      /* Additional mobile-specific button styling */
-      .btn-link {
-        font-size: 0.85rem; /* Smaller font for project buttons */
+      /* MOBILE CONTACT FORM FIX - 75% width */
+      .contact-wrapper {
+        width: 90%;
+        margin: 0 auto;
       }
       
-      .linkedin-btn {
-        padding: 0.8rem 1.5rem; /* Reduced padding for mobile */
-        font-size: 0.9rem; /* Slightly smaller font */
-      }
-    }
-
-    /* Add this for very small screens */
-    @media (max-width: 400px) {
-      .btn { 
-        padding: 0.7rem 1.2rem; /* Even smaller padding */
-        font-size: 0.85rem; /* Smaller font */
+      .contact-form-panel {
+        width: 100%;
       }
       
-      .btn-send-message {
-        padding: 0.7rem 1.2rem; /* Even smaller padding */
-        font-size: 0.85rem; /* Smaller font */
+      .contact-form {
+        width: 100%;
       }
       
-      .linkedin-btn {
-        padding: 0.7rem 1.2rem; /* Even smaller padding */
-        font-size: 0.85rem; /* Smaller font */
+      .form-group {
+        width: 100%;
+      }
+      
+      .form-control {
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      .contact-info-panel,
+      .contact-form-panel {
+        padding: 1rem;
       }
     }
   </style>
