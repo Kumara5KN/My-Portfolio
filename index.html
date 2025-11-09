@@ -1044,7 +1044,12 @@
       .name { font-size: 3rem; }
       .title { font-size: 1.5rem; }
       .cta-buttons { flex-direction: column; }
-      .btn { justify-content: center; width: 100%; }
+      .btn { 
+        justify-content: center; 
+        width: 100%; 
+        padding: 0.8rem 1.5rem; /* Reduced padding for mobile */
+        font-size: 0.9rem; /* Slightly smaller font */
+      }
       
       .icon-skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1056,6 +1061,36 @@
 
       .btn-send-message {
         align-self: stretch;
+        padding: 0.8rem 1.5rem; /* Reduced padding for mobile */
+        font-size: 0.9rem; /* Slightly smaller font */
+      }
+      
+      /* Additional mobile-specific button styling */
+      .btn-link {
+        font-size: 0.85rem; /* Smaller font for project buttons */
+      }
+      
+      .linkedin-btn {
+        padding: 0.8rem 1.5rem; /* Reduced padding for mobile */
+        font-size: 0.9rem; /* Slightly smaller font */
+      }
+    }
+
+    /* Add this for very small screens */
+    @media (max-width: 400px) {
+      .btn { 
+        padding: 0.7rem 1.2rem; /* Even smaller padding */
+        font-size: 0.85rem; /* Smaller font */
+      }
+      
+      .btn-send-message {
+        padding: 0.7rem 1.2rem; /* Even smaller padding */
+        font-size: 0.85rem; /* Smaller font */
+      }
+      
+      .linkedin-btn {
+        padding: 0.7rem 1.2rem; /* Even smaller padding */
+        font-size: 0.85rem; /* Smaller font */
       }
     }
   </style>
@@ -1542,4 +1577,3 @@
   </script>
 </body>
 </html>
-
