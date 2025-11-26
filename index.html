@@ -340,7 +340,7 @@
       outline: none;
     }
 
-    /* Scroll Arrow - HIDDEN BY DEFAULT */
+    /* Scroll Arrow */
     .scroll-arrow {
       position: fixed;
       bottom: 30px;
@@ -349,7 +349,7 @@
       height: 50px;
       background: var(--gradient);
       border-radius: 50%;
-      display: none; /* Changed from flex to none */
+      display: flex;
       align-items: center;
       justify-content: center;
       color: white;
@@ -358,10 +358,6 @@
       z-index: 999;
       box-shadow: 0 4px 15px rgba(60, 211, 245, 0.4);
       transition: transform 0.3s ease;
-    }
-
-    .scroll-arrow.visible {
-      display: flex; /* Show when visible class is added */
     }
 
     .scroll-arrow:hover {
@@ -1182,7 +1178,7 @@
     </div>
   </section>
 
-  <!-- Scroll Arrow - HIDDEN BY DEFAULT -->
+  <!-- Scroll Arrow -->
   <div class="scroll-arrow" id="scrollArrow">
     <i class="fas fa-arrow-up"></i>
   </div>
@@ -1576,9 +1572,9 @@
       // Show/hide arrow based on scroll position
       window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
-          scrollArrow.classList.add('visible');
+          scrollArrow.style.display = 'flex';
         } else {
-          scrollArrow.classList.remove('visible');
+          scrollArrow.style.display = 'none';
         }
       });
 
@@ -1589,6 +1585,34 @@
           behavior: 'smooth'
         });
       });
+    });
+
+    // Navbar active section highlighting
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav a');
+      
+      function highlightNav() {
+        let scrollY = window.pageYOffset;
+        
+        sections.forEach(section => {
+          const sectionHeight = section.offsetHeight;
+          const sectionTop = section.offsetTop - 100;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', highlightNav);
+      window.addEventListener('load', highlightNav);
     });
   </script>
 </body>
