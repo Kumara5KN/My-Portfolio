@@ -81,13 +81,7 @@
             visibility: visible;
             transform: translateY(0);
         }
-        
-        .back-to-home:hover {
-            background: var(--cyan);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(63, 214, 245, 0.6);
-        }
-        
+
         .back-to-home i {
             color: var(--bg);
             font-size: 20px;
@@ -389,7 +383,6 @@
         }
         
         .chevrons-container:hover {
-            background: rgba(63,214,245,.1);
             transform: scale(1.1);
         }
         
@@ -454,7 +447,7 @@
         }
 
         .profile-info p {
-            margin-bottom: 8px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             gap: 10px;
@@ -1772,7 +1765,7 @@
 
                 <div class="profile-info">
                     <p><span>Name:</span> <strong>Kumara N</strong></p>
-                    <p><span>Job Role:</span> <strong>Data Scientist</strong></p>
+                    <p><span>Domain:</span> <strong>Data Scientist</strong></p>
                     <p><span>Experience:</span> <strong>Fresher</strong></p>
                     <p><span>Address:</span> <strong>Bangalore, Karnataka, India</strong></p>
                 </div>
@@ -1974,7 +1967,7 @@
 
                     <!-- PROJECT 1 -->
                     <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
+                        <img src="./static/projects_IMG/Project_1.png">
                         <div class="content">
                             <h3>Customer Churn Prediction</h3>
                             <p>A machine learning system that predicts customer churn for e-commerce platforms using 
@@ -1984,9 +1977,7 @@
                                 <span>Python</span><span>XGBoost</span><span>Pandas</span>
                             </div>
                             <div class="buttons">
-                                <a href="https://kumaran-demo1.netlify.app" target="_blank" class="btn primary">
-                                    <i class="fas fa-external-link-alt"></i> Live
-                                </a>
+                               
                                 <a href="https://github.com/kumaran-data/customer-segmentation" target="_blank" class="btn secondary">
                                     <i class="fab fa-github"></i> GitHub
                                 </a>
@@ -1996,7 +1987,7 @@
 
                     <!-- PROJECT 2 -->
                     <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1489599809516-9827b6d1cf13">
+                        <img src="./static/projects_IMG/Project_2.png">
                         <div class="content">
                             <h3>Movie Recommendation System</h3>
                             <p>A Streamlit-based movie recommendation system using TMDb dataset and cosine similarity. 
@@ -2017,7 +2008,29 @@
 
                     <!-- PROJECT 3 -->
                     <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3">
+                        <img src="./static/projects_IMG/Project_4.png">
+                        <div class="content">
+                            <h3>Bangalore Home Price Predictor</h3>
+                            <p> Machine learning–based web application that predicts Bangalore house prices
+                                using features like location, square feet, BHK, and bathrooms.
+                                Built with Streamlit and a trained regression model for real-time price estimation.</p>
+                            <div class="tags">
+                                <span>Python</span><span>ML</span><span>Streamlit</span>
+                            </div>
+                            <div class="buttons">
+                                 <a href="https://property-price-forecast.streamlit.app/" target="_blank" class="btn primary">
+                                    <i class="fas fa-external-link-alt"></i> Live
+                                </a>
+                                <a href="https://github.com/Kumara5KN/sales-forecasting" target="_blank" class="btn secondary">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 4 -->
+                    <div class="project-card">
+                        <img src="./static/projects_IMG/Project_3.png">
                         <div class="content">
                             <h3>Emotion Recognition</h3>
                             <p>A computer vision system that detects and analyzes facial emotions in real-time using 
@@ -2033,23 +2046,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 4 -->
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692">
-                        <div class="content">
-                            <h3>Sales Forecasting</h3>
-                            <p>Time series forecasting model that predicts future sales using ARIMA and Prophet models.
-                                Includes interactive dashboard for business intelligence and decision making.</p>
-                            <div class="tags">
-                                <span>Python</span><span>Analytics</span><span>ML</span>
-                            </div>
-                            <div class="buttons">
-                                <a href="https://github.com/Kumara5KN/sales-forecasting" target="_blank" class="btn secondary">
-                                    <i class="fab fa-github"></i> GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
