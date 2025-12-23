@@ -1154,6 +1154,9 @@
             color: var(--text);
             font-size: 15px;
             text-decoration: none;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .contact-item a:hover {
@@ -1440,14 +1443,46 @@
                 display: none;
             }
             
-            /* CONTACT RESPONSIVE */
+            /* CONTACT RESPONSIVE - FIXED */
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
             
+            .contact-info {
+                text-align: center;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 10px;
+                margin-bottom: 32px;
+            }
+            
+            .contact-item i {
+                margin-top: 0;
+                font-size: 24px;
+            }
+            
+            .contact-item div {
+                width: 100%;
+            }
+            
+            .contact-item strong {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 17px;
+            }
+            
+            .contact-item a {
+                font-size: 16px;
+            }
+            
             .send-btn {
                 width: 100%;
+                padding: 16px 42px;
             }
             
             /* FOOTER RESPONSIVE */
@@ -1505,6 +1540,21 @@
             
             .edu-dot {
                 left: 25px;
+            }
+            
+            /* CONTACT MOBILE FIXES */
+            .contact-title {
+                font-size: 32px;
+                margin-bottom: 50px;
+            }
+            
+            .contact-info h3,
+            .contact-form h3 {
+                font-size: 24px;
+            }
+            
+            .contact-item {
+                margin-bottom: 28px;
             }
         }
         
@@ -1601,12 +1651,42 @@
             
             /* CONTACT RESPONSIVE */
             .contact-title {
-                font-size: 32px;
+                font-size: 28px;
+                margin-bottom: 40px;
             }
             
             .contact-info h3,
             .contact-form h3 {
                 font-size: 22px;
+                margin-bottom: 20px;
+            }
+            
+            .contact-item {
+                margin-bottom: 24px;
+                padding: 0 10px;
+            }
+            
+            .contact-item i {
+                font-size: 22px;
+            }
+            
+            .contact-item strong {
+                font-size: 16px;
+            }
+            
+            .contact-item a {
+                font-size: 15px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                font-size: 15px;
+                padding: 12px 0;
+            }
+            
+            .send-btn {
+                padding: 14px 42px;
+                font-size: 15px;
             }
             
             /* FOOTER RESPONSIVE */
@@ -1661,6 +1741,37 @@
             .icon-skills-grid {
                 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                 gap: 15px;
+            }
+            
+            /* CONTACT FIXES FOR VERY SMALL SCREENS */
+            .contact {
+                padding: 90px 15px 30px;
+            }
+            
+            .contact-title {
+                font-size: 26px;
+                margin-bottom: 35px;
+            }
+            
+            .contact-info h3,
+            .contact-form h3 {
+                font-size: 20px;
+            }
+            
+            .contact-item {
+                margin-bottom: 20px;
+            }
+            
+            .contact-item i {
+                font-size: 20px;
+            }
+            
+            .contact-item strong {
+                font-size: 15px;
+            }
+            
+            .contact-item a {
+                font-size: 14px;
             }
         }
         
@@ -1967,7 +2078,7 @@
 
                     <!-- PROJECT 1 -->
                     <div class="project-card">
-                        <img src="./static/Project_1.png">
+                        <img src="./static/projects_IMG/Project_1.png">
                         <div class="content">
                             <h3>Customer Churn Prediction</h3>
                             <p>A machine learning system that predicts customer churn for e-commerce platforms using 
@@ -1987,7 +2098,7 @@
 
                     <!-- PROJECT 2 -->
                     <div class="project-card">
-                        <img src="./static/Project_2.png">
+                        <img src="./static/projects_IMG/Project_2.png">
                         <div class="content">
                             <h3>Movie Recommendation System</h3>
                             <p>A Streamlit-based movie recommendation system using TMDb dataset and cosine similarity. 
@@ -2008,7 +2119,7 @@
 
                     <!-- PROJECT 3 -->
                     <div class="project-card">
-                        <img src="./static/Project_4.png">
+                        <img src="./static/projects_IMG/Project_4.png">
                         <div class="content">
                             <h3>Bangalore Home Price Predictor</h3>
                             <p> Machine learning–based web application that predicts Bangalore house prices
@@ -2030,7 +2141,7 @@
 
                     <!-- PROJECT 4 -->
                     <div class="project-card">
-                        <img src="./static/Project_3.png">
+                        <img src="./static/projects_IMG/Project_3.png">
                         <div class="content">
                             <h3>Emotion Recognition</h3>
                             <p>A computer vision system that detects and analyzes facial emotions in real-time using 
@@ -2357,4 +2468,3 @@
     </script>
 </body>
 </html>
-
