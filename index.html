@@ -773,7 +773,7 @@
             box-shadow: 0 0 32px rgba(63,214,245,0.25);
         }
         
-        /* ================= SERVICES ================= */
+        /* ================= SERVICES (NEW, PLACED ABOVE) ================= */
         .services {
             padding: 140px 80px 120px;
             width: 100%;
@@ -781,65 +781,103 @@
             overflow: hidden;
         }
         
-        .services small {
+        .services small{
             color: var(--cyan);
-            letter-spacing: 6px;
-            font-size: 14px;
+            letter-spacing:6px;
+            font-size:14px;
+            font-weight:500;
+            display:block;
+            margin-bottom:10px;
+            text-transform:uppercase;
         }
-        
-        .services h1 {
-            font-size: 44px;
-            margin: 14px 0 18px;
+
+        .services h1{
+            font-size:52px;
+            font-weight:700;
+            margin-bottom:20px;
         }
-        
-        .services p {
-            max-width: 560px;
+
+        .services > p{
+            max-width:600px;
             color: var(--text);
-            line-height: 1.7;
-            width: 100%;
+            line-height:1.8;
+            margin-bottom:70px;
+            font-size:17px;
         }
-        
-        .cards {
-            margin-top: 70px;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(320px, 1fr));
-            gap: 48px;
-            width: 100%;
+
+        /* GRID */
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(2, 1fr);
+            gap:50px;
         }
-        
-        .card {
+
+        /* CARD */
+        .card{
+            position:relative;
+            
+            /* EXACT screenshot style gradient */
             background: linear-gradient(
-                135deg,
-                rgba(255,255,255,0.08),
-                rgba(255,255,255,0.02)
+                145deg,
+                #0c1218 0%,
+                #0a0f14 40%,
+                #070c10 100%
             );
-            border: 1px solid var(--border);
-            padding: 40px;
-            min-height: 260px;
-            transition: all 0.4s ease;
+
+            padding:40px;
+            min-height:260px;
+            border-radius:6px;
+            transition:all .4s ease;
+            overflow:hidden;
+            border:1px solid rgba(63,214,245,0.25);
             width: 100%;
         }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 30px rgba(63,214,245,0.22);
+
+        /* Glass Mist Border Animation */
+        .card::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            border-radius:6px;
+            padding:1.2px;
+            background:radial-gradient(circle at 30% 30%, var(--cyan), transparent 70%);
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite:xor;
+            mask-composite:exclude;
+            opacity:0;
+            transition:opacity .4s ease;
+            pointer-events:none;
         }
-        
-        .card i {
-            font-size: 36px;
-            margin-bottom: 24px;
+
+        .card:hover::before{
+            opacity:1;
         }
-        
-        .card h2 {
-            font-size: 26px;
-            margin-bottom: 14px;
+
+        /* Hover */
+        .card:hover{
+            transform:translateY(-8px);
+            box-shadow:0 25px 45px rgba(0,0,0,0.6);
         }
-        
-        .card p {
-            font-size: 15.5px;
-            color: var(--text);
-            line-height: 1.7;
-            width: 100%;
+
+        /* CONTENT */
+        .card i{
+            font-size:42px;
+            margin-bottom:30px;
+            color:var(--white);
+        }
+
+        .card h2{
+            font-size:28px;
+            margin-bottom:18px;
+            font-weight:600;
+        }
+
+        .card p{
+            color:var(--text);
+            line-height:1.8;
+            font-size:16px;
         }
         
         /* ================= NEW PROJECTS SECTION ================= */
@@ -1818,7 +1856,6 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#projects">Projects</a></li>
@@ -1898,13 +1935,11 @@
                     Proficient in data visualization using Matplotlib, Seaborn, and Power BI.
                     
                 </p>
-
+                 <a href="https://www.linkedin.com/" target="_blank" class="linkedin-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
                 <a href="resume.pdf" download class="linkedin-btn">
                     <i class="fa-solid fa-file-arrow-down"></i> Resume
-                </a>
-
-                <a href="https://www.linkedin.com/in/kumara11" target="_blank" class="linkedin-btn">
-                    <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
             </div>
         </section>
@@ -1937,8 +1972,7 @@
                                 Specializing in advanced computer applications, software development, and emerging technologies. Currently in final year with focus on data science.
                             </p>
                             <p class="edu-meta">
-                                <strong>Status:</strong> Currently Pursuing | 
-                                <strong>CGPA:</strong> 9.01
+                                <strong>Status:</strong> Currently Pursuing 
                             </p>
                         </div>
                     </div>
@@ -1961,7 +1995,6 @@
                                  Focus on programming fundamentals, databases, and web technologies.
                             </p>
                             <p class="edu-meta">
-                                <strong>CGPA:</strong> 8.9 | 
                                 <strong>Major:</strong> Computer Applications
                             </p>
                         </div>
@@ -2023,11 +2056,15 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" class="skill-icon"/>
                         <span class="skill-name">Power BI</span>
                     </div>
+                    <div class="skill-item-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" class="skill-icon"/>
+                        <span class="skill-name">Excel</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES SECTION -->
+        <!-- NEW SERVICES SECTION (inserted above old one, now the only services) -->
         <section class="services" id="services">
             <small>SERVICES</small>
             <h1>What I Build</h1>
@@ -2035,8 +2072,9 @@
                 I specialize in transforming raw information into meaningful insights
                 and intelligent systems.
             </p>
-            
+
             <div class="cards">
+
                 <div class="card">
                     <i class="fa-solid fa-chart-line"></i>
                     <h2>Data Analysis</h2>
@@ -2045,7 +2083,7 @@
                         NumPy, and visualization tools.
                     </p>
                 </div>
-                
+
                 <div class="card">
                     <i class="fa-solid fa-brain"></i>
                     <h2>Data Science</h2>
@@ -2054,6 +2092,7 @@
                         with real-world datasets.
                     </p>
                 </div>
+
             </div>
         </section>
 
@@ -2078,7 +2117,7 @@
 
                     <!-- PROJECT 1 -->
                     <div class="project-card">
-                        <img src="./static/Project_1.png">
+                        <img src="./static/projects_IMG/Project_1.png">
                         <div class="content">
                             <h3>Customer Churn Prediction</h3>
                             <p>A machine learning system that predicts customer churn for e-commerce platforms using 
@@ -2098,7 +2137,7 @@
 
                     <!-- PROJECT 2 -->
                     <div class="project-card">
-                        <img src="./static/Project_2.png">
+                        <img src="./static/projects_IMG/Project_2.png">
                         <div class="content">
                             <h3>Movie Recommendation System</h3>
                             <p>A Streamlit-based movie recommendation system using TMDb dataset and cosine similarity. 
@@ -2119,7 +2158,7 @@
 
                     <!-- PROJECT 3 -->
                     <div class="project-card">
-                        <img src="./static/Project_4.png">
+                        <img src="./static/projects_IMG/Project_4.png">
                         <div class="content">
                             <h3>Bangalore Home Price Predictor</h3>
                             <p> Machine learning–based web application that predicts Bangalore house prices
@@ -2141,7 +2180,7 @@
 
                     <!-- PROJECT 4 -->
                     <div class="project-card">
-                        <img src="./static/Project_3.png">
+                        <img src="./static/projects_IMG/Project_3.png">
                         <div class="content">
                             <h3>Emotion Recognition</h3>
                             <p>A computer vision system that detects and analyzes facial emotions in real-time using 
@@ -2252,7 +2291,7 @@
                 <div class="footer-logo">Kumara N</div>
                 
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/kumara-n-2003k2003/" target="_blank" class="social-icon">
+                    <a href="https://www.linkedin.com/in/kumara11" target="_blank" class="social-icon">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                     <a href="https://github.com/Kumara5KN" target="_blank" class="social-icon">
@@ -2468,6 +2507,3 @@
     </script>
 </body>
 </html>
-
-
-
